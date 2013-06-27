@@ -23,6 +23,7 @@
 		6E94F5D2177BB6E7000D0284 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5AE177BB6E7000D0284 /* UIKit.framework */; };
 		6E94F5DA177BB6E7000D0284 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E94F5D8177BB6E7000D0284 /* InfoPlist.strings */; };
 		6E94F5DC177BB6E7000D0284 /* StrongerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94F5DB177BB6E7000D0284 /* StrongerTests.m */; };
+		6E94F5E6177BBA35000D0284 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5E5177BBA35000D0284 /* CouchbaseLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		6E94F5D7177BB6E7000D0284 /* StrongerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StrongerTests-Info.plist"; sourceTree = "<group>"; };
 		6E94F5D9177BB6E7000D0284 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6E94F5DB177BB6E7000D0284 /* StrongerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrongerTests.m; sourceTree = "<group>"; };
+		6E94F5E5177BBA35000D0284 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Stronger/vendor/CouchbaseLite.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			files = (
 				6E94F5AD177BB6E7000D0284 /* CoreGraphics.framework in Frameworks */,
 				6E94F5AF177BB6E7000D0284 /* UIKit.framework in Frameworks */,
+				6E94F5E6177BBA35000D0284 /* CouchbaseLite.framework in Frameworks */,
 				6E94F5AB177BB6E7000D0284 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +109,7 @@
 		6E94F5A9177BB6E7000D0284 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E94F5E5177BBA35000D0284 /* CouchbaseLite.framework */,
 				6E94F5AA177BB6E7000D0284 /* Foundation.framework */,
 				6E94F5AC177BB6E7000D0284 /* CoreGraphics.framework */,
 				6E94F5AE177BB6E7000D0284 /* UIKit.framework */,
@@ -394,6 +398,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Stronger/vendor",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stronger/Stronger-Prefix.pch";
 				INFOPLIST_FILE = "Stronger/Stronger-Info.plist";
@@ -407,6 +415,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Stronger/vendor",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stronger/Stronger-Prefix.pch";
 				INFOPLIST_FILE = "Stronger/Stronger-Info.plist";
