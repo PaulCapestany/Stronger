@@ -185,6 +185,8 @@
 			buildPhases = (
 				6E94F5A3177BB6E7000D0284 /* Sources */,
 				6E94F5A4177BB6E7000D0284 /* Frameworks */,
+				6EA6C631178273BC00356926 /* ShellScript */,
+				6EA6C632178273DE00356926 /* ShellScript */,
 				6E94F5A5177BB6E7000D0284 /* Resources */,
 			);
 			buildRules = (
@@ -268,6 +270,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6EA6C631178273BC00356926 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# turn !!!s into build warnings and generate/update README\n# --------------------------------------------------------\nHIGHPRIORITY=\"!!!:\"\nLOWERPRIORITY=\"TODO:|\\?\\?\\?:\"\n# this allows us to make sure each Github link works, regardless of branch switches\nCURRENTBRANCH=`cat .git/HEAD | sed 's|ref: refs/heads/||'`\nVERSIONSTRING=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\n# put notes (and temporary files to be deleted) here\nmkdir -p $PROJECT_NAME/tmp\n\n# this is one huge one-line script adopted from http://www.benzado.com/blog/post/329/make-xcode-nag-you-about-unfinished-todos\n# tee duplicates the sdout stream to a .txt without \"redirecting\" after the pipe\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" \\) -print0 | \\\nxargs -0 egrep --with-filename --line-number --only-matching \"($HIGHPRIORITY).*\\$\" | \\\nperl -p -e \"s/($HIGHPRIORITY)/ warning: \\$1/\" | \\\ntee $PROJECT_NAME/tmp/originaloutput.txt\n# don't show low priority items as build warnings, but redirect them for parsing\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" \\) -print0 | \\\nxargs -0 egrep --with-filename --line-number --only-matching \"($LOWERPRIORITY).*\\$\" | \\\nperl -p -e \"s/($LOWERPRIORITY)/ warning: \\$1/\" >> $PROJECT_NAME/tmp/originaloutput.txt\n\n# parse TODO list for readability (watch out for Workspace/project/projectname ↓)\nsed \"s|$PROJECT_DIR/$PROJECT_NAME/||\" $PROJECT_NAME/tmp/originaloutput.txt | awk -F\": \" '{ print \"~~ * \" $3 $4 $5 $6 $7 $8 \" <<< \" $1 \" >>>\" }' > $PROJECT_NAME/tmp/filenames.txt\n\n# format LOC and file into markdown/links for Github\ncat $PROJECT_NAME/tmp/filenames.txt | awk -F\"<<< \" '{ print $1 \"~6969~\" $2 }' | sed 's/ >>>//' > $PROJECT_NAME/tmp/tempLOC.txt\ncat $PROJECT_NAME/tmp/tempLOC.txt | sed 's/\\(.*[a-z]\\)\\(:\\)\\([0-9].*\\)/\\1~6969~\\3/' > $PROJECT_NAME/tmp/anotherLOC.txt\ncat $PROJECT_NAME/tmp/anotherLOC.txt | awk -F\"~6969~\" '{ print $1 \"<a href=\\\"https://github.com/PaulCapestany/'\"$PROJECT_NAME\"'/blob/REPLACETHISTEXTWITHBRANCH/'\"$PROJECT_NAME\"'/\" $2 \"#L\" $3 \"\\\">`\" $2 \":\" $3 \"`</a>\" }' | sed 's/REPLACETHISTEXTWITHBRANCH/'\"$CURRENTBRANCH\"'/' > $PROJECT_NAME/tmp/yetAnotherLOC.txt\n\n# \"sort\" simple textfile todos\necho -e \"\\n### Top Priority\" > $PROJECT_NAME/tmp/sorted.txt\ngrep \"!!!\" $PROJECT_NAME/tmp/filenames.txt >> $PROJECT_NAME/tmp/sorted.txt\necho -e \"\\n### Upcoming\" >> $PROJECT_NAME/tmp/sorted.txt\ngrep \"TODO\" $PROJECT_NAME/tmp/filenames.txt >> $PROJECT_NAME/tmp/sorted.txt\necho -e \"\\n### Open questions\" >> $PROJECT_NAME/tmp/sorted.txt\ngrep \"???\" $PROJECT_NAME/tmp/filenames.txt >> $PROJECT_NAME/tmp/sorted.txt\nsed 's/!!!//' $PROJECT_NAME/tmp/sorted.txt | sed 's/TODO//' | sed 's/???//' | sed \"s/~~/\\\\`echo -e '\\r'`/g\" | tee $PROJECT_NAME/tmp/todo.txt\n\n# \"sort\" markdown todos\necho -e \"\\n### Top Priority\" > $PROJECT_NAME/tmp/sortedForMarkdown.txt\ngrep \"!!!\" $PROJECT_NAME/tmp/yetAnotherLOC.txt >> $PROJECT_NAME/tmp/sortedForMarkdown.txt\necho -e \"\\n### Upcoming\" >> $PROJECT_NAME/tmp/sortedForMarkdown.txt\ngrep \"TODO\" $PROJECT_NAME/tmp/yetAnotherLOC.txt >> $PROJECT_NAME/tmp/sortedForMarkdown.txt\necho -e \"\\n### Open questions\" >> $PROJECT_NAME/tmp/sortedForMarkdown.txt\ngrep \"???\" $PROJECT_NAME/tmp/yetAnotherLOC.txt >> $PROJECT_NAME/tmp/sortedForMarkdown.txt\ncat $PROJECT_NAME/tmp/sortedForMarkdown.txt | sed 's/!!!//' | sed 's/TODO//' | sed 's/???//' | sed \"s/~~/\\\\`echo -e '\\r'`/g\" > $PROJECT_NAME/tmp/sortedForMarkdownFinal.txt\n\n# delete old todos\nsed '/## TODO/,/<!---->/ s/.*/~~/' README.md | sed '/~~/ d' > $PROJECT_NAME/tmp/tempREADME.txt\n\n# append new todos with build/version number\necho -e \"## TODO\" >> $PROJECT_NAME/tmp/tempREADME.txt\ncat $PROJECT_NAME/tmp/sortedForMarkdownFinal.txt >> $PROJECT_NAME/tmp/tempREADME.txt\necho -e \"\\n\\n_Build version REPLACEVERSION_\" | sed 's/REPLACEVERSION/'\"$VERSIONSTRING\"'/' >> $PROJECT_NAME/tmp/tempREADME.txt\necho -e \"\\n<!---->\" >> $PROJECT_NAME/tmp/tempREADME.txt\n\n# replace old README\ncat $PROJECT_NAME/tmp/tempREADME.txt > README.md\n#cat $PROJECT_NAME/tmp/tempREADME.txt | sed 's/<<< /:/' | sed 's/ >>>//' | awk -F\"<<< \" '{ print \"~~ * \" $3 $4 $5 $6 $7 $8 \" <<< \" $1 \" >>>\" }' > README.md\n\n# swap \"touch\" with \"rm\" depending on live vs. debugging these scripts (don't wanna find files in these, or have them show up in git history)\nrm $PROJECT_NAME/tmp/anotherLOC.txt\nrm $PROJECT_NAME/tmp/sortedForMarkdown.txt\nrm $PROJECT_NAME/tmp/filenames.txt\nrm $PROJECT_NAME/tmp/sortedForMarkdownFinal.txt\nrm $PROJECT_NAME/tmp/yetAnotherLOC.txt\nrm $PROJECT_NAME/tmp/originaloutput.txt\nrm $PROJECT_NAME/tmp/tempLOC.txt\nrm $PROJECT_NAME/tmp/sorted.txt\nrm $PROJECT_NAME/tmp/tempREADME.txt\n#\ntouch $PROJECT_NAME/tmp/todo.txt\ntouch README.md\n\n";
+		};
+		6EA6C632178273DE00356926 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "# Use build number for release\n# 1. under the target you want, \"Add Build Phase\" → \"Add Run Script\"\n# 2. move above \"Copy Bundle Resources\" so that it gets executed completely before Archiving\n# 3. check off the \"Run script only when installing\" box\nReleaseBuildString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $ReleaseBuildString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E94F5A3177BB6E7000D0284 /* Sources */ = {
