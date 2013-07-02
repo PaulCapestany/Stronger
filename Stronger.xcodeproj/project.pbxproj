@@ -24,6 +24,9 @@
 		6E94F5DA177BB6E7000D0284 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E94F5D8177BB6E7000D0284 /* InfoPlist.strings */; };
 		6E94F5DC177BB6E7000D0284 /* StrongerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94F5DB177BB6E7000D0284 /* StrongerTests.m */; };
 		6E94F5E6177BBA35000D0284 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5E5177BBA35000D0284 /* CouchbaseLite.framework */; };
+		6EA6C62C1782716200356926 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62B1782716200356926 /* SystemConfiguration.framework */; };
+		6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62D1782716E00356926 /* libsqlite3.dylib */; };
+		6EA6C6301782717700356926 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62F1782717700356926 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		6E94F5D9177BB6E7000D0284 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6E94F5DB177BB6E7000D0284 /* StrongerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrongerTests.m; sourceTree = "<group>"; };
 		6E94F5E5177BBA35000D0284 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Stronger/vendor/CouchbaseLite.framework; sourceTree = "<group>"; };
+		6EA6C62B1782716200356926 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6EA6C62D1782716E00356926 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		6EA6C62F1782717700356926 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EA6C6301782717700356926 /* libz.dylib in Frameworks */,
+				6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */,
+				6EA6C62C1782716200356926 /* SystemConfiguration.framework in Frameworks */,
 				6E94F5AD177BB6E7000D0284 /* CoreGraphics.framework in Frameworks */,
 				6E94F5AF177BB6E7000D0284 /* UIKit.framework in Frameworks */,
 				6E94F5E6177BBA35000D0284 /* CouchbaseLite.framework in Frameworks */,
@@ -109,6 +118,9 @@
 		6E94F5A9177BB6E7000D0284 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EA6C62F1782717700356926 /* libz.dylib */,
+				6EA6C62D1782716E00356926 /* libsqlite3.dylib */,
+				6EA6C62B1782716200356926 /* SystemConfiguration.framework */,
 				6E94F5E5177BBA35000D0284 /* CouchbaseLite.framework */,
 				6E94F5AA177BB6E7000D0284 /* Foundation.framework */,
 				6E94F5AC177BB6E7000D0284 /* CoreGraphics.framework */,
@@ -356,6 +368,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -387,6 +400,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -486,6 +500,7 @@
 				6E94F5E1177BB6E7000D0284 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E94F5E2177BB6E7000D0284 /* Build configuration list for PBXNativeTarget "StrongerTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +509,7 @@
 				6E94F5E4177BB6E7000D0284 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
