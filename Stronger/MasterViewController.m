@@ -19,6 +19,7 @@
 
 - (void)awakeFromNib
 {
+    LogFunc;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -28,6 +29,7 @@
 
 - (void)viewDidLoad
 {
+    LogFunc;
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -39,12 +41,14 @@
 
 - (void)didReceiveMemoryWarning
 {
+    LogFunc;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)insertNewObject:(id)sender
 {
+    LogFunc;
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
@@ -57,16 +61,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    LogFunc;
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    LogFunc;
     return _objects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LogFunc;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     NSDate *object = _objects[indexPath.row];
@@ -76,12 +83,14 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LogFunc;
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LogFunc;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [_objects removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -108,6 +117,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    LogFunc;
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDate *object = _objects[indexPath.row];

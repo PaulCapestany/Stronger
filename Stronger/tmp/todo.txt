@@ -1,0 +1,14 @@
+
+### Top Priority
+
+### Upcoming
+ * create users for app <<< AppConstants.h:11 >>>
+ * add file for passwords/etc to .gitignore <<< AppConstants.h:15 >>>
+ * build database of exercises/machines <<< AppConstants.h:19 >>>
+ * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:27 >>>
+ * change this test <<< vendor/Logging/LoggerClient.m:482 >>>
+
+### Open questions
+ * find out if I need to change how I'm doing the IDs for each doc <<< AppConstants.h:13 >>>
+ * look into `UICollectionView` <<< AppConstants.h:17 >>>
+ * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
