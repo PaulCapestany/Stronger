@@ -80,7 +80,7 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    NSLog(@"%@: error=%@", message, error);
+    LogErr(@"%@: error=%@", message, error);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
  showAlert: message error : error fatal : NO];
 }
@@ -98,7 +98,7 @@
     M_Workout *workoutForRow = [M_Workout modelForDocument:row.document];
 
     //    LogVerbose(@"row.key : row.value = %@ : %@", row.key, row.value);
-
+    
     cell.textLabel.text = workoutForRow.name;
 }
 
@@ -114,6 +114,7 @@
     M_Workout *selectedWorkout = [M_Workout modelForDocument:doc];
     LogAction(@"\"%@\" workout selected", selectedWorkout.name);
     LogVerbose(@"selectedWorkout: \n%@", selectedWorkout);
+    
     // TODO: add in ability to edit `selectedWorkout`
     [self showV_Exercise:selectedWorkout];
 }
@@ -223,8 +224,10 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     LogFunc;
-// !!!: enable "Done" button properly
-//    [textField resignFirstResponder];
+
+    LogAction(@"\"Done\" button pressed");
+    [self finishedAddingNewWorkout];
+
     return YES;
 }
 
@@ -275,6 +278,14 @@
     LogFunc;
 
     LogAction(@"\"+ Workout\" button pressed");
+    [self finishedAddingNewWorkout];
+}
+
+- (void)finishedAddingNewWorkout {
+    LogFunc;
+    
+    [newWorkoutTextField resignFirstResponder];
+    
     if (newWorkoutTextField.text != nil && ![newWorkoutTextField.text isEqual:@""]) {
         M_Workout *newWorkout = [M_Workout createWorkoutWithName:newWorkoutTextField.text
                                                       inDatabase:database];

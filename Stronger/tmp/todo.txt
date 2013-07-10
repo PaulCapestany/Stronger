@@ -1,8 +1,5 @@
 
 ### Top Priority
- * enable "Done" button properly <<< V_Exercise.m:128 >>>
- * enable "Done" button properly <<< V_Set.m:133 >>>
- * enable "Done" button properly <<< V_Workout.m:226 >>>
 
 ### Upcoming
  * create users for app <<< AppConstants.h:11 >>>
@@ -16,7 +13,7 @@
  * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:116 >>>
  * add in ability to edit `selectedSet` <<< V_Set.m:122 >>>
- * add in ability to edit `selectedWorkout` <<< V_Workout.m:117 >>>
+ * add in ability to edit `selectedWorkout` <<< V_Workout.m:118 >>>
  * change this test <<< vendor/Logging/LoggerClient.m:482 >>>
 
 ### Open questions
@@ -25,6 +22,6 @@
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
  * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:55 >>>
  * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
- * different way to deal with errors now? <<< V_Workout.m:123 >>>
- * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:172 >>>
- * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:214 >>>
+ * different way to deal with errors now? <<< V_Workout.m:124 >>>
+ * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:173 >>>
+ * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:215 >>>

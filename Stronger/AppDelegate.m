@@ -166,9 +166,6 @@
     LogFunc;
     
     if (_pull.mode == kCBLReplicationActive || _push.mode == kCBLReplicationActive) {
-        unsigned completed = _pull.completed + _push.completed;
-        unsigned total = _pull.total + _push.total;
-        NSLog(@"SYNC progress: %u / %u", completed, total);
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     } else {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -200,7 +197,6 @@
 - (void)dealloc {
     LogFunc;
     
-    NSLog(@"dealloc");
     NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
     if (_pull) {
         [nctr removeObserver:self name:nil object:_pull];

@@ -75,7 +75,7 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    NSLog(@"%@: error=%@", message, error);
+    LogErr(@"%@: error=%@", message, error);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
  showAlert: message error : error fatal : NO];
 }
@@ -125,8 +125,10 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     LogFunc;
-    // !!!: enable "Done" button properly
-    //	[textField resignFirstResponder];
+
+    LogAction(@"\"Done\" button pressed");
+    [self finishedAddingNewExercise];
+    
     return YES;
 }
 
@@ -161,16 +163,23 @@
     LogFunc;
 
     LogAction(@"\"+ Exercise\" button pressed");
+    [self finishedAddingNewExercise];
+}
 
+- (void)finishedAddingNewExercise {
+    LogFunc;
+
+    [newExerciseTextField resignFirstResponder];
+    
     if (newExerciseTextField.text != nil && ![newExerciseTextField.text isEqual:@""]) {
         M_Exercise *newExercise =
-            [M_Exercise createExercise:newExerciseTextField.text
-                 belongs_to_workout_id:m_WorkoutPassedIn
-                            inDatabase:database];
-
+        [M_Exercise createExercise:newExerciseTextField.text
+             belongs_to_workout_id:m_WorkoutPassedIn
+                        inDatabase:database];
+        
         LogVerbose(@"newExercise: \n%@", newExercise);
     }
-
+    
     [newExerciseTextField setText:nil];
 }
 

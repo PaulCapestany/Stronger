@@ -68,9 +68,11 @@
     #define LogDebug(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Debug",0,__VA_ARGS__)
     #define LogAction(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Action",0,__VA_ARGS__)
     #define LogVerbose(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Verbose",1,__VA_ARGS__)
+    #define LogErr(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Error",0,__VA_ARGS__)
 #else
     #define LogFunc(...)     do{}while(0)
     #define LogDebug(...)    do{}while(0)
     #define LogAction(...)   do{}while(0)
-    #define LogVerbose(...)     do{}while(0)
+    #define LogVerbose(...)  do{}while(0)
+    #define LogErr(...)    do{}while(0)
 #endif

@@ -85,7 +85,7 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    NSLog(@"%@: error=%@", message, error);
+    LogErr(@"%@: error=%@", message, error);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
  showAlert: message error : error fatal : NO];
 }
@@ -130,8 +130,10 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     LogFunc;
-    // !!!: enable "Done" button properly
-//	[textField resignFirstResponder];
+
+    LogAction(@"\"Done\" button pressed");
+    [self finishedAddingNewSet];
+    
     return YES;
 }
 
@@ -217,19 +219,31 @@
     LogFunc;
 
     LogAction(@"\"Add Set\" button pressed");
+    [self finishedAddingNewSet];
+}
 
+- (void)finishedAddingNewSet {
+    LogFunc;
+    
+    if ([weightTextField isFirstResponder]) {
+        [weightTextField resignFirstResponder];
+    }
+    if ([repsTextField isFirstResponder]) {
+        [repsTextField resignFirstResponder];
+    }
+    
     weightNumber = [self convertTextFieldStringToNumber:weightTextField.text];
     repsNumber = [self convertTextFieldStringToNumber:repsTextField.text];
-
+    
     [weightTextField setText:nil];
     [repsTextField setText:nil];
-
+    
     M_Set *newSet =
-        [M_Set createSetWithWeight:weightNumber
-                              reps:repsNumber
-            belongs_to_exercise_id:m_ExercisePassedIn
-                        inDatabase:database];
-
+    [M_Set createSetWithWeight:weightNumber
+                          reps:repsNumber
+        belongs_to_exercise_id:m_ExercisePassedIn
+                    inDatabase:database];
+    
     LogVerbose(@"newSet: \n%@", newSet);
 }
 
