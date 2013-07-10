@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E5909E2178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
+		6E5909E3178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
+		6E5909E4178CCCDF00818B6C /* V_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E1178CCCDF00818B6C /* V_Settings.m */; };
+		6E5909E5178CCCDF00818B6C /* V_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E1178CCCDF00818B6C /* V_Settings.m */; };
+		6E5909EA178CCCEE00818B6C /* M_Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E7178CCCEE00818B6C /* M_Workout.m */; };
+		6E5909EB178CCCEE00818B6C /* M_Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E7178CCCEE00818B6C /* M_Workout.m */; };
+		6E5909EC178CCCEE00818B6C /* V_Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E9178CCCEE00818B6C /* V_Workout.m */; };
+		6E5909ED178CCCEE00818B6C /* V_Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E9178CCCEE00818B6C /* V_Workout.m */; };
+		6E5909F2178CCCFB00818B6C /* M_Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909EF178CCCFB00818B6C /* M_Exercise.m */; };
+		6E5909F3178CCCFB00818B6C /* M_Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909EF178CCCFB00818B6C /* M_Exercise.m */; };
+		6E5909F4178CCCFB00818B6C /* V_Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909F1178CCCFB00818B6C /* V_Exercise.m */; };
+		6E5909F5178CCCFB00818B6C /* V_Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909F1178CCCFB00818B6C /* V_Exercise.m */; };
+		6E5909FA178CCD0500818B6C /* M_Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909F7178CCD0500818B6C /* M_Set.m */; };
+		6E5909FB178CCD0500818B6C /* M_Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909F7178CCD0500818B6C /* M_Set.m */; };
+		6E5909FC178CCD0500818B6C /* V_Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909F9178CCD0500818B6C /* V_Set.m */; };
+		6E5909FD178CCD0500818B6C /* V_Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909F9178CCD0500818B6C /* V_Set.m */; };
 		6E94F5AB177BB6E7000D0284 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5AA177BB6E7000D0284 /* Foundation.framework */; };
 		6E94F5AD177BB6E7000D0284 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5AC177BB6E7000D0284 /* CoreGraphics.framework */; };
 		6E94F5AF177BB6E7000D0284 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5AE177BB6E7000D0284 /* UIKit.framework */; };
@@ -15,8 +31,6 @@
 		6E94F5BB177BB6E7000D0284 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94F5BA177BB6E7000D0284 /* AppDelegate.m */; };
 		6E94F5BE177BB6E7000D0284 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94F5BC177BB6E7000D0284 /* Main_iPhone.storyboard */; };
 		6E94F5C1177BB6E7000D0284 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94F5BF177BB6E7000D0284 /* Main_iPad.storyboard */; };
-		6E94F5C4177BB6E7000D0284 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94F5C3177BB6E7000D0284 /* MasterViewController.m */; };
-		6E94F5C7177BB6E7000D0284 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94F5C6177BB6E7000D0284 /* DetailViewController.m */; };
 		6E94F5C9177BB6E7000D0284 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E94F5C8177BB6E7000D0284 /* Images.xcassets */; };
 		6E94F5D0177BB6E7000D0284 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5CF177BB6E7000D0284 /* XCTest.framework */; };
 		6E94F5D1177BB6E7000D0284 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5AA177BB6E7000D0284 /* Foundation.framework */; };
@@ -42,6 +56,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E5909DE178CCCDF00818B6C /* M_Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Settings.h; sourceTree = "<group>"; };
+		6E5909DF178CCCDF00818B6C /* M_Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M_Settings.m; sourceTree = "<group>"; };
+		6E5909E0178CCCDF00818B6C /* V_Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_Settings.h; sourceTree = "<group>"; };
+		6E5909E1178CCCDF00818B6C /* V_Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_Settings.m; sourceTree = "<group>"; };
+		6E5909E6178CCCEE00818B6C /* M_Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Workout.h; sourceTree = "<group>"; };
+		6E5909E7178CCCEE00818B6C /* M_Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M_Workout.m; sourceTree = "<group>"; };
+		6E5909E8178CCCEE00818B6C /* V_Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_Workout.h; sourceTree = "<group>"; };
+		6E5909E9178CCCEE00818B6C /* V_Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_Workout.m; sourceTree = "<group>"; };
+		6E5909EE178CCCFB00818B6C /* M_Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Exercise.h; sourceTree = "<group>"; };
+		6E5909EF178CCCFB00818B6C /* M_Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M_Exercise.m; sourceTree = "<group>"; };
+		6E5909F0178CCCFB00818B6C /* V_Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_Exercise.h; sourceTree = "<group>"; };
+		6E5909F1178CCCFB00818B6C /* V_Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_Exercise.m; sourceTree = "<group>"; };
+		6E5909F6178CCD0500818B6C /* M_Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Set.h; sourceTree = "<group>"; };
+		6E5909F7178CCD0500818B6C /* M_Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M_Set.m; sourceTree = "<group>"; };
+		6E5909F8178CCD0500818B6C /* V_Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_Set.h; sourceTree = "<group>"; };
+		6E5909F9178CCD0500818B6C /* V_Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_Set.m; sourceTree = "<group>"; };
 		6E94F5A7177BB6E7000D0284 /* Stronger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stronger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E94F5AA177BB6E7000D0284 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6E94F5AC177BB6E7000D0284 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,10 +84,6 @@
 		6E94F5BA177BB6E7000D0284 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6E94F5BD177BB6E7000D0284 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		6E94F5C0177BB6E7000D0284 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		6E94F5C2177BB6E7000D0284 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		6E94F5C3177BB6E7000D0284 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		6E94F5C5177BB6E7000D0284 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		6E94F5C6177BB6E7000D0284 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		6E94F5C8177BB6E7000D0284 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6E94F5CE177BB6E7000D0284 /* StrongerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StrongerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E94F5CF177BB6E7000D0284 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -105,6 +131,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E5909DA178CCC2600818B6C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6E5909DE178CCCDF00818B6C /* M_Settings.h */,
+				6E5909DF178CCCDF00818B6C /* M_Settings.m */,
+				6E5909E0178CCCDF00818B6C /* V_Settings.h */,
+				6E5909E1178CCCDF00818B6C /* V_Settings.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		6E5909DB178CCC3400818B6C /* Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				6E5909E6178CCCEE00818B6C /* M_Workout.h */,
+				6E5909E7178CCCEE00818B6C /* M_Workout.m */,
+				6E5909E8178CCCEE00818B6C /* V_Workout.h */,
+				6E5909E9178CCCEE00818B6C /* V_Workout.m */,
+				6E5909DC178CCC3C00818B6C /* Exercises */,
+			);
+			name = Workouts;
+			sourceTree = "<group>";
+		};
+		6E5909DC178CCC3C00818B6C /* Exercises */ = {
+			isa = PBXGroup;
+			children = (
+				6E5909EE178CCCFB00818B6C /* M_Exercise.h */,
+				6E5909EF178CCCFB00818B6C /* M_Exercise.m */,
+				6E5909F0178CCCFB00818B6C /* V_Exercise.h */,
+				6E5909F1178CCCFB00818B6C /* V_Exercise.m */,
+				6E5909DD178CCC4500818B6C /* Sets */,
+			);
+			name = Exercises;
+			sourceTree = "<group>";
+		};
+		6E5909DD178CCC4500818B6C /* Sets */ = {
+			isa = PBXGroup;
+			children = (
+				6E5909F6178CCD0500818B6C /* M_Set.h */,
+				6E5909F7178CCD0500818B6C /* M_Set.m */,
+				6E5909F8178CCD0500818B6C /* V_Set.h */,
+				6E5909F9178CCD0500818B6C /* V_Set.m */,
+			);
+			name = Sets;
+			sourceTree = "<group>";
+		};
 		6E94F59E177BB6E7000D0284 = {
 			isa = PBXGroup;
 			children = (
@@ -149,11 +221,9 @@
 				6E94F5BA177BB6E7000D0284 /* AppDelegate.m */,
 				6E94F5BC177BB6E7000D0284 /* Main_iPhone.storyboard */,
 				6E94F5BF177BB6E7000D0284 /* Main_iPad.storyboard */,
-				6E94F5C2177BB6E7000D0284 /* MasterViewController.h */,
-				6E94F5C3177BB6E7000D0284 /* MasterViewController.m */,
-				6E94F5C5177BB6E7000D0284 /* DetailViewController.h */,
-				6E94F5C6177BB6E7000D0284 /* DetailViewController.m */,
 				6E94F5C8177BB6E7000D0284 /* Images.xcassets */,
+				6E5909DA178CCC2600818B6C /* Settings */,
+				6E5909DB178CCC3400818B6C /* Workouts */,
 				6EA6C6331782772900356926 /* Logging */,
 				6E94F5B1177BB6E7000D0284 /* Supporting Files */,
 			);
@@ -329,11 +399,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E5909E4178CCCDF00818B6C /* V_Settings.m in Sources */,
+				6E5909E2178CCCDF00818B6C /* M_Settings.m in Sources */,
+				6E5909F4178CCCFB00818B6C /* V_Exercise.m in Sources */,
 				6E94F5BB177BB6E7000D0284 /* AppDelegate.m in Sources */,
-				6E94F5C4177BB6E7000D0284 /* MasterViewController.m in Sources */,
+				6E5909F2178CCCFB00818B6C /* M_Exercise.m in Sources */,
+				6E5909EC178CCCEE00818B6C /* V_Workout.m in Sources */,
+				6E5909FC178CCD0500818B6C /* V_Set.m in Sources */,
+				6E5909FA178CCD0500818B6C /* M_Set.m in Sources */,
 				6E94F5B7177BB6E7000D0284 /* main.m in Sources */,
-				6E94F5C7177BB6E7000D0284 /* DetailViewController.m in Sources */,
 				6EA6C6371782772900356926 /* LoggerClient.m in Sources */,
+				6E5909EA178CCCEE00818B6C /* M_Workout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +417,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E5909E3178CCCDF00818B6C /* M_Settings.m in Sources */,
+				6E5909EB178CCCEE00818B6C /* M_Workout.m in Sources */,
+				6E5909FB178CCD0500818B6C /* M_Set.m in Sources */,
+				6E5909F5178CCCFB00818B6C /* V_Exercise.m in Sources */,
+				6E5909E5178CCCDF00818B6C /* V_Settings.m in Sources */,
+				6E5909F3178CCCFB00818B6C /* M_Exercise.m in Sources */,
+				6E5909FD178CCD0500818B6C /* V_Set.m in Sources */,
+				6E5909ED178CCCEE00818B6C /* V_Workout.m in Sources */,
 				6E94F5DC177BB6E7000D0284 /* StrongerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

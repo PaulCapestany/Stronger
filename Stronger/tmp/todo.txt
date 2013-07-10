@@ -1,14 +1,30 @@
 
 ### Top Priority
+ * enable "Done" button properly <<< V_Exercise.m:128 >>>
+ * enable "Done" button properly <<< V_Set.m:133 >>>
+ * enable "Done" button properly <<< V_Workout.m:226 >>>
 
 ### Upcoming
  * create users for app <<< AppConstants.h:11 >>>
  * add file for passwords/etc to .gitignore <<< AppConstants.h:15 >>>
  * build database of exercises/machines <<< AppConstants.h:19 >>>
  * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:27 >>>
+ * create "sortable" view for Workouts <<< AppDelegate.m:62 >>>
+ * create "sortable" view for Exercises <<< AppDelegate.m:73 >>>
+ * need to create login screen <<< AppDelegate.m:100 >>>
+ * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
+ * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
+ * add in ability to edit `selectedExercise` <<< V_Exercise.m:116 >>>
+ * add in ability to edit `selectedSet` <<< V_Set.m:122 >>>
+ * add in ability to edit `selectedWorkout` <<< V_Workout.m:117 >>>
  * change this test <<< vendor/Logging/LoggerClient.m:482 >>>
 
 ### Open questions
  * find out if I need to change how I'm doing the IDs for each doc <<< AppConstants.h:13 >>>
  * look into `UICollectionView` <<< AppConstants.h:17 >>>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
+ * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:55 >>>
+ * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
+ * different way to deal with errors now? <<< V_Workout.m:123 >>>
+ * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:172 >>>
+ * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:214 >>>

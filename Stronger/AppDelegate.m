@@ -7,24 +7,117 @@
 //
 
 #import "AppDelegate.h"
+#import <CouchbaseLite/CouchbaseLite.h>
+#import <CouchbaseLite/CBLJSON.h>
 
 @implementation AppDelegate
+
+@synthesize database, _pull, _push, settingsDoc;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Startup
+//////////////////////////////////////////////////////////////////////////////////////////
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     LogFunc;
     
-    LogDebug(@"random debug log statement");
+    //    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    //    [TestFlight takeOff:@"d78a9123-5630-4228-96ba-03186e93b300"];
     
+    
+    LogDebug(@"Setting up database...");
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+    
+    // Open the database, creating it on the first run:
+    NSError *error;
+    self.database = [[CBLManager sharedInstance] createDatabaseNamed:@"stronger"
+                                                               error:&error];
+    if (!self.database) [self showAlert:@"Couldn't open database" error:error fatal:YES];
+    
+    //    [self executeMapBlocks];
+    
+    /*
+     
+     MAP VIEW SETUP
+     --------------
+     Note: the actual map function for a view runs en masse for each document only on first query,
+     OR if the version # of the function has changed
+     Otherwise, the map function is only called each time a document has been revised.
+     
+     */
+    
+    // ???: change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)?
+    
+    //////////////
+    // WORKOUTS //
+    //////////////
+    
+    LogDebug(@"Set up workouts map view");
+    // TODO: create "sortable" view for Workouts
+    [[database viewNamed:@"workouts"] setMapBlock:MAPBLOCK({
+        id date = [doc objectForKey:@"a_creation_date"];
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
+    }) reduceBlock:nil version:@"0.1"];
+    
+    ///////////////
+    // EXERCISES //
+    ///////////////
+    
+    LogDebug(@"Set up exercises map view");
+    // TODO: create "sortable" view for Exercises
+    [[database viewNamed:@"exercises"] setMapBlock:MAPBLOCK({
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], nil], doc);
+    }) reduceBlock:nil version:@"0.1"];
+    
+    //////////
+    // SETS //
+    //////////
+    
+    LogDebug(@"Set up sets map view");
+    // Create a 'view' containing list items sorted by date:
+    [[database viewNamed:@"sets"] setMapBlock:MAPBLOCK({
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], nil], doc);
+    }) reduceBlock:nil version:@"0.1"];
+    
+    // create the settings doc, only if it does not already exist
+    // UPCOMING: need to "merge" the settings doc if a previous one already existed...
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Settings Set"] == NULL) {
+        LogDebug(@"Creating settings doc");
+        settingsDoc = [M_Settings createSettingsInDatabase:database];
+        [[NSUserDefaults standardUserDefaults] setObject:@"yup" forKey:@"Settings Set"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        settingsDoc = [[M_Settings alloc] initWithDocument:[database documentWithID:@"Settings"]];
+        //        settingsDoc.autosaves = YES;
+    }
+    
+    // TODO: need to create login screen
+    NSArray *repls = [self.database replicateWithURL:[NSURL URLWithString:@"http://edolvice:password@pac.macminicolo.net:4984/stronger"] exclusively:YES];
+    if (repls) {
+        _pull = [repls objectAtIndex:0];
+        _push = [repls objectAtIndex:1];
+        
+        _pull.continuous = YES;
+        _push.continuous = YES;
+        
+        _pull.persistent = YES;
+        _push.persistent = YES;
+        
+        NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
+        [nctr addObserver:self selector:@selector(replicationProgress:)
+                     name:kCBLReplicationChangeNotification object:_pull];
+        [nctr addObserver:self selector:@selector(replicationProgress:)
+                     name:kCBLReplicationChangeNotification object:_push];
+    }
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     LogFunc;
@@ -56,5 +149,68 @@
     LogFunc;
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//#pragma mark - Map Views
+////////////////////////////////////////////////////////////////////////////////////////////
+//
+//- (void)executeMapBlocks {
+//
+//}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Other
+//////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)replicationProgress:(NSNotificationCenter *)n {
+    LogFunc;
+    
+    if (_pull.mode == kCBLReplicationActive || _push.mode == kCBLReplicationActive) {
+        unsigned completed = _pull.completed + _push.completed;
+        unsigned total = _pull.total + _push.total;
+        NSLog(@"SYNC progress: %u / %u", completed, total);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    } else {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }
+}
+
+// Display an error alert, without blocking.
+// If 'fatal' is true, the app will quit when it's pressed.
+- (void)showAlert:(NSString *)message error:(NSError *)error fatal:(BOOL)fatal {
+    LogFunc;
+    
+    if (error) {
+        message = [NSString stringWithFormat:@"%@\n\n%@", message, error.localizedDescription];
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:(fatal ? @"Fatal Error" : @"Error")
+                                                    message:message
+                                                   delegate:(fatal ? self : nil)
+                                          cancelButtonTitle:(fatal ? @"Quit" : @"Sorry")
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    LogFunc;
+    
+    exit(0);
+}
+
+- (void)dealloc {
+    LogFunc;
+    
+    NSLog(@"dealloc");
+    NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
+    if (_pull) {
+        [nctr removeObserver:self name:nil object:_pull];
+        _pull = nil;
+    }
+    if (_push) {
+        [nctr removeObserver:self name:nil object:_push];
+        _push = nil;
+    }
+}
+
 
 @end

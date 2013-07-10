@@ -66,7 +66,11 @@
 #ifdef DEBUG
     #define LogFunc   LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Func",4,[NSString stringWithUTF8String:__FUNCTION__],@"")
     #define LogDebug(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Debug",0,__VA_ARGS__)
+    #define LogAction(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Action",0,__VA_ARGS__)
+    #define LogVerbose(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Verbose",1,__VA_ARGS__)
 #else
-    #define LogFunc(...)    do{}while(0)
+    #define LogFunc(...)     do{}while(0)
     #define LogDebug(...)    do{}while(0)
+    #define LogAction(...)   do{}while(0)
+    #define LogVerbose(...)     do{}while(0)
 #endif

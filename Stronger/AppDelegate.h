@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "M_Settings.h"
+
+@class CBLDatabase, CBLReplication;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic, strong) CBLDatabase *database;
+@property (nonatomic, strong) CBLReplication *_pull;
+@property (nonatomic, strong) CBLReplication *_push;
+
+@property (nonatomic, retain) M_Settings *settingsDoc;
+
 @property (strong, nonatomic) UIWindow *window;
+
+- (void)showAlert:(NSString *)message error:(NSError *)error fatal:(BOOL)fatal;
 
 @end
