@@ -65,16 +65,33 @@
     _liveQuery = nil;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    LogFunc;
-
-    [super viewWillDisappear:animated];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     LogFunc;
 
     [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    LogFunc;
+    
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    LogFunc;
+    
+    [super viewDidAppear:animated];
+    
+    NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+    if(indexPath) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    LogFunc;
+    
+    [super viewDidDisappear:animated];
 }
 
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
