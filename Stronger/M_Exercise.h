@@ -24,7 +24,7 @@
                   inDatabase:(CBLDatabase *)database;
 
 // standard meta-data
-@property (copy) NSArray* channels;
+//@property (copy) NSArray* channels;
 @property (retain) NSDate *a_creation_date;
 @property (retain) NSString *a_creator;
 @property (retain) NSDate *a_edit_date;

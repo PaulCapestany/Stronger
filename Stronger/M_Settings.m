@@ -12,7 +12,7 @@
 @implementation M_Settings
 
 // meta
-@dynamic    channels, a_creation_date, a_creator, a_edit_date, a_type;
+@dynamic    a_creation_date, a_creator, a_edit_date, a_type; // channels
 
 // properties
 @dynamic    workout_order;
@@ -27,7 +27,7 @@
     retval.autosaves = YES;
 
     // meta
-    retval.channels = [NSArray arrayWithObjects:@"edolvice_channel", nil];
+//    retval.channels = [NSArray arrayWithObjects:@"edolvice_channel", nil];
     retval.a_creation_date = a_creation_date;
 //    retval.a_edit_date = [NSDate date];
     retval.a_creator = @"edolvice";
@@ -56,7 +56,7 @@
     [props setObject:[CBLJSON JSONObjectWithDate:[NSDate date]] forKey:@"a_edit_date"];
 
     // META
-    retval.channels = [doc.properties objectForKey:@"channels"];
+//    retval.channels = [doc.properties objectForKey:@"channels"];
     retval.a_creation_date = [props objectForKey:@"a_creation_date"];
     retval.a_creator = [doc.properties objectForKey:@"a_creator"];    
     retval.a_edit_date = a_edit_date;

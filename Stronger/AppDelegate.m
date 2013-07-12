@@ -43,7 +43,7 @@
     [self executeMapBlocks];
     
     // TODO: need to create login screen
-    NSArray *repls = [self.database replicateWithURL:[NSURL URLWithString:@"http://edolvice:password@pac.macminicolo.net:4984/stronger"] exclusively:YES];
+    NSArray *repls = [self.database replicateWithURL:[NSURL URLWithString:@"http://pac.macminicolo.net:4984/stronger"] exclusively:YES];
     if (repls) {
         _pull = [repls objectAtIndex:0];
         _push = [repls objectAtIndex:1];
