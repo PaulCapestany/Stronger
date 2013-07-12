@@ -76,3 +76,9 @@
     #define LogVerbose(...)  do{}while(0)
     #define LogErr(...)    do{}while(0)
 #endif
+
+// **********************
+// * MAP VERSION NUMBER *
+// **********************
+
+#define kMapFunctionVersion @"0.4"

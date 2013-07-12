@@ -51,6 +51,9 @@
 @property (nonatomic, retain) NSNumber *weightNumber;
 @property (nonatomic, retain) NSNumber *repsNumber;
 
+@property (nonatomic) BOOL isEditing;
+
+
 // to pass to viewController
 @property (nonatomic, retain) M_Exercise *m_ExercisePassedIn;
 @property (nonatomic, retain) NSString *m_ExerciseDocId;

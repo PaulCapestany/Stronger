@@ -25,6 +25,7 @@
                     inDatabase:(CBLDatabase *)database {
     // setup
     NSDate *a_creation_date = [NSDate date];
+    NSDate *a_edit_date = [NSDate date];
     NSString *a_type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
     NSString *documentID = [NSString stringWithFormat:@"%@~%@", [CBLJSON JSONObjectWithDate:[NSDate date]], a_type];
 
@@ -35,6 +36,7 @@
     retval.channels = [NSArray arrayWithObjects:@"edolvice_channel", nil];
     retval.a_creation_date = a_creation_date;
     retval.a_creator = @"edolvice";
+    retval.a_edit_date = a_edit_date;
     retval.a_type = a_type;
 
     // properties
@@ -49,8 +51,11 @@
                         reps:(NSNumber *)reps
                       forSet:(CBLDocument *)doc
                   inDatabase:(CBLDatabase *)database {
-    M_Set *retval = [[M_Set alloc] initWithDocument:[database documentWithID:doc.documentID]];
+//    M_Set *retval = [[M_Set alloc] initWithDocument:[database documentWithID:doc.documentID]];
+    M_Set *retval = [M_Set modelForDocument:doc];
     //retval.autosaves = YES;
+
+    NSDate *a_edit_date = [NSDate date];
 
     CBLRevision *latest = doc.currentRevision;
     NSMutableDictionary *props = [latest.properties mutableCopy];
@@ -59,7 +64,7 @@
     retval.channels = [doc.properties objectForKey:@"channels"];
     retval.a_creation_date = [doc.properties objectForKey:@"a_creation_date"];
     retval.a_creator = [doc.properties objectForKey:@"a_creator"];
-    retval.a_edit_date = [NSDate date];
+    retval.a_edit_date = a_edit_date;
     retval.a_type = [doc.properties objectForKey:@"a_type"];
 
     // PROPERTIES

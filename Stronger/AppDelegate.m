@@ -40,62 +40,7 @@
                                                                error:&error];
     if (!self.database) [self showAlert:@"Couldn't open database" error:error fatal:YES];
     
-    //    [self executeMapBlocks];
-    
-    /*
-     
-     MAP VIEW SETUP
-     --------------
-     Note: the actual map function for a view runs en masse for each document only on first query,
-     OR if the version # of the function has changed
-     Otherwise, the map function is only called each time a document has been revised.
-     
-     */
-    
-    // ???: change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)?
-    
-    //////////////
-    // WORKOUTS //
-    //////////////
-    
-    LogDebug(@"Set up workouts map view");
-    // TODO: create "sortable" view for Workouts
-    [[database viewNamed:@"workouts"] setMapBlock:MAPBLOCK({
-        id date = [doc objectForKey:@"a_creation_date"];
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
-    }) reduceBlock:nil version:@"0.1"];
-    
-    ///////////////
-    // EXERCISES //
-    ///////////////
-    
-    LogDebug(@"Set up exercises map view");
-    // TODO: create "sortable" view for Exercises
-    [[database viewNamed:@"exercises"] setMapBlock:MAPBLOCK({
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], nil], doc);
-    }) reduceBlock:nil version:@"0.1"];
-    
-    //////////
-    // SETS //
-    //////////
-    
-    LogDebug(@"Set up sets map view");
-    // Create a 'view' containing list items sorted by date:
-    [[database viewNamed:@"sets"] setMapBlock:MAPBLOCK({
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], nil], doc);
-    }) reduceBlock:nil version:@"0.1"];
-    
-    // create the settings doc, only if it does not already exist
-    // UPCOMING: need to "merge" the settings doc if a previous one already existed...
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Settings Set"] == NULL) {
-        LogDebug(@"Creating settings doc");
-        settingsDoc = [M_Settings createSettingsInDatabase:database];
-        [[NSUserDefaults standardUserDefaults] setObject:@"yup" forKey:@"Settings Set"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    } else {
-        settingsDoc = [[M_Settings alloc] initWithDocument:[database documentWithID:@"Settings"]];
-        //        settingsDoc.autosaves = YES;
-    }
+    [self executeMapBlocks];
     
     // TODO: need to create login screen
     NSArray *repls = [self.database replicateWithURL:[NSURL URLWithString:@"http://edolvice:password@pac.macminicolo.net:4984/stronger"] exclusively:YES];
@@ -153,10 +98,81 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 //#pragma mark - Map Views
 ////////////////////////////////////////////////////////////////////////////////////////////
-//
-//- (void)executeMapBlocks {
-//
-//}
+
+- (void)executeMapBlocks {
+    LogFunc;
+    
+    /*
+     
+     MAP VIEW SETUP
+     --------------
+     Note: the actual map function for a view runs en masse for each document only on first query,
+     OR if the version # of the function has changed
+     Otherwise, the map function is only called each time a document has been revised.
+     
+     */
+    
+    // ???: change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)?
+    
+    //////////////
+    // WORKOUTS //
+    //////////////
+    
+    LogDebug(@"Set up workouts map view");
+    // TODO: create "sortable" view for Workouts
+    [[database viewNamed:@"workouts"] setMapBlock:MAPBLOCK({
+        id date = [doc objectForKey:@"a_creation_date"];
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
+    }) reduceBlock:nil version:kMapFunctionVersion];
+    
+    ///////////////
+    // EXERCISES //
+    ///////////////
+    
+    LogDebug(@"Set up exercises map view");
+    // TODO: create "sortable" view for Exercises
+    [[database viewNamed:@"exercises"] setMapBlock:MAPBLOCK({
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], nil], doc);
+    }) reduceBlock:nil version:kMapFunctionVersion];
+    
+    //////////
+    // SETS //
+    //////////
+    
+    LogDebug(@"Set up sets map view");
+    // Create a 'view' containing list items sorted by date:
+    [[database viewNamed:@"sets"] setMapBlock:MAPBLOCK({
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], nil], doc);
+    }) reduceBlock:nil version:kMapFunctionVersion];
+    
+    // create the settings doc, only if it does not already exist
+    // UPCOMING: need to "merge" the settings doc if a previous one already existed...
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Settings Set"] == NULL) {
+        LogDebug(@"Creating settings doc");
+        settingsDoc = [M_Settings createSettingsInDatabase:database];
+        [[NSUserDefaults standardUserDefaults] setObject:@"yup" forKey:@"Settings Set"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        settingsDoc = [[M_Settings alloc] initWithDocument:[database documentWithID:@"Settings"]];
+        //        settingsDoc.autosaves = YES;
+    }
+    
+    /**********************
+    * VALIDATION FUNCTION *
+    **********************/
+
+    // and a validation function requiring parseable dates:
+    [database defineValidation: @"a_creation_date" asBlock: VALIDATIONBLOCK({
+        if (newRevision.isDeleted)
+            return YES;
+        id date = [newRevision.properties objectForKey: @"a_creation_date"];
+        if (date && ! [CBLJSON dateWithJSONObject: date]) {
+            context.errorMessage = [@"invalid date " stringByAppendingString: [date description]];
+            return NO;
+        }
+        return YES;
+    })];
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Other

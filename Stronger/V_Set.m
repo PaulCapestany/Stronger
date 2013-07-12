@@ -26,9 +26,10 @@
 @implementation V_Set
 {
     CBLDatabase *database;
+    M_Set *selectedSet;
 }
 
-@synthesize delegate, dataSource, tableView, weightNumber, repsNumber, m_ExercisePassedIn, m_ExerciseDocId;
+@synthesize delegate, dataSource, tableView, weightNumber, repsNumber, isEditing, m_ExercisePassedIn, m_ExerciseDocId;
 
 
 #pragma mark - View lifecycle
@@ -61,6 +62,8 @@
     [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
 
     _viewDidLoad = YES;
+    isEditing = NO;
+    
     [self viewDidLoadWithDatabase];
 }
 
@@ -134,9 +137,15 @@
     CBLQueryRow *theRow = [self.dataSource rowAtIndex:indexPath.row];
     CBLDocument *doc = theRow.document;
 
-    M_Set *selectedSet = [M_Set modelForDocument:doc];
+    selectedSet = [M_Set modelForDocument:doc];
     LogVerbose(@"selectedSet: \n%@", selectedSet);
+    
     // TODO: add in ability to edit `selectedSet`
+    [weightTextField setText:[selectedSet.weight stringValue]];
+    [repsTextField setText:[selectedSet.reps stringValue]];
+
+    isEditing = YES;
+    saveButton.titleLabel.text = @"Save Edit";
 }
 
 #pragma mark - Editing:
@@ -255,6 +264,17 @@
     [weightTextField setText:nil];
     [repsTextField setText:nil];
     
+    if (isEditing) {
+//        [M_Set editSetWithWeight:weightNumber reps:repsNumber forSet:selectedSet.document inDatabase:database];
+        selectedSet.weight = weightNumber;
+        selectedSet.reps = repsNumber;
+        NSError *error;
+        [selectedSet save:&error];
+        
+        isEditing = NO;
+        saveButton.titleLabel.text = @"Add Set";
+    }
+    else {
     M_Set *newSet =
     [M_Set createSetWithWeight:weightNumber
                           reps:repsNumber
@@ -262,6 +282,7 @@
                     inDatabase:database];
     
     LogVerbose(@"newSet: \n%@", newSet);
+    }
 }
 
 @end
