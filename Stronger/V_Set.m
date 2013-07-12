@@ -63,6 +63,7 @@
 
     _viewDidLoad = YES;
     isEditing = NO;
+    [saveButton setTitle:@"Add Set" forState:UIControlStateNormal];
     
     [self viewDidLoadWithDatabase];
 }
@@ -145,7 +146,7 @@
     [repsTextField setText:[selectedSet.reps stringValue]];
 
     isEditing = YES;
-    saveButton.titleLabel.text = @"Save Edit";
+    [saveButton setTitle:@"Done Editing" forState:UIControlStateNormal];
 }
 
 #pragma mark - Editing:
@@ -265,14 +266,13 @@
     [repsTextField setText:nil];
     
     if (isEditing) {
-//        [M_Set editSetWithWeight:weightNumber reps:repsNumber forSet:selectedSet.document inDatabase:database];
         selectedSet.weight = weightNumber;
         selectedSet.reps = repsNumber;
         NSError *error;
         [selectedSet save:&error];
         
         isEditing = NO;
-        saveButton.titleLabel.text = @"Add Set";
+        [saveButton setTitle:@"Add Set" forState:UIControlStateNormal];
     }
     else {
     M_Set *newSet =

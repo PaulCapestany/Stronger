@@ -13,7 +13,7 @@
  * should probably relate to pre-fab exercises <a href="https://github.com/PaulCapestany/Stronger/blob/dev/Stronger/M_Exercise.h#L37">`M_Exercise.h:37`</a>
  * update all other CBLModels with similar edit logic <a href="https://github.com/PaulCapestany/Stronger/blob/dev/Stronger/M_Settings.m#L42">`M_Settings.m:42`</a>
  * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/dev/Stronger/V_Exercise.m#L133">`V_Exercise.m:133`</a>
- * add in ability to edit `selectedSet` <a href="https://github.com/PaulCapestany/Stronger/blob/dev/Stronger/V_Set.m#L143">`V_Set.m:143`</a>
+ * add in ability to edit `selectedSet` <a href="https://github.com/PaulCapestany/Stronger/blob/dev/Stronger/V_Set.m#L144">`V_Set.m:144`</a>
  * add in ability to edit `selectedWorkout` <a href="https://github.com/PaulCapestany/Stronger/blob/dev/Stronger/V_Workout.m#L135">`V_Workout.m:135`</a>
  * change this test <a href="https://github.com/PaulCapestany/Stronger/blob/dev/Stronger/vendor/Logging/LoggerClient.m#L482">`vendor/Logging/LoggerClient.m:482`</a>
 
