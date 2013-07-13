@@ -1,5 +1,6 @@
 
 ### Top Priority
+ * sort of works, but needs major debugging (seems to be off by ~1 when row is selected...) <<< V_Set.m:192 >>>
 
 ### Upcoming
  * create users for app <<< AppConstants.h:11 >>>

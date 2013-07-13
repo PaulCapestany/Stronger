@@ -1,6 +1,7 @@
 ## TODO
 
 ### Top Priority
+ * sort of works, but needs major debugging (seems to be off by ~1 when row is selected...) <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Set.m#L192">`V_Set.m:192`</a>
 
 ### Upcoming
  * create users for app <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppConstants.h#L11">`AppConstants.h:11`</a>

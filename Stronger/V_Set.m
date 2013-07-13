@@ -118,26 +118,49 @@
 
 #pragma mark - CBLUITableSource delegate
 
-// Customize the appearance of table view cells.
-- (void)couchTableSource:(CBLUITableSource *)source
-             willUseCell:(UITableViewCell *)cell
-                  forRow:(CBLQueryRow *)row {
-    LogFunc;
-
-    // Configure the cell contents. Our view function (see above) copies the document properties
-    // into its value, so we can read them from there without having to load the document.
-    setForRow = [M_Set modelForDocument:row.document];
-
-    LogDebug(@"row.key : row.value = %@ : %@", row.key, row.value);
-
-    cell.textLabel.text = [NSString stringWithFormat:@"%@                             %@", [setForRow.weight stringValue], [setForRow.reps stringValue]];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-}
+//// Customize the appearance of table view cells.
+//- (void)couchTableSource:(CBLUITableSource *)source
+//             willUseCell:(UITableViewCell *)cell
+//                  forRow:(CBLQueryRow *)row {
+//    LogFunc;
+//
+//    // Configure the cell contents. Our view function (see above) copies the document properties
+//    // into its value, so we can read them from there without having to load the document.
+//    setForRow = [M_Set modelForDocument:row.document];
+//    LogDebug(@"willUseCell → %@", setForRow.description);
+//
+//    LogDebug(@"row.key : row.value = %@ : %@", row.key, row.value);
+//
+////    cell.textLabel.text = [NSString stringWithFormat:@"%@                             %@", [setForRow.weight stringValue], [setForRow.reps stringValue]];
+////    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+//}
 
 // Allows delegate to return its own custom cell, just like -tableView:cellForRowAtIndexPath:
-//- (UITableViewCell *)couchTableSource:(CBLUITableSource *)source
-//                cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//}
+- (UITableViewCell *)couchTableSource:(CBLUITableSource *)source
+                cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LogFunc;
+    
+    static NSString *CellIdentifier = @"SetCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    UILabel *weightLabel = (UILabel *)[cell viewWithTag:100];
+    weightLabel.text = [setForRow.weight stringValue];
+    LogDebug(@"setForRow.weight = %@", setForRow.weight);
+    
+    UILabel *repsLabel = (UILabel *)[cell viewWithTag:101];
+    repsLabel.text = [setForRow.reps stringValue];
+    LogDebug(@"setForRow.reps = %@", setForRow.reps);
+    
+    LogDebug(@"cellForRowAtIndexPath → %@", setForRow.description);
+
+    return cell;
+}
 
 #pragma mark - Table view delegate
 
@@ -156,6 +179,19 @@
     [weightAndRepsPickerView selectRow:[selectedSet.reps integerValue] inComponent:1 animated:YES];
 
     [saveButton setTitle:@"Done Editing" forState:UIControlStateNormal];
+}
+
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LogFunc;
+    
+    LogDebug(@"indexPath → %ld", (long)indexPath.row);
+    
+    // !!!: sort of works, but needs major debugging (seems to be off by ~1 when row is selected...)
+    CBLQueryRow *theRow = [self.dataSource rowAtIndex:indexPath.row];
+    setForRow = [M_Set modelForDocument:theRow.document];
 }
 
 #pragma mark - Editing:

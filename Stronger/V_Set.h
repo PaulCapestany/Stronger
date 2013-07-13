@@ -21,7 +21,7 @@
 #import <UIKit/UIKit.h>
 #import <CouchbaseLite/CBLUITableSource.h>
 
-@class CBLDatabase, M_Exercise;
+@class CBLDatabase, M_Exercise, M_Set;
 
 @protocol V_SetDelegate <NSObject>
 @end
@@ -45,6 +45,8 @@
 @property (nonatomic, retain) NSArray *repsViewArray;
 
 @property (nonatomic) BOOL isEditing;
+
+@property (strong, nonatomic) M_Set* theSet;
 
 
 // to pass to viewController
