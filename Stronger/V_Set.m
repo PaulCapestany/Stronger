@@ -27,9 +27,10 @@
 {
     CBLDatabase *database;
     M_Set *selectedSet;
+    M_Set *setForRow;
 }
 
-@synthesize delegate, dataSource, tableView, weightNumber, repsNumber, isEditing, m_ExercisePassedIn, m_ExerciseDocId;
+@synthesize delegate, dataSource, tableView, isEditing,  m_ExercisePassedIn, m_ExerciseDocId, weightViewArray, repsViewArray;
 
 
 #pragma mark - View lifecycle
@@ -64,6 +65,8 @@
     _viewDidLoad = YES;
     isEditing = NO;
     [saveButton setTitle:@"Add Set" forState:UIControlStateNormal];
+    self.weightViewArray = @[@0, @5, @10, @15, @20, @25, @30, @35, @40, @45, @50, @55, @60, @65, @70, @80, @85, @90];
+    self.repsViewArray = @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26, @27, @28, @29, @30, @31, @32, @33, @34, @35, @36, @37, @38, @39, @40, @41, @42, @43, @44, @45, @46, @47, @48, @49, @50];
     
     [self viewDidLoadWithDatabase];
 }
@@ -71,6 +74,8 @@
 - (void)dealloc {
     LogFunc;
 
+    self.weightViewArray = nil;
+    self.repsViewArray = nil;
     self.dataSource = nil;
 }
 
@@ -111,7 +116,7 @@
  showAlert: message error : error fatal : NO];
 }
 
-#pragma mark - TD table source delegate
+#pragma mark - CBLUITableSource delegate
 
 // Customize the appearance of table view cells.
 - (void)couchTableSource:(CBLUITableSource *)source
@@ -119,15 +124,20 @@
                   forRow:(CBLQueryRow *)row {
     LogFunc;
 
-
     // Configure the cell contents. Our view function (see above) copies the document properties
     // into its value, so we can read them from there without having to load the document.
-    M_Set *setForRow = [M_Set modelForDocument:row.document];
+    setForRow = [M_Set modelForDocument:row.document];
 
     LogDebug(@"row.key : row.value = %@ : %@", row.key, row.value);
 
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ × %@", [setForRow.weight stringValue], [setForRow.reps stringValue]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@                             %@", [setForRow.weight stringValue], [setForRow.reps stringValue]];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
 }
+
+// Allows delegate to return its own custom cell, just like -tableView:cellForRowAtIndexPath:
+//- (UITableViewCell *)couchTableSource:(CBLUITableSource *)source
+//                cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//}
 
 #pragma mark - Table view delegate
 
@@ -140,130 +150,74 @@
 
     selectedSet = [M_Set modelForDocument:doc];
     LogVerbose(@"selectedSet: \n%@", selectedSet);
-    
-    // TODO: add in ability to edit `selectedSet`
-    [weightTextField setText:[selectedSet.weight stringValue]];
-    [repsTextField setText:[selectedSet.reps stringValue]];
-
     isEditing = YES;
+    
+    [weightAndRepsPickerView selectRow:[weightViewArray indexOfObject:selectedSet.weight] inComponent:0 animated:YES];
+    [weightAndRepsPickerView selectRow:[selectedSet.reps integerValue] inComponent:1 animated:YES];
+
     [saveButton setTitle:@"Done Editing" forState:UIControlStateNormal];
 }
 
 #pragma mark - Editing:
 
 
-#pragma mark - UITextField delegate
+#pragma mark - UIPickerView delegate
 
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
     LogFunc;
-
-    LogAction(@"\"Done\" button pressed");
-    [self finishedAddingNewSet];
+    NSInteger returnInt = 0;
     
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    LogFunc;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    LogFunc;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    LogFunc;
-
-    LogAction(@"Touched outside of responders");
-
-    // taken from http://stackoverflow.com/questions/1456120/hiding-the-keyboard-when-losing-focus-on-a-uitextview
-
-    UITouch *touch = [[event allTouches] anyObject];
-    if ([weightTextField isFirstResponder] && [touch view] != weightTextField) {
-        [weightTextField resignFirstResponder];
+    if (component == 0)
+    {
+        returnInt = [weightViewArray count];
     }
-    if ([repsTextField isFirstResponder] && [touch view] != repsTextField) {
-        [repsTextField resignFirstResponder];
+    if (component == 1)
+    {
+        returnInt = [repsViewArray count];
     }
-    [super touchesBegan:touches withEvent:event];
+    
+	return returnInt;
 }
 
-- (NSNumber *)convertTextFieldStringToNumber:(NSString *)theString {
-    NSNumberFormatter *format = [[NSNumberFormatter alloc] init];
-    [format setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber *convertedNumber = [format numberFromString:theString];
-
-    return convertedNumber;
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    LogFunc;
+    return 2;
 }
+
+#pragma mark UIPickerViewDataSource
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSString *returnStr = @"";
+	
+    if (component == 0)
+    {
+        returnStr = [[weightViewArray objectAtIndex:row] stringValue];
+    }
+    if (component == 1)
+    {
+        returnStr = [[repsViewArray objectAtIndex:row] stringValue];
+    }
+	
+	return returnStr;
+}
+
 
 # pragma mark - Actions
-
-- (IBAction)increaseWeightButtonPressed:(id)sender {
-    LogFunc;
-
-    LogAction(@"\"↑ weight\" button pressed");
-
-    weightNumber = [NSNumber numberWithFloat:[[self convertTextFieldStringToNumber:weightTextField.text] floatValue] + 1.0];
-    [weightTextField setText:[weightNumber stringValue]];
-}
-
-- (IBAction)decreaseWeightButtonPressed:(id)sender {
-    LogFunc;
-
-    LogAction(@"\"↓ weight\" button pressed");
-
-    weightNumber = [NSNumber numberWithFloat:[[self convertTextFieldStringToNumber:weightTextField.text] floatValue] - 1.0];
-    [weightTextField setText:[weightNumber stringValue]];
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-- (IBAction)increaseRepsButtonPressed:(id)sender {
-    LogFunc;
-
-    LogAction(@"\"↑ reps\" button pressed");
-
-    repsNumber = [NSNumber numberWithFloat:[[self convertTextFieldStringToNumber:repsTextField.text] floatValue] + 1.0];
-    [repsTextField setText:[repsNumber stringValue]];
-}
-
-- (IBAction)decreaseRepsButtonPressed:(id)sender {
-    LogFunc;
-
-    LogAction(@"\"↓ reps\" button pressed");
-
-    repsNumber = [NSNumber numberWithFloat:[[self convertTextFieldStringToNumber:repsTextField.text] floatValue] - 1.0];
-    [repsTextField setText:[repsNumber stringValue]];
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
 
 - (IBAction)addSetButtonPressed:(id)sender {
     LogFunc;
 
     LogAction(@"\"Add Set\" button pressed");
-    [self finishedAddingNewSet];
+    [self finishedWithSet];
 }
 
-- (void)finishedAddingNewSet {
+- (void)finishedWithSet {
     LogFunc;
+
+    NSNumber *weightNumber = [weightViewArray objectAtIndex:[weightAndRepsPickerView selectedRowInComponent:0]];
+    NSNumber *repsNumber = [repsViewArray objectAtIndex:[weightAndRepsPickerView selectedRowInComponent:1]];
     
-    if ([weightTextField isFirstResponder]) {
-        [weightTextField resignFirstResponder];
-    }
-    if ([repsTextField isFirstResponder]) {
-        [repsTextField resignFirstResponder];
-    }
-    
-    weightNumber = [self convertTextFieldStringToNumber:weightTextField.text];
-    repsNumber = [self convertTextFieldStringToNumber:repsTextField.text];
-    
-    [weightTextField setText:nil];
-    [repsTextField setText:nil];
     
     if (isEditing) {
         selectedSet.weight = weightNumber;
@@ -273,6 +227,10 @@
         
         isEditing = NO;
         [saveButton setTitle:@"Add Set" forState:UIControlStateNormal];
+        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+        if(indexPath) {
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
     }
     else {
     M_Set *newSet =

@@ -26,21 +26,14 @@
 @protocol V_SetDelegate <NSObject>
 @end
 
-@interface V_Set : UIViewController <CBLUITableDelegate, UITextFieldDelegate>
+@interface V_Set : UIViewController <CBLUITableDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 {
     BOOL _viewDidLoad;
 
     UITableView *tableView;
 
-    IBOutlet UITextField *weightTextField;
-    IBOutlet UIButton *increaseWeightButton;
-    IBOutlet UIButton *decreaseWeightButton;
-
-    IBOutlet UITextField *repsTextField;
-    IBOutlet UIButton *increaseRepsButton;
-    IBOutlet UIButton *decreaseRepsButton;
-
     IBOutlet UIButton *saveButton;
+    __weak IBOutlet UIPickerView *weightAndRepsPickerView;
 }
 
 @property (nonatomic, weak) id <V_SetDelegate> delegate;
@@ -48,8 +41,8 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet CBLUITableSource *dataSource;
 
-@property (nonatomic, retain) NSNumber *weightNumber;
-@property (nonatomic, retain) NSNumber *repsNumber;
+@property (nonatomic, retain) NSArray *weightViewArray;
+@property (nonatomic, retain) NSArray *repsViewArray;
 
 @property (nonatomic) BOOL isEditing;
 
@@ -58,11 +51,5 @@
 @property (nonatomic, retain) M_Exercise *m_ExercisePassedIn;
 @property (nonatomic, retain) NSString *m_ExerciseDocId;
 
-- (NSNumber *)convertTextFieldStringToNumber:(NSString *)theString;
-
-//-(void)useDatabase:(CBLDatabase*)theDatabase;
-
-//- (IBAction)configureSync:(id)sender;
-//- (IBAction) gotoChannelsView:(id)sender;
 
 @end
