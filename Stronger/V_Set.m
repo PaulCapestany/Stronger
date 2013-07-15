@@ -44,12 +44,12 @@
         // Create a query sorted by descending date, i.e. newest items first:
         CBLLiveQuery *query = [[[database viewNamed:@"sets"] query] asLiveQuery];
 
-        query.descending = NO;
+        query.descending = YES;
         query.prefetch = YES;
 
         // want to only show the exercises that match the Workout we selected in V_Workouts
-        query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
-        query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId,  [NSDictionary dictionary], nil];
+        query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, [NSDictionary dictionary], nil];
+        query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
 
         self.dataSource.query = query;
     }
@@ -65,8 +65,7 @@
     _viewDidLoad = YES;
     isEditing = NO;
     [saveButton setTitle:@"Add Set" forState:UIControlStateNormal];
-    self.weightViewArray = @[@0, @5, @10, @15, @20, @25, @30, @35, @40, @45, @50, @55, @60, @65, @70, @80, @85, @90];
-    self.repsViewArray = @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20, @21, @22, @23, @24, @25, @26, @27, @28, @29, @30, @31, @32, @33, @34, @35, @36, @37, @38, @39, @40, @41, @42, @43, @44, @45, @46, @47, @48, @49, @50];
+    [self populateArrays];
     
     [self viewDidLoadWithDatabase];
 }
@@ -118,46 +117,38 @@
 
 #pragma mark - CBLUITableSource delegate
 
-//// Customize the appearance of table view cells.
+//// very basic customization of the appearance of table view cells
 //- (void)couchTableSource:(CBLUITableSource *)source
 //             willUseCell:(UITableViewCell *)cell
 //                  forRow:(CBLQueryRow *)row {
 //    LogFunc;
-//
-//    // Configure the cell contents. Our view function (see above) copies the document properties
-//    // into its value, so we can read them from there without having to load the document.
-//    setForRow = [M_Set modelForDocument:row.document];
-//    LogDebug(@"willUseCell → %@", setForRow.description);
-//
-//    LogDebug(@"row.key : row.value = %@ : %@", row.key, row.value);
-//
-////    cell.textLabel.text = [NSString stringWithFormat:@"%@                             %@", [setForRow.weight stringValue], [setForRow.reps stringValue]];
-////    cell.textLabel.textAlignment = NSTextAlignmentCenter;
 //}
 
-// Allows delegate to return its own custom cell, just like -tableView:cellForRowAtIndexPath:
+// allows delegate to return its own custom cell, just like -tableView:cellForRowAtIndexPath:
 - (UITableViewCell *)couchTableSource:(CBLUITableSource *)source
                 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LogFunc;
     
     static NSString *CellIdentifier = @"SetCell";
     
+    CBLQueryRow *theRow = [source rowAtIndex:indexPath.row];
+    setForRow = [M_Set modelForDocument:theRow.document];
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
     if (cell == nil) {
+        LogDebug(@"(cell == nil)");
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     UILabel *weightLabel = (UILabel *)[cell viewWithTag:100];
     weightLabel.text = [setForRow.weight stringValue];
-    LogDebug(@"setForRow.weight = %@", setForRow.weight);
     
     UILabel *repsLabel = (UILabel *)[cell viewWithTag:101];
     repsLabel.text = [setForRow.reps stringValue];
-    LogDebug(@"setForRow.reps = %@", setForRow.reps);
-    
-    LogDebug(@"cellForRowAtIndexPath → %@", setForRow.description);
+
+    LogDebug(@"%@ ✕ %@", setForRow.weight, setForRow.reps);
 
     return cell;
 }
@@ -175,26 +166,25 @@
     LogVerbose(@"selectedSet: \n%@", selectedSet);
     isEditing = YES;
     
-    [weightAndRepsPickerView selectRow:[weightViewArray indexOfObject:selectedSet.weight] inComponent:0 animated:YES];
+    [weightAndRepsPickerView selectRow:([selectedSet.weight integerValue]/5) inComponent:0 animated:YES];
     [weightAndRepsPickerView selectRow:[selectedSet.reps integerValue] inComponent:1 animated:YES];
 
     [saveButton setTitle:@"Done Editing" forState:UIControlStateNormal];
 }
 
-- (void)tableView:(UITableView *)tableView
-  willDisplayCell:(UITableViewCell *)cell
-forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+#pragma mark - Other TableView
+
+- (void)couchTableSource:(CBLUITableSource *)source deleteFailed:(NSError *)error {
     LogFunc;
     
-    LogDebug(@"indexPath → %ld", (long)indexPath.row);
-    
-    // !!!: sort of works, but needs major debugging (seems to be off by ~1 when row is selected...)
-    CBLQueryRow *theRow = [self.dataSource rowAtIndex:indexPath.row];
-    setForRow = [M_Set modelForDocument:theRow.document];
+    LogErr(@"couchTableSource:(CBLUITableSource *)source deleteFailed → %@", error);
 }
 
-#pragma mark - Editing:
+- (void)couchTableSource:(CBLUITableSource *)source willUpdateFromQuery:(CBLLiveQuery *)query {
+    LogFunc;
+    
+//        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+}
 
 
 #pragma mark - UIPickerView delegate
@@ -254,7 +244,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     NSNumber *weightNumber = [weightViewArray objectAtIndex:[weightAndRepsPickerView selectedRowInComponent:0]];
     NSNumber *repsNumber = [repsViewArray objectAtIndex:[weightAndRepsPickerView selectedRowInComponent:1]];
     
-    
     if (isEditing) {
         selectedSet.weight = weightNumber;
         selectedSet.reps = repsNumber;
@@ -277,6 +266,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     LogVerbose(@"newSet: \n%@", newSet);
     }
+    
+    LogDebug(@"dataSource.rows → %i", [dataSource.rows count]);
+    
+//    NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([dataSource.rows count] - 1) inSection:0];
+//    [tableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+- (void)populateArrays {
+    LogFunc;
+    self.weightViewArray = @[@0,@5,@10,@15,@20,@25,@30,@35,@40,@45,@50,@55,@60,@65,@70,@75,@80,@85,@90,@95,@100,@105,@110,@115,@120,@125,@130,@135,@140,@145,@150,@155,@160,@165,@170,@175,@180,@185,@190,@195,@200,@205,@210,@215,@220,@225,@230,@235,@240,@245,@250,@255,@260,@265,@270,@275,@280,@285,@290,@295,@300,@305,@310,@315,@320,@325,@330,@335,@340,@345,@350,@355,@360,@365,@370,@375,@380,@385,@390,@395,@400,@405,@410,@415,@420,@425,@430,@435,@440,@445,@450,@455,@460,@465,@470,@475,@480,@485,@490,@495,@500,@505,@510,@515,@520,@525,@530,@535,@540,@545,@550,@555,@560,@565,@570,@575,@580,@585,@590,@595,@600,@605,@610,@615,@620,@625,@630,@635,@640,@645,@650,@655,@660,@665,@670,@675,@680,@685,@690,@695,@700,@705,@710,@715,@720,@725,@730,@735,@740,@745,@750,@755,@760,@765,@770,@775,@780,@785,@790,@795,@800,@805,@810,@815,@820,@825,@830,@835,@840,@845,@850,@855,@860,@865,@870,@875,@880,@885,@890,@895,@900,@905,@910,@915,@920,@925,@930,@935,@940,@945,@950,@955,@960,@965,@970,@975,@980,@985,@990,@995,@1000,@1005,@1010,@1015,@1020,@1025,@1030,@1035,@1040,@1045,@1050,@1055,@1060,@1065,@1070,@1075,@1080,@1085,@1090,@1095,@1100,@1105,@1110,@1115,@1120,@1125,@1130,@1135,@1140,@1145,@1150,@1155,@1160,@1165,@1170,@1175,@1180,@1185,@1190,@1195,@1200,@1205,@1210,@1215,@1220,@1225,@1230,@1235,@1240,@1245,@1250,@1255,@1260,@1265,@1270,@1275,@1280,@1285,@1290,@1295,@1300];
+    self.repsViewArray = @[@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19,@20,@21,@22,@23,@24,@25,@26,@27,@28,@29,@30,@31,@32,@33,@34,@35,@36,@37,@38,@39,@40,@41,@42,@43,@44,@45,@46,@47,@48,@49,@50,@51,@52,@53,@54,@55,@56,@57,@58,@59,@60,@61,@62,@63,@64,@65,@66,@67,@68,@69,@70,@71,@72,@73,@74,@75,@76,@77,@78,@79,@80,@81,@82,@83,@84,@85,@86,@87,@88,@89,@90,@91,@92,@93,@94,@95,@96,@97,@98,@99,@100];
 }
 
 @end

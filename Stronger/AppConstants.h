@@ -81,4 +81,4 @@
 // * MAP VERSION NUMBER *
 // **********************
 
-#define kMapFunctionVersion @"0.4"
+#define kMapFunctionVersion @"0.5"

@@ -119,7 +119,7 @@
     //////////////
     
     LogDebug(@"Set up workouts map view");
-    // TODO: create "sortable" view for Workouts
+    // TODO: create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc)
     [[database viewNamed:@"workouts"] setMapBlock:MAPBLOCK({
         id date = [doc objectForKey:@"a_creation_date"];
         if ([[doc objectForKey:@"a_type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
@@ -130,9 +130,11 @@
     ///////////////
     
     LogDebug(@"Set up exercises map view");
-    // TODO: create "sortable" view for Exercises
+    // TODO: create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc)
+    // ???: CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it
     [[database viewNamed:@"exercises"] setMapBlock:MAPBLOCK({
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], nil], doc);
+        id date = [doc objectForKey:@"a_creation_date"];
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], date, nil], doc);
     }) reduceBlock:nil version:kMapFunctionVersion];
     
     //////////
@@ -142,7 +144,8 @@
     LogDebug(@"Set up sets map view");
     // Create a 'view' containing list items sorted by date:
     [[database viewNamed:@"sets"] setMapBlock:MAPBLOCK({
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], nil], doc);
+        id date = [doc objectForKey:@"a_creation_date"];
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, nil], doc);
     }) reduceBlock:nil version:kMapFunctionVersion];
     
     // create the settings doc, only if it does not already exist
