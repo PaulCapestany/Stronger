@@ -1,9 +1,8 @@
 //
 //  V_Settings.h
-//  CBLDemo
 //
-//  Created by Jens Alfke on 8/8/11.
-//  Copyright 2011 TDbase, Inc. All rights reserved.
+//  Created by Paul Capestany on 10/20/12.
+//  Copyright (c) 2012 Paul Capestany. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
