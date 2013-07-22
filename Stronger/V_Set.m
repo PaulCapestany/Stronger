@@ -51,10 +51,6 @@
     isEditing = NO;
     [saveButton setTitle:@"Add Set" forState:UIControlStateNormal];
     [self populateArrays];
-    
-    [weightAndRepsPickerView selectRow:70 inComponent:0 animated:NO];
-    [weightAndRepsPickerView selectRow:4 inComponent:1 animated:NO];
-    
     [self viewDidLoadWithDatabase];
 }
 
@@ -173,6 +169,20 @@
 - (void)couchTableSource:(CBLUITableSource *)source willUpdateFromQuery:(CBLLiveQuery *)query {
     LogFunc;
     
+    if ([query.rows count] == 0) {
+        LogDebug(@"[query.rows count] == 0");
+        [weightAndRepsPickerView selectRow:70 inComponent:0 animated:NO];
+        [weightAndRepsPickerView selectRow:4 inComponent:1 animated:NO];
+    }
+    else {
+        LogDebug(@"[query.rows count] != 0");
+        M_Set *lastSet = [M_Set modelForDocument:[[query.rows rowAtIndex:0] document]];
+        
+        NSInteger weightSelectedRow = [weightViewArray indexOfObject:[lastSet.weight stringValue]];
+        NSInteger repsSelectedRow = [repsViewArray indexOfObject:[lastSet.reps stringValue]];
+        [weightAndRepsPickerView selectRow:weightSelectedRow inComponent:0 animated:NO];
+        [weightAndRepsPickerView selectRow:repsSelectedRow inComponent:1 animated:NO];
+    }
 //        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
 }
 
@@ -182,18 +192,8 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     LogFunc;
-    NSInteger returnInt = 0;
     
-    if (component == 0)
-    {
-        returnInt = [weightViewArray count];
-    }
-    if (component == 1)
-    {
-        returnInt = [repsViewArray count];
-    }
-    
-	return returnInt;
+	return 351;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {

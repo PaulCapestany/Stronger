@@ -1,7 +1,6 @@
 ## TODO
 
 ### Top Priority
- * fix this <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Set.m#L157">`V_Set.m:157`</a>
 
 ### Upcoming
  * create users for app <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppConstants.h#L11">`AppConstants.h:11`</a>

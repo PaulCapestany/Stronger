@@ -1,6 +1,5 @@
 
 ### Top Priority
- * fix this <<< V_Set.m:157 >>>
 
 ### Upcoming
  * create users for app <<< AppConstants.h:11 >>>
