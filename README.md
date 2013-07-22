@@ -1,6 +1,7 @@
 ## TODO
 
 ### Top Priority
+ * fix this <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Set.m#L157">`V_Set.m:157`</a>
 
 ### Upcoming
  * create users for app <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppConstants.h#L11">`AppConstants.h:11`</a>
@@ -10,6 +11,7 @@
  * need to create login screen <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppDelegate.m#L45">`AppDelegate.m:45`</a>
  * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppDelegate.m#L122">`AppDelegate.m:122`</a>
  * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppDelegate.m#L133">`AppDelegate.m:133`</a>
+ * find out why the activityIndicator is always active... <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppDelegate.m#L187">`AppDelegate.m:187`</a>
  * should probably relate to pre-fab exercises <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/M_Exercise.h#L37">`M_Exercise.h:37`</a>
  * update all other CBLModels with similar edit logic <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/M_Settings.m#L42">`M_Settings.m:42`</a>
  * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Exercise.m#L133">`V_Exercise.m:133`</a>

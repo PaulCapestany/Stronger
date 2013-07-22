@@ -184,11 +184,12 @@
 - (void)replicationProgress:(NSNotificationCenter *)n {
     LogFunc;
     
-    if (_pull.mode == kCBLReplicationActive || _push.mode == kCBLReplicationActive) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    } else {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    }
+    // TODO: find out why the activityIndicator is always active...
+//    if (_pull.mode == kCBLReplicationActive || _push.mode == kCBLReplicationActive) {
+//        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//    } else {
+//        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//    }
 }
 
 // Display an error alert, without blocking.

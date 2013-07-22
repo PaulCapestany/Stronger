@@ -1,5 +1,6 @@
 
 ### Top Priority
+ * fix this <<< V_Set.m:157 >>>
 
 ### Upcoming
  * create users for app <<< AppConstants.h:11 >>>
@@ -9,6 +10,7 @@
  * need to create login screen <<< AppDelegate.m:45 >>>
  * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:122 >>>
  * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:133 >>>
+ * find out why the activityIndicator is always active... <<< AppDelegate.m:187 >>>
  * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
  * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:133 >>>
