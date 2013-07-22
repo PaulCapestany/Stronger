@@ -49,7 +49,7 @@
 
     _viewDidLoad = YES;
     isEditing = NO;
-    [saveButton setTitle:@"Add Set" forState:UIControlStateNormal];
+    [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %i", 1] forState:UIControlStateNormal];
     [self populateArrays];
     [self viewDidLoadWithDatabase];
 }
@@ -251,7 +251,7 @@
         [selectedSet save:&error];
         
         isEditing = NO;
-        [saveButton setTitle:@"Add Set" forState:UIControlStateNormal];
+        [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %i", 1] forState:UIControlStateNormal];
         NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
         if(indexPath) {
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
