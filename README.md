@@ -14,6 +14,7 @@
  * should probably relate to pre-fab exercises <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/M_Exercise.h#L37">`M_Exercise.h:37`</a>
  * update all other CBLModels with similar edit logic <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/M_Settings.m#L42">`M_Settings.m:42`</a>
  * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Exercise.m#L133">`V_Exercise.m:133`</a>
+ * properly implement `numberOfRowsInSection` <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Set.m#L201">`V_Set.m:201`</a>
  * add in ability to edit `selectedWorkout` <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Workout.m#L135">`V_Workout.m:135`</a>
  * change this test <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/vendor/Logging/LoggerClient.m#L482">`vendor/Logging/LoggerClient.m:482`</a>
 

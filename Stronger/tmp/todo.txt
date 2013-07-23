@@ -13,6 +13,7 @@
  * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
  * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:133 >>>
+ * properly implement `numberOfRowsInSection` <<< V_Set.m:201 >>>
  * add in ability to edit `selectedWorkout` <<< V_Workout.m:135 >>>
  * change this test <<< vendor/Logging/LoggerClient.m:482 >>>
 

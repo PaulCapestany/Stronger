@@ -29,6 +29,8 @@
 @property (nonatomic, retain) NSArray *weightViewArray;
 @property (nonatomic, retain) NSArray *repsViewArray;
 
+@property (nonatomic, retain) NSCountedSet *countedSet;
+
 @property (nonatomic) BOOL isEditing;
 
 @property (strong, nonatomic) M_Set* theSet;
