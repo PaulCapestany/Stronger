@@ -14,7 +14,7 @@
  * should probably relate to pre-fab exercises <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/M_Exercise.h#L37">`M_Exercise.h:37`</a>
  * update all other CBLModels with similar edit logic <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/M_Settings.m#L42">`M_Settings.m:42`</a>
  * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Exercise.m#L133">`V_Exercise.m:133`</a>
- * properly implement `numberOfRowsInSection` <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Set.m#L201">`V_Set.m:201`</a>
+ * properly implement `numberOfRowsInSection` <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Set.m#L207">`V_Set.m:207`</a>
  * add in ability to edit `selectedWorkout` <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Workout.m#L135">`V_Workout.m:135`</a>
  * change this test <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/vendor/Logging/LoggerClient.m#L482">`vendor/Logging/LoggerClient.m:482`</a>
 
@@ -25,6 +25,7 @@
  * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppDelegate.m#L115">`AppDelegate.m:115`</a>
  * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/AppDelegate.m#L134">`AppDelegate.m:134`</a>
  * I think these need to actually be `M_Workout` models? <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/M_Settings.h#L28">`M_Settings.h:28`</a>
+ * not sure why delegate methods aren't being called... <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Set.m#L41">`V_Set.m:41`</a>
  * different way to deal with errors now? <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Workout.m#L141">`V_Workout.m:141`</a>
  * need to make `moveRowAtIndexPath` actually get called! <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Workout.m#L190">`V_Workout.m:190`</a>
  * *save* method seems to have changed (no longer *RestOperation*-based)? <a href="https://github.com/PaulCapestany/Stronger/blob/picker/Stronger/V_Workout.m#L232">`V_Workout.m:232`</a>

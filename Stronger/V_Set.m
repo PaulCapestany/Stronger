@@ -37,7 +37,10 @@
         query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
 
         self.dataSource.query = query;
-//        self.tableView.delegate = self;
+        
+        // ???: not sure why delegate methods aren't being called...
+        tableView.delegate = self;
+//        tableView.dataSource = self;
     }
 }
 
@@ -51,6 +54,7 @@
     _viewDidLoad = YES;
     isEditing = NO;
     [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %i", 1] forState:UIControlStateNormal];
+    
     [self populateArrays];
     [self viewDidLoadWithDatabase];
 }
@@ -134,7 +138,7 @@
     UILabel *repsLabel = (UILabel *)[cell viewWithTag:101];
     repsLabel.text = [setForRow.reps stringValue];
 
-    LogDebug(@"%@: %@ ✕ %@", setForRow.a_creation_date, setForRow.weight, setForRow.reps);
+    LogDebug(@"%@: %@ ✕ %@ — IndexPath: %@", setForRow.a_creation_date, setForRow.weight, setForRow.reps, indexPath);
 
     return cell;
 }
@@ -166,7 +170,8 @@
     return nil;
 }
 
--(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+-(UIView *) tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section {
     LogFunc;
     
     static NSString *CellIdentifier = @"SectionHeader";
@@ -175,6 +180,7 @@
     [label setText:@"Monday, July 22"];
     if (headerView == nil){
         [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
+        LogErr(@"headerView == nil..");
     }
     return headerView;
 }
@@ -182,11 +188,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     LogFunc;
 
-    return 44;
+    return 44.0f;
 }
 
-//- (NSInteger)numberOfRowsInSection:(NSInteger)section {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//- (NSInteger)numberOfRowsInSection:(NSInteger)section {
     LogFunc;
     
 //    LogDebug(@"countedSet = %@ count = %i allObjects = %@ countForObject:@1 = %i", countedSet, [countedSet count], [countedSet allObjects], [countedSet countForObject:@1]);
@@ -205,7 +211,7 @@
 //    return [[self.dataSource.query rows] count];
 }
 
-- (NSInteger)numberOfSections {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     LogFunc;
 
     return [countedSet count];
