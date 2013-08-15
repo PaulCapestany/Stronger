@@ -3,6 +3,7 @@
  */
 
 #import "LoggerClient.h"
+#import "vendor/PonyDebugger/ObjC/PonyDebugger/PonyDebugger.h"
 
 // **************
 // * TODOS, ETC *

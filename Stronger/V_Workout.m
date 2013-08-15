@@ -301,12 +301,20 @@
 - (void)finishedAddingNewWorkout {
     LogFunc;
     
+    PDLog(@"finishedAddingNewWorkout");               // This logs a simple string to the console output.
+//    PDLogObjects(self);                  // This logs an introspectable version of "self" to the console.
+//    PDLogObjects(@"My object:", database);  // Combination of text and introspectable object.
+    
+    NSArray *testArray = @[@"object1", @2, @"object3"];
+    PDLogObjects(testArray);
+    
     [newWorkoutTextField resignFirstResponder];
     
     if (newWorkoutTextField.text != nil && ![newWorkoutTextField.text isEqual:@""]) {
         M_Workout *newWorkout = [M_Workout createWorkoutWithName:newWorkoutTextField.text
                                                       inDatabase:database];
         [tempSettingsArray addObject:newWorkout.document.documentID];
+        PDLogObjects(@"newWorkout ⭆", newWorkout);
         [self updateSettingsArray];
     }
     [newWorkoutTextField setText:nil];
