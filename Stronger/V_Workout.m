@@ -305,6 +305,17 @@
 //    PDLogObjects(self);                  // This logs an introspectable version of "self" to the console.
 //    PDLogObjects(@"My object:", database);  // Combination of text and introspectable object.
     
+    //LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Func",4,[NSString stringWithUTF8String:__FUNCTION__],@"")
+    //webpagehelper://com.apple.AppleScript.WebpageHelper?action=1
+//    NSString *logThis = [NSString stringWithFormat:@"<a href=\"pony://%s\">%d~%s</a>", __FILE__, __LINE__, __FUNCTION__];
+    NSString *appName =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+
+    NSString *logThis = [NSString stringWithFormat:@"%s\t\t\tpony://%s+%d~%@", __FUNCTION__, __FILE__, __LINE__, appName];
+    
+    PDLog(@"%@", logThis);
+    
+    //    PDLogObjects(@"%s:%d %@", __FILE__, __LINE__, __FUNCTION__);
+    
     NSArray *testArray = @[@"object1", @2, @"object3"];
     PDLogObjects(testArray);
     
