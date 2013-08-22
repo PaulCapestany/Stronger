@@ -37,7 +37,7 @@
     [debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque", @"accessibilityLabel", @"text"]];
     
     // Connect to a specific host
-    [debugger connectToURL:[NSURL URLWithString:@"ws://192.168.1.4:9000/device"]];
+    [debugger connectToURL:[NSURL URLWithString:@"ws://192.168.1.2:9000/device"]];
     // Or auto connect via bonjour discovery
     //[debugger autoConnect];
     // Or to a specific ponyd bonjour service
