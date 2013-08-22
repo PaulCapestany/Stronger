@@ -222,18 +222,19 @@
 - (void)replicationProgress:(NSNotificationCenter *)n {
     LogFunc;
     
-    // TODO: find out why the activityIndicator is always active...
-//    if (_pull.mode == kCBLReplicationActive || _push.mode == kCBLReplicationActive) {
-//        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-//    } else {
-//        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//    }
+    if (_pull.mode == kCBLReplicationActive || _push.mode == kCBLReplicationActive) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    } else {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }
 }
 
 // Display an error alert, without blocking.
 // If 'fatal' is true, the app will quit when it's pressed.
 - (void)showAlert:(NSString *)message error:(NSError *)error fatal:(BOOL)fatal {
     LogFunc;
+    
+    LogErr(@"error", error, @"message", message);
     
     if (error) {
         message = [NSString stringWithFormat:@"%@\n\n%@", message, error.localizedDescription];

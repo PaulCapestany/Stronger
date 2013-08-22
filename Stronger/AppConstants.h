@@ -2,7 +2,6 @@
  AppConstants.h
  */
 
-#import "LoggerClient.h"
 #import "vendor/PonyDebugger/ObjC/PonyDebugger/PonyDebugger.h"
 
 // **************
@@ -65,18 +64,19 @@
 */
 
 #ifdef DEBUG
-    #define AppName [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
-    #define LogFunc   PDLog(@"%@", [NSString stringWithFormat:@"%s\npony://%s+%d~%@", __FUNCTION__, __FILE__, __LINE__, AppName])
-    #define LogDebug(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Debug",0,__VA_ARGS__)
-    #define LogAction(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Action",0,__VA_ARGS__)
-    #define LogVerbose(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Verbose",1,__VA_ARGS__)
-    #define LogErr(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Error",0,__VA_ARGS__)
+    #define AppName         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
+    #define PonyURLString   [NSString stringWithFormat:@"pony://%s+%d~%@\n", __FILE__, __LINE__, AppName]
+    #define LogFunc         PDLog(@"%@%s", PonyURLString, __FUNCTION__)
+    #define LogDebug(...)   PDLogObjects(PonyURLString, @"[DEBUG]\n", __VA_ARGS__)
+    #define LogAction(...)  PDLogObjects(PonyURLString, @"[ACTION]\n", __VA_ARGS__)
+    #define LogVerbose(...) PDLogObjects(PonyURLString, @"[VERBOSE]\n", __VA_ARGS__)
+    #define LogErr(...)     PDLogObjects(PonyURLString, @"[ERROR]\n", __VA_ARGS__)
 #else
-    #define LogFunc(...)     do{}while(0)
-    #define LogDebug(...)    do{}while(0)
-    #define LogAction(...)   do{}while(0)
-    #define LogVerbose(...)  do{}while(0)
-    #define LogErr(...)    do{}while(0)
+    #define LogFunc(...)    do{}while(0)
+    #define LogDebug(...)   do{}while(0)
+    #define LogAction(...)  do{}while(0)
+    #define LogVerbose(...) do{}while(0)
+    #define LogErr(...)     do{}while(0)
 #endif
 
 // **********************

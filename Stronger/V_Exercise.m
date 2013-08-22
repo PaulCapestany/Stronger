@@ -92,7 +92,8 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    LogErr(@"%@: error=%@", message, error);
+    LogErr(@"message", message,
+           @"error", error);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
  showAlert: message error : error fatal : NO];
 }
@@ -107,15 +108,11 @@
 
     // Configure the cell contents. Our view function (see above) copies the document properties
     // into its value, so we can read them from there without having to load the document.
-    M_Exercise *ExerciseForRow = [M_Exercise modelForDocument:row.document];
+    M_Exercise *exerciseForRow = [M_Exercise modelForDocument:row.document];
 
-    LogVerbose(@"%@\n"
-              "★★★★★★★★★★★★★★★★★★ key ⤴ value ⤵ ★★★★★★★★★★★★★★★★★★ \n"
-              "%@",
-              row.key,
-              row.value);
+    LogVerbose(@"exerciseForRow", exerciseForRow);
 
-    cell.textLabel.text = ExerciseForRow.name;
+    cell.textLabel.text = exerciseForRow.name;
 }
 
 #pragma mark - Table view delegate
@@ -128,8 +125,8 @@
     CBLDocument *doc = theRow.document;
 
     M_Exercise *selectedExercise = [M_Exercise modelForDocument:doc];
-    LogAction(@"\"%@\" exercise selected", selectedExercise.name);
-    LogVerbose(@"selectedExercise: \n%@", selectedExercise);
+    LogAction(@"selectedExercise", selectedExercise.name);
+    LogVerbose(@"selectedExercise", selectedExercise);
     // TODO: add in ability to edit `selectedExercise`
     [self showV_Set:selectedExercise];
 }
@@ -194,7 +191,7 @@
              belongs_to_workout_id:m_WorkoutPassedIn
                         inDatabase:database];
         
-        LogVerbose(@"newExercise: \n%@", newExercise);
+        LogVerbose(@"newExercise", newExercise);
     }
     
     [newExerciseTextField setText:nil];

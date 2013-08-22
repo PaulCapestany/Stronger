@@ -97,9 +97,10 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    LogErr(@"%@: error=%@", message, error);
+    LogErr(@"message", message,
+           @"error", error);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
- showAlert: message error : error fatal : NO];
+     showAlert: message error : error fatal : NO];
 }
 
 #pragma mark - TD table source delegate
@@ -114,7 +115,7 @@
     // into its value, so we can read them from there without having to load the document.
     M_Workout *workoutForRow = [M_Workout modelForDocument:row.document];
 
-    //    LogVerbose(@"row.key : row.value = %@ : %@", row.key, row.value);
+    LogVerbose(@"workoutForRow", workoutForRow);
     
     cell.textLabel.text = workoutForRow.name;
 }
@@ -129,8 +130,8 @@
     CBLDocument *doc = theRow.document;
 
     M_Workout *selectedWorkout = [M_Workout modelForDocument:doc];
-    LogAction(@"\"%@\" workout selected", selectedWorkout.name);
-    LogVerbose(@"selectedWorkout: \n%@", selectedWorkout);
+    LogAction(@"selectedWorkout", selectedWorkout.name);
+    LogVerbose(@"selectedWorkout", selectedWorkout);
     
     // TODO: add in ability to edit `selectedWorkout`
     [self showV_Exercise:selectedWorkout];
@@ -154,25 +155,9 @@
 #pragma mark - Row reordering
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
-    //    LogVerbose(@""
-    //          "sourceIndexPath = %@"
-    //          "\n"
-    //          "sourceIndexPath.section = %d"
-    //          "\n"
-    //          "sourceIndexPath.row = %d"
-    //          "\n"
-    //          "proposedDestinationIndexPath = %@"
-    //          "\n"
-    //          "proposedDestinationIndexPath.section = %d"
-    //          "\n"
-    //          "proposedDestinationIndexPath.row = %d",
-    //          sourceIndexPath,
-    //          sourceIndexPath.section,
-    //          sourceIndexPath.row,
-    //          proposedDestinationIndexPath,
-    //          proposedDestinationIndexPath.section,
-    //          proposedDestinationIndexPath.row
-    //          );
+    LogVerbose(@"sourceIndexPath", sourceIndexPath,
+               @"proposedDestinationIndexPath", proposedDestinationIndexPath);
+    
     //
     ////    [tempSettingsArray exchangeObjectAtIndex: sourceIndexPath.row withObjectAtIndex: proposedDestinationIndexPath.row];
     //
@@ -188,17 +173,13 @@
     LogFunc;
 
     // ???: need to make `moveRowAtIndexPath` actually get called!
-    LogDebug(@""
-          "fromIndexPath.row = %i"
-          "\n"
-          "toIndexPath.row = %i",
-          fromIndexPath.row,
-          toIndexPath.row
-          );
+    LogDebug(@"fromIndexPath", fromIndexPath,
+             @"toIndexPath", toIndexPath);
+
     id sourceObject = [tempSettingsArray objectAtIndex:fromIndexPath.row];
     [tempSettingsArray removeObjectAtIndex:fromIndexPath.row];
     [tempSettingsArray insertObject:sourceObject atIndex:toIndexPath.row];
-    LogVerbose(@"tempSettingsArray = \n%@", tempSettingsArray);
+    LogVerbose(@"tempSettingsArray", tempSettingsArray);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
@@ -207,26 +188,20 @@
 
     if (object == _liveQuery) {
         NSMutableArray *tempRowsArray = [NSMutableArray array];
-        for (CBLQueryRow *row in _liveQuery.rows) {
-            LogVerbose(@"CBLQueryRow\n"
-                      "--------------\n"
-                      "%@\n"
-                      "★★★★★★★★★★★★★★★★★★ key ⤴ value ⤵ ★★★★★★★★★★★★★★★★★★ \n"
-                      "%@",
-                      row.key,
-                      row.value);
-            [tempRowsArray addObject:row.key];
+        for (CBLQueryRow *aCBLQueryRow in _liveQuery.rows) {
+            LogVerbose(@"aCBLQueryRow", aCBLQueryRow);
+            [tempRowsArray addObject:aCBLQueryRow.key];
         }
-        LogDebug(@"tempRowsArray = \n%@", tempRowsArray);
+        LogDebug(@"tempRowsArray", tempRowsArray);
         if (!tempSettingsArray) tempSettingsArray = [[NSMutableArray alloc] initWithArray:settingsDoc.workout_order];
-        LogVerbose(@"tempSettingsArray = \n%@", tempSettingsArray);
+        LogVerbose(@"tempSettingsArray", tempSettingsArray);
     }
 }
 
 - (void)updateSettingsArray {
     LogFunc;
 
-    LogVerbose(@"tempSettingsArray = \n%@", tempSettingsArray);
+    LogVerbose(@"tempSettingsArray", tempSettingsArray);
     settingsDoc.workout_order = [tempSettingsArray copy];
     settingsDoc.a_edit_date = [NSDate date];
     // ???: *save* method seems to have changed (no longer *RestOperation*-based)?

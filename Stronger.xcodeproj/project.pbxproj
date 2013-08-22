@@ -38,10 +38,9 @@
 		6E94F5D2177BB6E7000D0284 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5AE177BB6E7000D0284 /* UIKit.framework */; };
 		6E94F5DA177BB6E7000D0284 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E94F5D8177BB6E7000D0284 /* InfoPlist.strings */; };
 		6E94F5DC177BB6E7000D0284 /* StrongerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94F5DB177BB6E7000D0284 /* StrongerTests.m */; };
-		6EA6C62C1782716200356926 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62B1782716200356926 /* SystemConfiguration.framework */; };
+		6E9E9AAC17C5D3C1001ECC38 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62B1782716200356926 /* SystemConfiguration.framework */; };
 		6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62D1782716E00356926 /* libsqlite3.dylib */; };
 		6EA6C6301782717700356926 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62F1782717700356926 /* libz.dylib */; };
-		6EA6C6371782772900356926 /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA6C6351782772900356926 /* LoggerClient.m */; };
 		6EA6C63B178278BB00356926 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C63A178278BB00356926 /* CFNetwork.framework */; };
 		6EA6F61417BADA76009D06C5 /* libPonyDebugger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F60F17BAD99F009D06C5 /* libPonyDebugger.a */; };
 		6EA6F61617BADA77009D06C5 /* libSocketRocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F61517BADA77009D06C5 /* libSocketRocket.a */; };
@@ -113,9 +112,6 @@
 		6EA6C62B1782716200356926 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6EA6C62D1782716E00356926 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6EA6C62F1782717700356926 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6EA6C6341782772900356926 /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
-		6EA6C6351782772900356926 /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
-		6EA6C6361782772900356926 /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
 		6EA6C6381782778B00356926 /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
 		6EA6C6391782789800356926 /* todo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = todo.txt; path = Stronger/tmp/todo.txt; sourceTree = "<group>"; };
 		6EA6C63A178278BB00356926 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -131,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9E9AAC17C5D3C1001ECC38 /* SystemConfiguration.framework in Frameworks */,
 				6EA6F61B17BADAA6009D06C5 /* libicucore.A.dylib in Frameworks */,
 				6EA6F61917BADA9B009D06C5 /* Security.framework in Frameworks */,
 				6EA6F61717BADA8F009D06C5 /* CoreData.framework in Frameworks */,
@@ -140,7 +137,6 @@
 				6EA6C63B178278BB00356926 /* CFNetwork.framework in Frameworks */,
 				6EA6C6301782717700356926 /* libz.dylib in Frameworks */,
 				6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */,
-				6EA6C62C1782716200356926 /* SystemConfiguration.framework in Frameworks */,
 				6E94F5AD177BB6E7000D0284 /* CoreGraphics.framework in Frameworks */,
 				6E94F5AF177BB6E7000D0284 /* UIKit.framework in Frameworks */,
 				6E94F5AB177BB6E7000D0284 /* Foundation.framework in Frameworks */,
@@ -258,7 +254,6 @@
 				6E94F5C8177BB6E7000D0284 /* Images.xcassets */,
 				6E5909DA178CCC2600818B6C /* Settings */,
 				6E5909DB178CCC3400818B6C /* Workouts */,
-				6EA6C6331782772900356926 /* Logging */,
 				6E94F5B1177BB6E7000D0284 /* Supporting Files */,
 			);
 			path = Stronger;
@@ -291,17 +286,6 @@
 				6E94F5D8177BB6E7000D0284 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6EA6C6331782772900356926 /* Logging */ = {
-			isa = PBXGroup;
-			children = (
-				6EA6C6341782772900356926 /* LoggerClient.h */,
-				6EA6C6351782772900356926 /* LoggerClient.m */,
-				6EA6C6361782772900356926 /* LoggerCommon.h */,
-			);
-			name = Logging;
-			path = vendor/Logging;
 			sourceTree = "<group>";
 		};
 		6EA6F60A17BAD99E009D06C5 /* Products */ = {
@@ -467,7 +451,6 @@
 				6E5909FC178CCD0500818B6C /* V_Set.m in Sources */,
 				6E5909FA178CCD0500818B6C /* M_Set.m in Sources */,
 				6E94F5B7177BB6E7000D0284 /* main.m in Sources */,
-				6EA6C6371782772900356926 /* LoggerClient.m in Sources */,
 				6E5909EA178CCCEE00818B6C /* M_Workout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

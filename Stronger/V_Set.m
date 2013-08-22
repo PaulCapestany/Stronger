@@ -100,9 +100,10 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    LogErr(@"%@: error=%@", message, error);
+    LogErr(@"message", message,
+           @"error", error);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
- showAlert: message error : error fatal : NO];
+     showAlert: message error : error fatal : NO];
 }
 
 #pragma mark - CBLUITableSource delegate
@@ -138,7 +139,7 @@
     UILabel *repsLabel = (UILabel *)[cell viewWithTag:101];
     repsLabel.text = [setForRow.reps stringValue];
 
-    LogDebug(@"%@: %@ ✕ %@ — IndexPath: %@", setForRow.a_creation_date, setForRow.weight, setForRow.reps, indexPath);
+    LogVerbose(@"setForRow", setForRow);
 
     return cell;
 }
@@ -153,7 +154,7 @@
     CBLDocument *doc = theRow.document;
 
     selectedSet = [M_Set modelForDocument:doc];
-    LogVerbose(@"selectedSet: \n%@", selectedSet);
+    LogVerbose(@"selectedSet", selectedSet);
     isEditing = YES;
     
     NSInteger weightSelectedRow = [weightViewArray indexOfObject:[selectedSet.weight stringValue]];
@@ -230,7 +231,7 @@ viewForHeaderInSection:(NSInteger)section {
             deleteFailed:(NSError *)error {
     LogFunc;
     
-    LogErr(@"couchTableSource:(CBLUITableSource *)source deleteFailed → %@", error);
+    LogErr(@"couchTableSource:(CBLUITableSource *)source deleteFailed", error);
 }
 
 - (void)couchTableSource:(CBLUITableSource *)source
@@ -334,10 +335,10 @@ viewForHeaderInSection:(NSInteger)section {
         belongs_to_exercise_id:m_ExercisePassedIn
                     inDatabase:database];
     
-    LogVerbose(@"newSet: \n%@", newSet);
+    LogVerbose(@"newSet", newSet);
     }
     
-    LogDebug(@"dataSource.rows → %i", [dataSource.rows count]);
+    LogDebug(@"dataSource", dataSource);
     
 //    NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([dataSource.rows count] - 1) inSection:0];
 //    [tableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
