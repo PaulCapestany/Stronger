@@ -300,16 +300,7 @@
 
 - (void)finishedAddingNewWorkout {
     LogFunc;
-    
-    PDLog(@"finishedAddingNewWorkout");               // This logs a simple string to the console output.
-
-//    NSString *appName =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-//
-//    NSString *logThis = [NSString stringWithFormat:@"%s\t\t\tpony://%s+%d~%@", __FUNCTION__, __FILE__, __LINE__, appName];
-    
-//    NSString *logThis = [NSString stringWithFormat:@"%s\npony://%s+%d~Stronger", __FUNCTION__, __FILE__, __LINE__];
-//    PDLog(@"%@", logThis);
-    
+        
     [newWorkoutTextField resignFirstResponder];
     
     if (newWorkoutTextField.text != nil && ![newWorkoutTextField.text isEqual:@""]) {

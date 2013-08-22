@@ -65,8 +65,8 @@
 */
 
 #ifdef DEBUG
-    //#define LogFunc   LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Func",4,[NSString stringWithUTF8String:__FUNCTION__],@"")
-    #define LogFunc   PDLog(@"%@", [NSString stringWithFormat:@"%s\npony://%s+%d~Stronger", __FUNCTION__, __FILE__, __LINE__])
+    #define AppName [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
+    #define LogFunc   PDLog(@"%@", [NSString stringWithFormat:@"%s\npony://%s+%d~%@", __FUNCTION__, __FILE__, __LINE__, AppName])
     #define LogDebug(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Debug",0,__VA_ARGS__)
     #define LogAction(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Action",0,__VA_ARGS__)
     #define LogVerbose(...)    LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Verbose",1,__VA_ARGS__)
