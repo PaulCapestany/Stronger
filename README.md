@@ -7,9 +7,9 @@
  * add file for passwords/etc to .gitignore <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppConstants.h#L15">`AppConstants.h:15`</a>
  * build database of exercises/machines <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppConstants.h#L19">`AppConstants.h:19`</a>
  * reimplement constants once I've sorted out auth stuff <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppConstants.h#L27">`AppConstants.h:27`</a>
- * need to create login screen <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L68">`AppDelegate.m:68`</a>
- * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L160">`AppDelegate.m:160`</a>
- * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L171">`AppDelegate.m:171`</a>
+ * need to create login screen <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L70">`AppDelegate.m:70`</a>
+ * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L162">`AppDelegate.m:162`</a>
+ * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L173">`AppDelegate.m:173`</a>
  * should probably relate to pre-fab exercises <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/M_Exercise.h#L37">`M_Exercise.h:37`</a>
  * update all other CBLModels with similar edit logic <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/M_Settings.m#L42">`M_Settings.m:42`</a>
  * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Exercise.m#L130">`V_Exercise.m:130`</a>
@@ -25,8 +25,8 @@
  * find out if I need to change how I'm doing the IDs for each doc <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppConstants.h#L13">`AppConstants.h:13`</a>
  * look into `UICollectionView` <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppConstants.h#L17">`AppConstants.h:17`</a>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppConstants.h#L21">`AppConstants.h:21`</a>
- * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L153">`AppDelegate.m:153`</a>
- * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L172">`AppDelegate.m:172`</a>
+ * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L155">`AppDelegate.m:155`</a>
+ * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L174">`AppDelegate.m:174`</a>
  * I think these need to actually be `M_Workout` models? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/M_Settings.h#L28">`M_Settings.h:28`</a>
  * not sure why delegate methods aren't being called... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Set.m#L41">`V_Set.m:41`</a>
  * different way to deal with errors now? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L142">`V_Workout.m:142`</a>

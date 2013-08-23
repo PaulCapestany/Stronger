@@ -63,7 +63,8 @@
  
 */
 
-#ifdef DEBUG
+//#ifdef DEBUG
+#if TARGET_IPHONE_SIMULATOR
     #define AppName         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
     #define PonyURLString   [NSString stringWithFormat:@"pony://%s+%d~%@\n", __FILE__, __LINE__, AppName]
     #define LogFunc         PDLog(@"%@%s", PonyURLString, __FUNCTION__)
@@ -72,7 +73,7 @@
     #define LogVerbose(...) PDLogObjects(PonyURLString, @"[VERBOSE]\n", __VA_ARGS__)
     #define LogErr(...)     PDLogObjects(PonyURLString, @"[ERROR]\n", __VA_ARGS__)
 #else
-    #define LogFunc(...)    do{}while(0)
+//    #define LogFunc         do{}while(0)
     #define LogDebug(...)   do{}while(0)
     #define LogAction(...)  do{}while(0)
     #define LogVerbose(...) do{}while(0)

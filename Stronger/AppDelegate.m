@@ -22,6 +22,7 @@
 {
     LogFunc;
     
+#if TARGET_IPHONE_SIMULATOR
     PDDebugger *debugger = [PDDebugger defaultInstance];
     // Enable Network debugging, and automatically track network traffic that comes through any classes that NSURLConnectionDelegate methods.
     [debugger enableNetworkTrafficDebugging];
@@ -45,6 +46,7 @@
     
     // Enable remote logging to the DevTools Console via PDLog()/PDLogObjects().
     [debugger enableRemoteLogging];
+#endif
     
     //    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     //    [TestFlight takeOff:@"d78a9123-5630-4228-96ba-03186e93b300"];
