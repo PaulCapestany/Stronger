@@ -38,7 +38,7 @@
 
         _liveQuery.descending = NO;
 
-        self.dataSource.query = _liveQuery;
+        dataSource.query = _liveQuery;
         [_liveQuery addObserver:self forKeyPath:@"rows" options:0 context:NULL];
     }
 }
@@ -60,7 +60,7 @@
 - (void)dealloc {
     LogFunc;
 
-    self.dataSource = nil;
+    dataSource = nil;
     [_liveQuery removeObserver:self forKeyPath:@"rows"];
     _liveQuery = nil;
 }
@@ -126,7 +126,7 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LogFunc;
 
-    CBLQueryRow *theRow = [self.dataSource rowAtIndex:indexPath.row];
+    CBLQueryRow *theRow = [dataSource rowAtIndex:indexPath.row];
     CBLDocument *doc = theRow.document;
 
     M_Workout *selectedWorkout = [M_Workout modelForDocument:doc];

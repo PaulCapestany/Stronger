@@ -36,10 +36,10 @@
         query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, [NSDictionary dictionary], nil];
         query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
 
-        self.dataSource.query = query;
+        dataSource.query = query;
         
         // ???: not sure why delegate methods aren't being called...
-        tableView.delegate = self;
+//        tableView.delegate = self;
 //        tableView.dataSource = self;
     }
 }
@@ -65,7 +65,7 @@
     countedSet = nil;
     weightViewArray = nil;
     repsViewArray = nil;
-    self.dataSource = nil;
+    dataSource = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,6 +78,10 @@
     LogFunc;
     
     [super viewWillDisappear:animated];
+//    if ([self isMovingFromParentViewController])
+//    {
+//            self.navigationController.delegate = nil;
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -150,7 +154,7 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LogFunc;
 
-    CBLQueryRow *theRow = [self.dataSource rowAtIndex:indexPath.row];
+    CBLQueryRow *theRow = [dataSource rowAtIndex:indexPath.row];
     CBLDocument *doc = theRow.document;
 
     selectedSet = [M_Set modelForDocument:doc];
@@ -189,7 +193,7 @@ viewForHeaderInSection:(NSInteger)section {
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     LogFunc;
 
-    return 44.0f;
+    return 44;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -209,7 +213,7 @@ viewForHeaderInSection:(NSInteger)section {
     NSInteger numRows = [[trackSections objectAtIndex:section] integerValue];
     
     return numRows;
-//    return [[self.dataSource.query rows] count];
+//    return [[dataSource.query rows] count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -329,13 +333,14 @@ viewForHeaderInSection:(NSInteger)section {
         }
     }
     else {
-    M_Set *newSet =
+//    M_Set *newSet =
+    
     [M_Set createSetWithWeight:weightNumber
                           reps:repsNumber
         belongs_to_exercise_id:m_ExercisePassedIn
                     inDatabase:database];
-    
-    LogVerbose(@"newSet", newSet);
+//    ???: this may have been causing crash with PonyDebugger...
+//    LogVerbose(@"newSet", newSet);
     }
     
     LogDebug(@"dataSource", dataSource);
@@ -349,9 +354,9 @@ viewForHeaderInSection:(NSInteger)section {
     
     [countedSet removeAllObjects];
     
-    CBLQueryEnumerator *theRows = self.dataSource.query.rows;
+    CBLQueryEnumerator *theRows = dataSource.query.rows;
     for (int counter = 0; counter < [theRows count]; counter++) {
-        CBLQueryRow *aRow = [self.dataSource rowAtIndex:counter];
+        CBLQueryRow *aRow = [dataSource rowAtIndex:counter];
         M_Set *aSet = [M_Set modelForDocument:aRow.document];
 
 //        int remainder = fmodf(([aSet.a_creation_date timeIntervalSinceNow]/-3600), 24);
@@ -365,7 +370,7 @@ viewForHeaderInSection:(NSInteger)section {
 - (void)populateArrays {
     LogFunc;
     
-    countedSet = [[NSCountedSet alloc] init];
+//    countedSet = [[NSCountedSet alloc] init];
 
     // cat numbers | awk '{print "@[@\"" $2 "\",@" $3 "],"}' > weights
     weightViewArray = @[@"-350",@"-345",@"-340",@"-335",@"-330",@"-325",@"-320",@"-315",@"-310",@"-305",@"-300",@"-295",@"-290",@"-285",@"-280",@"-275",@"-270",@"-265",@"-260",@"-255",@"-250",@"-245",@"-240",@"-235",@"-230",@"-225",@"-220",@"-215",@"-210",@"-205",@"-200",@"-195",@"-190",@"-185",@"-180",@"-175",@"-170",@"-165",@"-160",@"-155",@"-150",@"-145",@"-140",@"-135",@"-130",@"-125",@"-120",@"-115",@"-110",@"-105",@"-100",@"-95",@"-90",@"-85",@"-80",@"-75",@"-70",@"-65",@"-60",@"-55",@"-50",@"-45",@"-40",@"-35",@"-30",@"-25",@"-20",@"-15",@"-10",@"-5",@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"25",@"30",@"35",@"40",@"45",@"50",@"55",@"60",@"65",@"70",@"75",@"80",@"85",@"90",@"95",@"100",@"105",@"110",@"115",@"120",@"125",@"130",@"135",@"140",@"145",@"150",@"155",@"160",@"165",@"170",@"175",@"180",@"185",@"190",@"195",@"200",@"205",@"210",@"215",@"220",@"225",@"230",@"235",@"240",@"245",@"250",@"255",@"260",@"265",@"270",@"275",@"280",@"285",@"290",@"295",@"300",@"305",@"310",@"315",@"320",@"325",@"330",@"335",@"340",@"345",@"350",@"355",@"360",@"365",@"370",@"375",@"380",@"385",@"390",@"395",@"400",@"405",@"410",@"415",@"420",@"425",@"430",@"435",@"440",@"445",@"450",@"455",@"460",@"465",@"470",@"475",@"480",@"485",@"490",@"495",@"500",@"505",@"510",@"515",@"520",@"525",@"530",@"535",@"540",@"545",@"550",@"555",@"560",@"565",@"570",@"575",@"580",@"585",@"590",@"595",@"600",@"605",@"610",@"615",@"620",@"625",@"630",@"635",@"640",@"645",@"650",@"655",@"660",@"665",@"670",@"675",@"680",@"685",@"690",@"695",@"700",@"705",@"710",@"715",@"720",@"725",@"730",@"735",@"740",@"745",@"750",@"755",@"760",@"765",@"770",@"775",@"780",@"785",@"790",@"795",@"800",@"805",@"810",@"815",@"820",@"825",@"830",@"835",@"840",@"845",@"850",@"855",@"860",@"865",@"870",@"875",@"880",@"885",@"890",@"895",@"900",@"905",@"910",@"915",@"920",@"925",@"930",@"935",@"940",@"945",@"950",@"955",@"960",@"965",@"970",@"975",@"980",@"985",@"990",@"995",@"1000",@"1005",@"1010",@"1015",@"1020",@"1025",@"1030",@"1035",@"1040",@"1045",@"1050",@"1055",@"1060",@"1065",@"1070",@"1075",@"1080",@"1085",@"1090",@"1095",@"1100",@"1105",@"1110",@"1115",@"1120",@"1125",@"1130",@"1135",@"1140",@"1145",@"1150",@"1155",@"1160",@"1165",@"1170",@"1175",@"1180",@"1185",@"1190",@"1195",@"1200",@"1205",@"1210",@"1215",@"1220",@"1225",@"1230",@"1235",@"1240",@"1245",@"1250",@"1255",@"1260",@"1265",@"1270",@"1275",@"1280",@"1285",@"1290",@"1295",@"1300",@"1305",@"1310",@"1315",@"∞"];

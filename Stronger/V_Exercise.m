@@ -39,7 +39,7 @@
         query.startKey = [NSArray arrayWithObjects:m_WorkoutDocId, nil];
         query.endKey = [NSArray arrayWithObjects:m_WorkoutDocId,  [NSDictionary dictionary], nil];
 
-        self.dataSource.query = query;
+        dataSource.query = query;
     }
 }
 
@@ -57,7 +57,7 @@
 - (void)dealloc {
     LogFunc;
 
-    self.dataSource = nil;
+    dataSource = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -121,7 +121,7 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LogFunc;
 
-    CBLQueryRow *theRow = [self.dataSource rowAtIndex:indexPath.row];
+    CBLQueryRow *theRow = [dataSource rowAtIndex:indexPath.row];
     CBLDocument *doc = theRow.document;
 
     M_Exercise *selectedExercise = [M_Exercise modelForDocument:doc];
@@ -186,12 +186,13 @@
     [newExerciseTextField resignFirstResponder];
     
     if (newExerciseTextField.text != nil && ![newExerciseTextField.text isEqual:@""]) {
-        M_Exercise *newExercise =
+//        M_Exercise *newExercise =
+        
         [M_Exercise createExercise:newExerciseTextField.text
              belongs_to_workout_id:m_WorkoutPassedIn
                         inDatabase:database];
-        
-        LogVerbose(@"newExercise", newExercise);
+//    ???: this may have been causing crash with PonyDebugger...
+//        LogVerbose(@"newExercise", newExercise);
     }
     
     [newExerciseTextField setText:nil];
