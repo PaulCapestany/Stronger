@@ -64,7 +64,7 @@
 */
 
 //#ifdef DEBUG
-#if FALSE
+#if TRUE
     #define AppName         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
     #define PonyURLString   [NSString stringWithFormat:@"pony://%s+%d~%@\n", __FILE__, __LINE__, AppName]
     #define LogFunc         PDLog(@"%@%s", PonyURLString, __FUNCTION__)

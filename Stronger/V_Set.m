@@ -60,12 +60,7 @@
 }
 
 - (void)dealloc {
-    LogFunc;
-
-    countedSet = nil;
-    weightViewArray = nil;
-    repsViewArray = nil;
-    dataSource = nil;
+//    delegate = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

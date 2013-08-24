@@ -22,7 +22,7 @@
 {
     LogFunc;
     
-#if FALSE
+#if TRUE
     PDDebugger *debugger = [PDDebugger defaultInstance];
     // Enable Network debugging, and automatically track network traffic that comes through any classes that NSURLConnectionDelegate methods.
     [debugger enableNetworkTrafficDebugging];
@@ -255,19 +255,19 @@
     exit(0);
 }
 
-- (void)dealloc {
-    LogFunc;
-    
-    NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
-    if (_pull) {
-        [nctr removeObserver:self name:nil object:_pull];
-        _pull = nil;
-    }
-    if (_push) {
-        [nctr removeObserver:self name:nil object:_push];
-        _push = nil;
-    }
-}
+//- (void)dealloc {
+//    LogFunc;
+//    
+//    NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
+//    if (_pull) {
+//        [nctr removeObserver:self name:nil object:_pull];
+//        _pull = nil;
+//    }
+//    if (_push) {
+//        [nctr removeObserver:self name:nil object:_push];
+//        _push = nil;
+//    }
+//}
 
 
 @end
