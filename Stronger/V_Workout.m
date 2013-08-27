@@ -97,8 +97,7 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    LogErr(@"message", message,
-           @"error", error);
+    LogErr(@"error: %@\nmessage: %@", error, message);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
      showAlert: message error : error fatal : NO];
 }
@@ -130,7 +129,7 @@
     CBLDocument *doc = theRow.document;
 
     M_Workout *selectedWorkout = [M_Workout modelForDocument:doc];
-    LogAction(@"selectedWorkout", selectedWorkout.name);
+    LogAction(@"selectedWorkout: %@", selectedWorkout.name);
     LogVerbose(@"selectedWorkout", selectedWorkout);
     
     // TODO: add in ability to edit `selectedWorkout`
@@ -225,6 +224,11 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     LogFunc;
+//    PDLogD(@"DEBUG - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
+//    PDLogW(@"WARN - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
+//    PDLogI(@"INFO - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
+//    PDLogE(@"ERROR - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
+//    PDLog(@"Normal PDLog - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

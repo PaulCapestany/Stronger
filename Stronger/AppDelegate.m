@@ -22,7 +22,7 @@
 {
     LogFunc;
     
-#if TRUE
+#if TARGET_IPHONE_SIMULATOR
     PDDebugger *debugger = [PDDebugger defaultInstance];
     // Enable Network debugging, and automatically track network traffic that comes through any classes that NSURLConnectionDelegate methods.
     [debugger enableNetworkTrafficDebugging];
@@ -236,7 +236,7 @@
 - (void)showAlert:(NSString *)message error:(NSError *)error fatal:(BOOL)fatal {
     LogFunc;
     
-    LogErr(@"error", error, @"message", message);
+    LogErr(@"error: %@\nmessage: %@", error, message);
     
     if (error) {
         message = [NSString stringWithFormat:@"%@\n\n%@", message, error.localizedDescription];

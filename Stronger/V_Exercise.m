@@ -92,8 +92,7 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    LogErr(@"message", message,
-           @"error", error);
+    LogErr(@"error: %@\nmessage: %@", error, message);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
  showAlert: message error : error fatal : NO];
 }
@@ -125,7 +124,7 @@
     CBLDocument *doc = theRow.document;
 
     M_Exercise *selectedExercise = [M_Exercise modelForDocument:doc];
-    LogAction(@"selectedExercise", selectedExercise.name);
+    LogAction(@"selectedExercise: %@", selectedExercise.name);
     LogVerbose(@"selectedExercise", selectedExercise);
     // TODO: add in ability to edit `selectedExercise`
     [self showV_Set:selectedExercise];

@@ -99,8 +99,7 @@
 - (void)showErrorAlert:(NSString *)message forError:(NSError *)error {
     LogFunc;
 
-    LogErr(@"message", message,
-           @"error", error);
+    LogErr(@"error: %@\nmessage: %@", error, message);
     [(AppDelegate *)[[UIApplication sharedApplication] delegate]
      showAlert: message error : error fatal : NO];
 }
@@ -230,7 +229,7 @@ viewForHeaderInSection:(NSInteger)section {
             deleteFailed:(NSError *)error {
     LogFunc;
     
-    LogErr(@"couchTableSource:(CBLUITableSource *)source deleteFailed", error);
+    LogErr(@"couchTableSource:(CBLUITableSource *)source deleteFailed %@", error);
 }
 
 - (void)couchTableSource:(CBLUITableSource *)source

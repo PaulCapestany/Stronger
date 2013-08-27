@@ -12,9 +12,9 @@
  * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L173">`AppDelegate.m:173`</a>
  * should probably relate to pre-fab exercises <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/M_Exercise.h#L37">`M_Exercise.h:37`</a>
  * update all other CBLModels with similar edit logic <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/M_Settings.m#L42">`M_Settings.m:42`</a>
- * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Exercise.m#L130">`V_Exercise.m:130`</a>
- * properly implement `numberOfRowsInSection` <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Set.m#L207">`V_Set.m:207`</a>
- * add in ability to edit `selectedWorkout` <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L136">`V_Workout.m:136`</a>
+ * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Exercise.m#L129">`V_Exercise.m:129`</a>
+ * properly implement `numberOfRowsInSection` <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Set.m#L206">`V_Set.m:206`</a>
+ * add in ability to edit `selectedWorkout` <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L135">`V_Workout.m:135`</a>
  * Make introspection for primitive types work. <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/vendor/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m#L195">`vendor/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195`</a>
  * maybe not copy this for performance <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m#L719">`vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719`</a>
  * Handle invalid opcode <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m#L880">`vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:880`</a>
@@ -28,12 +28,12 @@
  * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L155">`AppDelegate.m:155`</a>
  * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L174">`AppDelegate.m:174`</a>
  * I think these need to actually be `M_Workout` models? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/M_Settings.h#L28">`M_Settings.h:28`</a>
- * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Exercise.m#L194">`V_Exercise.m:194`</a>
+ * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Exercise.m#L193">`V_Exercise.m:193`</a>
  * not sure why delegate methods aren't being called... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Set.m#L41">`V_Set.m:41`</a>
- * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Set.m#L337">`V_Set.m:337`</a>
- * different way to deal with errors now? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L142">`V_Workout.m:142`</a>
- * need to make `moveRowAtIndexPath` actually get called! <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L175">`V_Workout.m:175`</a>
- * *save* method seems to have changed (no longer *RestOperation*-based)? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L207">`V_Workout.m:207`</a>
+ * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Set.m#L336">`V_Set.m:336`</a>
+ * different way to deal with errors now? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L141">`V_Workout.m:141`</a>
+ * need to make `moveRowAtIndexPath` actually get called! <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L174">`V_Workout.m:174`</a>
+ * *save* method seems to have changed (no longer *RestOperation*-based)? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L206">`V_Workout.m:206`</a>
 
 
 _Build version 0.0.0_
