@@ -28,7 +28,7 @@
  * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L155">`AppDelegate.m:155`</a>
  * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/AppDelegate.m#L174">`AppDelegate.m:174`</a>
  * I think these need to actually be `M_Workout` models? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/M_Settings.h#L28">`M_Settings.h:28`</a>
- * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Exercise.m#L193">`V_Exercise.m:193`</a>
+ * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Exercise.m#L195">`V_Exercise.m:195`</a>
  * not sure why delegate methods aren't being called... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Set.m#L41">`V_Set.m:41`</a>
  * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Set.m#L336">`V_Set.m:336`</a>
  * different way to deal with errors now? <a href="https://github.com/PaulCapestany/Stronger/blob/ponydebugger/Stronger/V_Workout.m#L141">`V_Workout.m:141`</a>

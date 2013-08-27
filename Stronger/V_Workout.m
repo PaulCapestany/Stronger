@@ -282,11 +282,14 @@
         
     [newWorkoutTextField resignFirstResponder];
     
-    if (newWorkoutTextField.text != nil && ![newWorkoutTextField.text isEqual:@""]) {
-        M_Workout *newWorkout = [M_Workout createWorkoutWithName:newWorkoutTextField.text
-                                                      inDatabase:database];
+    NSString *cleanedUpText = [newWorkoutTextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (cleanedUpText != nil && ![cleanedUpText isEqual:@""]) {
+        M_Workout *newWorkout =
+        [M_Workout createWorkoutWithName:cleanedUpText
+                              inDatabase:database];
         [tempSettingsArray addObject:newWorkout.document.documentID];
-        PDLogObjects(@"newWorkout ⭆", newWorkout);
+        LogVerbose(@"newWorkout", newWorkout);
         [self updateSettingsArray];
     }
     [newWorkoutTextField setText:nil];

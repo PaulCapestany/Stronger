@@ -184,14 +184,16 @@
 
     [newExerciseTextField resignFirstResponder];
     
-    if (newExerciseTextField.text != nil && ![newExerciseTextField.text isEqual:@""]) {
-//        M_Exercise *newExercise =
-        
-        [M_Exercise createExercise:newExerciseTextField.text
+    
+    NSString *cleanedUpText = [newExerciseTextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (cleanedUpText != nil && ![cleanedUpText isEqual:@""]) {
+        M_Exercise *newExercise =
+        [M_Exercise createExercise:cleanedUpText
              belongs_to_workout_id:m_WorkoutPassedIn
                         inDatabase:database];
 //    ???: this may have been causing crash with PonyDebugger...
-//        LogVerbose(@"newExercise", newExercise);
+        LogVerbose(@"newExercise", newExercise);
     }
     
     [newExerciseTextField setText:nil];
