@@ -38,15 +38,9 @@
 		6E94F5D2177BB6E7000D0284 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E94F5AE177BB6E7000D0284 /* UIKit.framework */; };
 		6E94F5DA177BB6E7000D0284 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E94F5D8177BB6E7000D0284 /* InfoPlist.strings */; };
 		6E94F5DC177BB6E7000D0284 /* StrongerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94F5DB177BB6E7000D0284 /* StrongerTests.m */; };
-		6E9E9AAC17C5D3C1001ECC38 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62B1782716200356926 /* SystemConfiguration.framework */; };
+		6E9579D417CEAE7300E2D6EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62B1782716200356926 /* SystemConfiguration.framework */; };
 		6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62D1782716E00356926 /* libsqlite3.dylib */; };
 		6EA6C6301782717700356926 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62F1782717700356926 /* libz.dylib */; };
-		6EA6C63B178278BB00356926 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C63A178278BB00356926 /* CFNetwork.framework */; };
-		6EA6F61417BADA76009D06C5 /* libPonyDebugger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F60F17BAD99F009D06C5 /* libPonyDebugger.a */; };
-		6EA6F61617BADA77009D06C5 /* libSocketRocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F61517BADA77009D06C5 /* libSocketRocket.a */; };
-		6EA6F61717BADA8F009D06C5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F61217BADA4F009D06C5 /* CoreData.framework */; };
-		6EA6F61917BADA9B009D06C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F61817BADA9B009D06C5 /* Security.framework */; };
-		6EA6F61B17BADAA6009D06C5 /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F61A17BADAA6009D06C5 /* libicucore.A.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,20 +50,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6E94F5A6177BB6E7000D0284;
 			remoteInfo = Stronger;
-		};
-		6EA6F60E17BAD99F009D06C5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EA6F60917BAD99E009D06C5 /* PonyDebugger.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F683ADAC14FC1B4C008EBBA7;
-			remoteInfo = PonyDebugger;
-		};
-		6EA6F61017BADA2E009D06C5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EA6F60917BAD99E009D06C5 /* PonyDebugger.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F683ADAB14FC1B4C008EBBA7;
-			remoteInfo = PonyDebugger;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -115,9 +95,7 @@
 		6EA6C6381782778B00356926 /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
 		6EA6C6391782789800356926 /* todo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = todo.txt; path = Stronger/tmp/todo.txt; sourceTree = "<group>"; };
 		6EA6C63A178278BB00356926 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		6EA6F60917BAD99E009D06C5 /* PonyDebugger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PonyDebugger.xcodeproj; path = Stronger/vendor/PonyDebugger/ObjC/PonyDebugger.xcodeproj; sourceTree = "<group>"; };
 		6EA6F61217BADA4F009D06C5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		6EA6F61517BADA77009D06C5 /* libSocketRocket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSocketRocket.a; path = "Stronger/vendor/PonyDebugger/ObjC/SocketRocket/build/Debug-iphoneos/libSocketRocket.a"; sourceTree = "<group>"; };
 		6EA6F61817BADA9B009D06C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6EA6F61A17BADAA6009D06C5 /* libicucore.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.A.dylib; path = usr/lib/libicucore.A.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -127,14 +105,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E9E9AAC17C5D3C1001ECC38 /* SystemConfiguration.framework in Frameworks */,
-				6EA6F61B17BADAA6009D06C5 /* libicucore.A.dylib in Frameworks */,
-				6EA6F61917BADA9B009D06C5 /* Security.framework in Frameworks */,
-				6EA6F61717BADA8F009D06C5 /* CoreData.framework in Frameworks */,
-				6EA6F61617BADA77009D06C5 /* libSocketRocket.a in Frameworks */,
-				6EA6F61417BADA76009D06C5 /* libPonyDebugger.a in Frameworks */,
+				6E9579D417CEAE7300E2D6EB /* SystemConfiguration.framework in Frameworks */,
 				6E463B9417C2E15600D4BBAE /* CouchbaseLite.framework in Frameworks */,
-				6EA6C63B178278BB00356926 /* CFNetwork.framework in Frameworks */,
 				6EA6C6301782717700356926 /* libz.dylib in Frameworks */,
 				6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */,
 				6E94F5AD177BB6E7000D0284 /* CoreGraphics.framework in Frameworks */,
@@ -205,7 +177,6 @@
 		6E94F59E177BB6E7000D0284 = {
 			isa = PBXGroup;
 			children = (
-				6EA6F60917BAD99E009D06C5 /* PonyDebugger.xcodeproj */,
 				6EA6C6391782789800356926 /* todo.txt */,
 				6E94F5B0177BB6E7000D0284 /* Stronger */,
 				6E94F5D5177BB6E7000D0284 /* StrongerTests */,
@@ -229,7 +200,6 @@
 				6EA6F61A17BADAA6009D06C5 /* libicucore.A.dylib */,
 				6E463B9317C2E15600D4BBAE /* CouchbaseLite.framework */,
 				6EA6F61817BADA9B009D06C5 /* Security.framework */,
-				6EA6F61517BADA77009D06C5 /* libSocketRocket.a */,
 				6EA6F61217BADA4F009D06C5 /* CoreData.framework */,
 				6EA6C63A178278BB00356926 /* CFNetwork.framework */,
 				6EA6C62F1782717700356926 /* libz.dylib */,
@@ -288,14 +258,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6EA6F60A17BAD99E009D06C5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6EA6F60F17BAD99F009D06C5 /* libPonyDebugger.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,7 +274,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				6EA6F61117BADA2E009D06C5 /* PBXTargetDependency */,
 			);
 			name = Stronger;
 			productName = Stronger;
@@ -362,12 +323,6 @@
 			mainGroup = 6E94F59E177BB6E7000D0284;
 			productRefGroup = 6E94F5A8177BB6E7000D0284 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 6EA6F60A17BAD99E009D06C5 /* Products */;
-					ProjectRef = 6EA6F60917BAD99E009D06C5 /* PonyDebugger.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				6E94F5A6177BB6E7000D0284 /* Stronger */,
@@ -375,16 +330,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		6EA6F60F17BAD99F009D06C5 /* libPonyDebugger.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPonyDebugger.a;
-			remoteRef = 6EA6F60E17BAD99F009D06C5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6E94F5A5177BB6E7000D0284 /* Resources */ = {
@@ -478,11 +423,6 @@
 			isa = PBXTargetDependency;
 			target = 6E94F5A6177BB6E7000D0284 /* Stronger */;
 			targetProxy = 6E94F5D3177BB6E7000D0284 /* PBXContainerItemProxy */;
-		};
-		6EA6F61117BADA2E009D06C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PonyDebugger;
-			targetProxy = 6EA6F61017BADA2E009D06C5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

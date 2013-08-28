@@ -2,10 +2,10 @@
 ### Top Priority
 
 ### Upcoming
- * create users for app <<< AppConstants.h:11 >>>
- * add file for passwords/etc to .gitignore <<< AppConstants.h:15 >>>
- * build database of exercises/machines <<< AppConstants.h:19 >>>
- * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:27 >>>
+ * create users for app <<< AppConstants.h:9 >>>
+ * add file for passwords/etc to .gitignore <<< AppConstants.h:13 >>>
+ * build database of exercises/machines <<< AppConstants.h:17 >>>
+ * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:25 >>>
  * need to create login screen <<< AppDelegate.m:70 >>>
  * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:162 >>>
  * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:173 >>>
@@ -14,16 +14,11 @@
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:129 >>>
  * properly implement `numberOfRowsInSection` <<< V_Set.m:213 >>>
  * add in ability to edit `selectedWorkout` <<< V_Workout.m:138 >>>
- * Make introspection for primitive types work. <<< vendor/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195 >>>
- * maybe not copy this for performance <<< vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719 >>>
- * Handle invalid opcode <<< vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:880 >>>
- * Optimize the crap out of this.  Don't really have to copy all the data each time <<< vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:1238 >>>
- * could probably optimize this with SIMD <<< vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:1358 >>>
 
 ### Open questions
- * find out if I need to change how I'm doing the IDs for each doc <<< AppConstants.h:13 >>>
- * look into `UICollectionView` <<< AppConstants.h:17 >>>
- * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
+ * find out if I need to change how I'm doing the IDs for each doc <<< AppConstants.h:11 >>>
+ * look into `UICollectionView` <<< AppConstants.h:15 >>>
+ * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:19 >>>
  * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:155 >>>
  * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:174 >>>
  * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>

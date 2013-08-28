@@ -22,7 +22,7 @@
 {
     LogFunc;
     
-#if TARGET_IPHONE_SIMULATOR
+#if FALSE
     PDDebugger *debugger = [PDDebugger defaultInstance];
     // Enable Network debugging, and automatically track network traffic that comes through any classes that NSURLConnectionDelegate methods.
     [debugger enableNetworkTrafficDebugging];
@@ -92,9 +92,9 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     LogFunc;
-    PDLog(@"PONY applicationWillResignActive");               // This logs a simple string to the console output.
-    PDLogObjects(self);                  // This logs an introspectable version of "self" to the console.
-    PDLogObjects(@"self.database:", self.database);  // Combination of text and introspectable object.
+//    PDLog(@"PONY applicationWillResignActive");               // This logs a simple string to the console output.
+//    PDLogObjects(self);                  // This logs an introspectable version of "self" to the console.
+//    PDLogObjects(@"self.database:", self.database);  // Combination of text and introspectable object.
     
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -103,7 +103,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     LogFunc;
-    PDLog(@"PONY applicationDidEnterBackground");               // This logs a simple string to the console output.
+//    PDLog(@"PONY applicationDidEnterBackground");               // This logs a simple string to the console output.
     //LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Func",4,[NSString stringWithUTF8String:__FUNCTION__],@"")
     //webpagehelper://com.apple.AppleScript.WebpageHelper?action=1
 //    NSString *logThis = [NSString stringWithFormat:@"%s:%d\n%s", __FILE__, __LINE__, __FUNCTION__];
@@ -124,7 +124,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     LogFunc;
-    PDLog(@"PONY applicationDidBecomeActive");               // This logs a simple string to the console output.
+//    PDLog(@"PONY applicationDidBecomeActive");               // This logs a simple string to the console output.
 
    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
