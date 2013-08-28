@@ -356,7 +356,9 @@ viewForHeaderInSection:(NSInteger)section {
 //        int remainder = fmodf(([aSet.a_creation_date timeIntervalSinceNow]/-3600), 24);
 //        int rounded = fmodf(([aSet.a_creation_date timeIntervalSinceNow]/-3600), 24);
         int rounded = ceil([aSet.a_creation_date timeIntervalSinceNow]/-86400);
-//        LogDebug(@"%i — %@ — %@ ✕ %@", rounded, aRow.documentID, aSet.weight, aSet.reps);
+        NSString *stringWithRoundedNumber = [NSString stringWithFormat:@"%i", rounded];
+        LogDebug(@"rounded:", stringWithRoundedNumber,
+                 @"aSet", aSet);
         [countedSet addObject:[NSNumber numberWithInt:rounded]];
     }
 }
