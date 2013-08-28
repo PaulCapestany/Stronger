@@ -15,7 +15,7 @@
     M_Set *setForRow;
 }
 
-@synthesize delegate, dataSource, tableView, isEditing,  m_ExercisePassedIn, m_ExerciseDocId, weightViewArray, repsViewArray, countedSet;
+@synthesize delegate, myDataSource, myTableView, isEditing,  m_ExercisePassedIn, m_ExerciseDocId, weightViewArray, repsViewArray, countedSet;
 
 
 #pragma mark - View lifecycle
@@ -36,11 +36,11 @@
         query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, [NSDictionary dictionary], nil];
         query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
 
-        dataSource.query = query;
+        myDataSource.query = query;
         
         // ???: not sure why delegate methods aren't being called...
-//        tableView.delegate = self;
-//        tableView.dataSource = self;
+        myTableView.delegate = self;
+//        myTableView.dataSource = self.;
     }
 }
 
@@ -84,9 +84,9 @@
     
     [super viewDidAppear:animated];
     
-    NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [myTableView indexPathForSelectedRow];
     if(indexPath) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [myTableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
@@ -123,7 +123,7 @@
     CBLQueryRow *theRow = [source rowAtIndex:indexPath.row];
     setForRow = [M_Set modelForDocument:theRow.document];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
     if (cell == nil) {
@@ -148,7 +148,7 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LogFunc;
 
-    CBLQueryRow *theRow = [dataSource rowAtIndex:indexPath.row];
+    CBLQueryRow *theRow = [myDataSource rowAtIndex:indexPath.row];
     CBLDocument *doc = theRow.document;
 
     selectedSet = [M_Set modelForDocument:doc];
@@ -163,31 +163,38 @@
     [saveButton setTitle:@"Done Editing" forState:UIControlStateNormal];
 }
 
--(NSIndexPath *)indexPathForRow:(NSInteger)row inSection:(NSInteger)section {
+//-(NSIndexPath *)indexPathForRow:(NSInteger)row inSection:(NSInteger)section {
+//    LogFunc;
+//    
+//    return nil;
+//}
+
+//-(UIView *) tableView:(UITableView *)tableView
+//viewForHeaderInSection:(NSInteger)section {
+//    LogFunc;
+//    
+//    static NSString *CellIdentifier = @"SectionHeader";
+//    UITableViewCell *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    UILabel *label = (UILabel *)[headerView viewWithTag:201];
+//    [label setText:@"Monday, July 22"];
+//    if (headerView == nil){
+//        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
+//        LogErr(@"headerView == nil..");
+//    }
+//    return headerView;
+//}
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    LogFunc;
+//
+//    return 44;
+//}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     LogFunc;
     
-    return nil;
-}
-
--(UIView *) tableView:(UITableView *)tableView
-viewForHeaderInSection:(NSInteger)section {
-    LogFunc;
-    
-    static NSString *CellIdentifier = @"SectionHeader";
-    UITableViewCell *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UILabel *label = (UILabel *)[headerView viewWithTag:201];
-    [label setText:@"Monday, July 22"];
-    if (headerView == nil){
-        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
-        LogErr(@"headerView == nil..");
-    }
-    return headerView;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    LogFunc;
-
-    return 44;
+    return [countedSet count];
+    //    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -210,11 +217,10 @@ viewForHeaderInSection:(NSInteger)section {
 //    return [[dataSource.query rows] count];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
     LogFunc;
-
-    return [countedSet count];
-//    return 1;
+    return @"Blah";
 }
 
 //
@@ -260,7 +266,7 @@ viewForHeaderInSection:(NSInteger)section {
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    LogFunc;
+//    LogFunc;
     
 	return 351;
 }
@@ -321,9 +327,9 @@ viewForHeaderInSection:(NSInteger)section {
         
         isEditing = NO;
         [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %i", 1] forState:UIControlStateNormal];
-        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [myTableView indexPathForSelectedRow];
         if(indexPath) {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [myTableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     }
     else {
@@ -337,7 +343,7 @@ viewForHeaderInSection:(NSInteger)section {
 //    LogVerbose(@"newSet", newSet);
     }
     
-    LogDebug(@"dataSource", dataSource);
+    LogDebug(@"myDataSource", myDataSource);
     
 //    NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([dataSource.rows count] - 1) inSection:0];
 //    [tableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -348,9 +354,9 @@ viewForHeaderInSection:(NSInteger)section {
     
     [countedSet removeAllObjects];
     
-    CBLQueryEnumerator *theRows = dataSource.query.rows;
+    CBLQueryEnumerator *theRows = myDataSource.query.rows;
     for (int counter = 0; counter < [theRows count]; counter++) {
-        CBLQueryRow *aRow = [dataSource rowAtIndex:counter];
+        CBLQueryRow *aRow = [myDataSource rowAtIndex:counter];
         M_Set *aSet = [M_Set modelForDocument:aRow.document];
 
 //        int remainder = fmodf(([aSet.a_creation_date timeIntervalSinceNow]/-3600), 24);

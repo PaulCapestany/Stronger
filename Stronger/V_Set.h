@@ -15,7 +15,7 @@
 {
     BOOL _viewDidLoad;
 
-    UITableView *tableView;
+    UITableView *myTableView;
 
     IBOutlet UIButton *saveButton;
     __weak IBOutlet UIPickerView *weightAndRepsPickerView;
@@ -23,8 +23,8 @@
 
 @property (nonatomic, weak) id <V_SetDelegate> delegate;
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet CBLUITableSource *dataSource;
+@property (nonatomic, strong) IBOutlet UITableView *myTableView;
+@property (nonatomic, strong) IBOutlet CBLUITableSource *myDataSource;
 
 @property (nonatomic, retain) NSArray *weightViewArray;
 @property (nonatomic, retain) NSArray *repsViewArray;

@@ -33,5 +33,6 @@
 @property (nonatomic, strong) IBOutlet CBLUITableSource *dataSource;
 
 @property (nonatomic, retain) NSMutableArray *tempSettingsArray;
+@property (nonatomic, retain) NSMutableArray *viewControllersArray;
 
 @end

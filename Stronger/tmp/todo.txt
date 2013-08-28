@@ -12,8 +12,8 @@
  * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
  * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:129 >>>
- * properly implement `numberOfRowsInSection` <<< V_Set.m:206 >>>
- * add in ability to edit `selectedWorkout` <<< V_Workout.m:135 >>>
+ * properly implement `numberOfRowsInSection` <<< V_Set.m:213 >>>
+ * add in ability to edit `selectedWorkout` <<< V_Workout.m:138 >>>
  * Make introspection for primitive types work. <<< vendor/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195 >>>
  * maybe not copy this for performance <<< vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719 >>>
  * Handle invalid opcode <<< vendor/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:880 >>>
@@ -29,7 +29,7 @@
  * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
  * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:195 >>>
  * not sure why delegate methods aren't being called... <<< V_Set.m:41 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Set.m:336 >>>
- * different way to deal with errors now? <<< V_Workout.m:141 >>>
- * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:174 >>>
- * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:206 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Set.m:342 >>>
+ * different way to deal with errors now? <<< V_Workout.m:144 >>>
+ * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:177 >>>
+ * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:209 >>>
