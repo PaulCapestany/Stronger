@@ -22,7 +22,7 @@
 {
     LogFunc;
     
-#if FALSE
+#if TARGET_IPHONE_SIMULATOR
     PDDebugger *debugger = [PDDebugger defaultInstance];
     // Enable Network debugging, and automatically track network traffic that comes through any classes that NSURLConnectionDelegate methods.
     [debugger enableNetworkTrafficDebugging];

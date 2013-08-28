@@ -2,6 +2,8 @@
  AppConstants.h
  */
 
+#import "vendor/submodules/PonyDebugger/ObjC/PonyDebugger/PonyDebugger.h"
+
 // **************
 // * TODOS, ETC *
 // **************
@@ -61,10 +63,9 @@
  
 */
 
-//#ifdef DEBUG
-#if FALSE
-    #define AppName         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
-    #define PonyURLString   [NSString stringWithFormat:@"pony://%s+%d~%@\n", __FILE__, __LINE__, AppName]
+#if TARGET_IPHONE_SIMULATOR
+//    #define AppName         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
+//    #define PonyURLString   [NSString stringWithFormat:@"pony://%s+%d~%@\n", __FILE__, __LINE__, AppName]
     #define LogFunc         PDLogD(@"%s", __FUNCTION__)
     #define LogDebug(...)   PDLogObjects(__VA_ARGS__)
     #define LogAction(...)  PDLogW(__VA_ARGS__)
