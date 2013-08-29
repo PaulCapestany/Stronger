@@ -54,11 +54,11 @@
     [self viewDidLoadWithDatabase];
 }
 
-//- (void)dealloc {
-//    LogFunc;
-//
-////    dataSource = nil;
-//}
+- (void)dealloc {
+    LogFunc;
+
+//    dataSource = nil;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     LogFunc;
@@ -81,6 +81,8 @@
     if(indexPath) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+    
+//    LogDebug(@"AppDelegate.self", (AppDelegate *)[UIApplication sharedApplication].self, @"\nself", self);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

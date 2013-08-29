@@ -21,7 +21,7 @@
     //    CBLQueryEnumerator *_
 }
 
-@synthesize delegate, dataSource, tableView, tempSettingsArray, viewControllersArray;
+@synthesize delegate, dataSource, tableView, tempSettingsArray;
 
 
 #pragma mark - View lifecycle
@@ -29,7 +29,6 @@
 - (void)viewDidLoadWithDatabase {
     LogFunc;
     
-    if (!viewControllersArray) viewControllersArray = [[NSMutableArray alloc] init];
     if (!database) database = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).database;
     if (!settingsDoc) settingsDoc = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).settingsDoc;
 
@@ -58,13 +57,13 @@
     [self viewDidLoadWithDatabase];
 }
 
-//- (void)dealloc {
-//    LogFunc;
-//
-////    dataSource = nil;
-////    [_liveQuery removeObserver:self forKeyPath:@"rows"];
-////    _liveQuery = nil;
-//}
+- (void)dealloc {
+    LogFunc;
+
+//    dataSource = nil;
+//    [_liveQuery removeObserver:self forKeyPath:@"rows"];
+//    _liveQuery = nil;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     LogFunc;
@@ -88,7 +87,7 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     
-    LogDebug(@"viewControllersArray.self", viewControllersArray.self);
+//    LogDebug(@"AppDelegate.self", (AppDelegate *)[UIApplication sharedApplication].self, @"\nself", self);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -308,8 +307,6 @@
     v_Exercise.m_WorkoutDocId = selectedWorkout.document.documentID;
 
     [v_Exercise setTitle:selectedWorkout.name];
-
-    [viewControllersArray addObject:v_Exercise];
     
     if ([self navigationController]) {
         LogDebug(@"[self navigationController]");

@@ -60,6 +60,8 @@
 }
 
 - (void)dealloc {
+    LogFunc;
+    
 //    delegate = nil;
 }
 
@@ -88,6 +90,8 @@
     if(indexPath) {
         [myTableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+    
+//    LogDebug(@"AppDelegate.self", (AppDelegate *)[UIApplication sharedApplication].self, @"\nself", self);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
