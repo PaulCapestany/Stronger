@@ -57,6 +57,7 @@
 - (void)dealloc {
     LogFunc;
 
+//    self.delegate = nil;
 //    dataSource = nil;
 }
 

@@ -39,7 +39,7 @@
         myDataSource.query = query;
         
         // ???: not sure why delegate methods aren't being called...
-        myTableView.delegate = self;
+//        myTableView.delegate = self;
 //        myTableView.dataSource = self.;
     }
 }
@@ -62,7 +62,7 @@
 - (void)dealloc {
     LogFunc;
     
-//    delegate = nil;
+    self.myDataSource.query = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

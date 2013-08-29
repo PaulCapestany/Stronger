@@ -60,9 +60,9 @@
 - (void)dealloc {
     LogFunc;
 
-//    dataSource = nil;
-//    [_liveQuery removeObserver:self forKeyPath:@"rows"];
-//    _liveQuery = nil;
+    dataSource = nil;
+    [_liveQuery removeObserver:self forKeyPath:@"rows"];
+    _liveQuery = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

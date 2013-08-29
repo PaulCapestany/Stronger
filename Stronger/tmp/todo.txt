@@ -6,13 +6,13 @@
  * add file for passwords/etc to .gitignore <<< AppConstants.h:15 >>>
  * build database of exercises/machines <<< AppConstants.h:19 >>>
  * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:27 >>>
- * need to create login screen <<< AppDelegate.m:70 >>>
- * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:162 >>>
- * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:173 >>>
+ * need to create login screen <<< AppDelegate.m:71 >>>
+ * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:163 >>>
+ * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:174 >>>
  * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
  * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
- * add in ability to edit `selectedExercise` <<< V_Exercise.m:131 >>>
- * properly implement `numberOfRowsInSection` <<< V_Set.m:217 >>>
+ * add in ability to edit `selectedExercise` <<< V_Exercise.m:132 >>>
+ * properly implement `numberOfRowsInSection` <<< V_Set.m:221 >>>
  * add in ability to edit `selectedWorkout` <<< V_Workout.m:137 >>>
  * Make introspection for primitive types work. <<< vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195 >>>
  * maybe not copy this for performance <<< vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719 >>>
@@ -24,12 +24,12 @@
  * find out if I need to change how I'm doing the IDs for each doc <<< AppConstants.h:13 >>>
  * look into `UICollectionView` <<< AppConstants.h:17 >>>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
- * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:155 >>>
- * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:174 >>>
+ * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:156 >>>
+ * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:175 >>>
  * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:197 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:198 >>>
  * not sure why delegate methods aren't being called... <<< V_Set.m:41 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Set.m:346 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Set.m:350 >>>
  * different way to deal with errors now? <<< V_Workout.m:143 >>>
  * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:176 >>>
  * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:208 >>>
