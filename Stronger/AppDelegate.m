@@ -182,6 +182,9 @@
     // SETS //
     //////////
     
+    // TODO: make date grouping logic smarter with `compare` method
+    // ⤹ EXAMPLE ⤵
+    // if ([someDate compare:anotherDate] == NSOrderedAscending)
     LogDebug(@"Set up sets map view");
     // Create a 'view' containing list items sorted by date:
     [[database viewNamed:@"sets"] setMapBlock:MAPBLOCK({

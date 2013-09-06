@@ -261,9 +261,9 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="myDataSource" destination="gcd-NU-wNs" id="Dcv-Du-GyJ"/>
-                        <outlet property="myTableView" destination="jlb-Zc-z32" id="ctX-bP-JKm"/>
+                        <outlet property="dataSource" destination="gcd-NU-wNs" id="PfM-e1-jrs"/>
                         <outlet property="saveButton" destination="2Dh-Jc-B79" id="TMc-QN-NEe"/>
+                        <outlet property="tableView" destination="jlb-Zc-z32" id="2Ra-eu-Xyw"/>
                         <outlet property="weightAndRepsPickerView" destination="c2e-YY-d9H" id="Aol-E0-fmq"/>
                     </connections>
                 </viewController>

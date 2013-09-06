@@ -15,7 +15,7 @@
     M_Set *setForRow;
 }
 
-@synthesize delegate, myDataSource, myTableView, isEditing,  m_ExercisePassedIn, m_ExerciseDocId, weightViewArray, repsViewArray, countedSet;
+@synthesize delegate, dataSource, tableView, isEditing,  m_ExercisePassedIn, m_ExerciseDocId, weightViewArray, repsViewArray, countedSet;
 
 
 #pragma mark - View lifecycle
@@ -36,11 +36,11 @@
         query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, [NSDictionary dictionary], nil];
         query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
 
-        myDataSource.query = query;
+        dataSource.query = query;
         
         // ???: not sure why delegate methods aren't being called...
-//        myTableView.delegate = self;
-//        myTableView.dataSource = self.;
+//        tableView.delegate = self;
+//        tableView.dataSource = self.;
     }
 }
 
@@ -62,7 +62,7 @@
 - (void)dealloc {
     LogFunc;
     
-    self.myDataSource.query = nil;
+    self.dataSource.query = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,9 +86,9 @@
     
     [super viewDidAppear:animated];
     
-    NSIndexPath *indexPath = [myTableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
     if(indexPath) {
-        [myTableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     
 //    LogDebug(@"AppDelegate.self", (AppDelegate *)[UIApplication sharedApplication].self, @"\nself", self);
@@ -127,7 +127,7 @@
     CBLQueryRow *theRow = [source rowAtIndex:indexPath.row];
     setForRow = [M_Set modelForDocument:theRow.document];
     
-    UITableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
     if (cell == nil) {
@@ -152,7 +152,7 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LogFunc;
 
-    CBLQueryRow *theRow = [myDataSource rowAtIndex:indexPath.row];
+    CBLQueryRow *theRow = [dataSource rowAtIndex:indexPath.row];
     CBLDocument *doc = theRow.document;
 
     selectedSet = [M_Set modelForDocument:doc];
@@ -246,7 +246,11 @@
      willUpdateFromQuery:(CBLLiveQuery *)query {
     LogFunc;
     
-    [self calculateRowsAndSections];
+    for (CBLQueryRow* myRow in dataSource.query.rows) {
+        LogDebug(myRow);
+    }
+
+//    [self calculateRowsAndSections];
     
     if ([query.rows count] == 0) {
         LogDebug(@"[query.rows count] == 0");
@@ -331,9 +335,9 @@
         
         isEditing = NO;
         [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %i", 1] forState:UIControlStateNormal];
-        NSIndexPath *indexPath = [myTableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
         if(indexPath) {
-            [myTableView deselectRowAtIndexPath:indexPath animated:YES];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     }
     else {
@@ -347,7 +351,7 @@
 //    LogVerbose(@"newSet", newSet);
     }
     
-    LogDebug(@"myDataSource", myDataSource);
+    LogDebug(@"dataSource", dataSource);
     
 //    NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([dataSource.rows count] - 1) inSection:0];
 //    [tableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -358,19 +362,19 @@
     
     [countedSet removeAllObjects];
     
-    CBLQueryEnumerator *theRows = myDataSource.query.rows;
-    for (int counter = 0; counter < [theRows count]; counter++) {
-        CBLQueryRow *aRow = [myDataSource rowAtIndex:counter];
-        M_Set *aSet = [M_Set modelForDocument:aRow.document];
-
-//        int remainder = fmodf(([aSet.a_creation_date timeIntervalSinceNow]/-3600), 24);
-//        int rounded = fmodf(([aSet.a_creation_date timeIntervalSinceNow]/-3600), 24);
-        int rounded = ceil([aSet.a_creation_date timeIntervalSinceNow]/-86400);
-        NSString *stringWithRoundedNumber = [NSString stringWithFormat:@"%i", rounded];
-        LogDebug(@"rounded:", stringWithRoundedNumber,
-                 @"aSet", aSet);
-        [countedSet addObject:[NSNumber numberWithInt:rounded]];
-    }
+//    CBLQueryEnumerator *theRows = dataSource.query.rows;
+//    for (int counter = 0; counter < [theRows count]; counter++) {
+//        CBLQueryRow *aRow = [dataSource rowAtIndex:counter];
+//        M_Set *aSet = [M_Set modelForDocument:aRow.document];
+//
+////        int remainder = fmodf(([aSet.a_creation_date timeIntervalSinceNow]/-3600), 24);
+////        int rounded = fmodf(([aSet.a_creation_date timeIntervalSinceNow]/-3600), 24);
+//        int rounded = ceil([aSet.a_creation_date timeIntervalSinceNow]/-86400);
+//        NSString *stringWithRoundedNumber = [NSString stringWithFormat:@"%i", rounded];
+//        LogDebug(@"rounded:", stringWithRoundedNumber,
+//                 @"aSet", aSet);
+//        [countedSet addObject:[NSNumber numberWithInt:rounded]];
+//    }
 }
 
 - (void)populateArrays {

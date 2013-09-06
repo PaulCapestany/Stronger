@@ -9,11 +9,13 @@
  * need to create login screen <<< AppDelegate.m:71 >>>
  * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:163 >>>
  * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:174 >>>
+ * make date grouping logic smarter with `compare` method <<< AppDelegate.m:185 >>>
  * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
  * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:132 >>>
- * properly implement `numberOfRowsInSection` <<< V_Set.m:221 >>>
- * add in ability to edit `selectedWorkout` <<< V_Workout.m:137 >>>
+ * properly implement `numberOfRowsInSection` <<< V_Set.m:217 >>>
+ * add in ability to edit `selectedWorkout` <<< V_Workout.m:155 >>>
+ * potentially unnecessary because I can just use willUpdateFromQuery <<< V_Workout.m:208 >>>
  * Make introspection for primitive types work. <<< vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195 >>>
  * maybe not copy this for performance <<< vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719 >>>
  * Handle invalid opcode <<< vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:880 >>>
@@ -27,9 +29,9 @@
  * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:156 >>>
  * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:175 >>>
  * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:198 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:215 >>>
  * not sure why delegate methods aren't being called... <<< V_Set.m:41 >>>
  * this may have been causing crash with PonyDebugger... <<< V_Set.m:350 >>>
- * different way to deal with errors now? <<< V_Workout.m:143 >>>
- * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:176 >>>
- * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:208 >>>
+ * different way to deal with errors now? <<< V_Workout.m:161 >>>
+ * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:194 >>>
+ * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:227 >>>

@@ -57,7 +57,7 @@
 - (void)dealloc {
     LogFunc;
 
-//    self.delegate = nil;
+//    self.delegate = nil; 
 //    dataSource = nil;
 }
 
@@ -132,6 +132,23 @@
     // TODO: add in ability to edit `selectedExercise`
     [self showV_Set:selectedExercise];
 }
+
+- (void)couchTableSource:(CBLUITableSource *)source
+            deleteFailed:(NSError *)error {
+    LogFunc;
+    
+    LogErr(@"couchTableSource:(CBLUITableSource *)source deleteFailed %@", error);
+}
+
+- (void)couchTableSource:(CBLUITableSource *)source
+     willUpdateFromQuery:(CBLLiveQuery *)query {
+    LogFunc;
+    
+    for (CBLQueryRow* myRow in dataSource.query.rows) {
+        LogDebug(myRow);
+    }
+}
+
 
 #pragma mark - Editing:
 

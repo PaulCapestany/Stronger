@@ -86,7 +86,8 @@
     if(indexPath) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    
+    LogDebug(_liveQuery);
+
 //    LogDebug(@"AppDelegate.self", (AppDelegate *)[UIApplication sharedApplication].self, @"\nself", self);
 }
 
@@ -120,6 +121,23 @@
     
     cell.textLabel.text = workoutForRow.name;
 }
+
+- (void)couchTableSource:(CBLUITableSource *)source
+            deleteFailed:(NSError *)error {
+    LogFunc;
+    
+    LogErr(@"couchTableSource:(CBLUITableSource *)source deleteFailed %@", error);
+}
+
+- (void)couchTableSource:(CBLUITableSource *)source
+     willUpdateFromQuery:(CBLLiveQuery *)query {
+    LogFunc;
+    
+    for (CBLQueryRow* myRow in dataSource.query.rows) {
+        LogDebug(myRow);
+    }
+}
+
 
 #pragma mark - Table view delegate
 
@@ -187,10 +205,11 @@
                         change:(NSDictionary *)change context:(void *)context {
     LogFunc;
 
+// TODO: potentially unnecessary because I can just use willUpdateFromQuery
     if (object == _liveQuery) {
         NSMutableArray *tempRowsArray = [NSMutableArray array];
         for (CBLQueryRow *aCBLQueryRow in _liveQuery.rows) {
-            LogVerbose(@"aCBLQueryRow", aCBLQueryRow);
+//            LogVerbose(@"aCBLQueryRow", aCBLQueryRow);
             [tempRowsArray addObject:aCBLQueryRow.key];
         }
         LogDebug(@"tempRowsArray", tempRowsArray);
