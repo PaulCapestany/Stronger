@@ -30,7 +30,8 @@
         CBLLiveQuery *query = [[[database viewNamed:@"sets"] query] asLiveQuery];
 
         query.descending = YES;
-
+        query.groupedTableView = YES;
+        
         // want to only show the exercises that match the Workout we selected in V_Workouts
         query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, [NSDictionary dictionary], nil];
         query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
@@ -175,7 +176,7 @@
 //    static NSString *CellIdentifier = @"SectionHeader";
 //    UITableViewCell *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 //    UILabel *label = (UILabel *)[headerView viewWithTag:201];
-//    [label setText:@"Monday, July 22"];
+//    [label setText:];
 //    if (headerView == nil){
 //        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
 //        LogErr(@"headerView == nil..");
@@ -189,38 +190,38 @@
 //    return 44;
 //}
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    LogFunc;
-    
-    return [countedSet count];
-    //    return 1;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    LogFunc;
+//    
+//    return [countedSet count];
+//    //    return 1;
+//}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//- (NSInteger)numberOfRowsInSection:(NSInteger)section {
-    LogFunc;
-    
-//    LogDebug(@"countedSet = %@ count = %i allObjects = %@ countForObject:@1 = %i", countedSet, [countedSet count], [countedSet allObjects], [countedSet countForObject:@1]);
-    NSMutableArray *trackSections;
-    for (NSNumber *counter in [countedSet allObjects]) {
-        [trackSections addObject:counter];
-    }
-//    for (NSNumber *anObject in countedSet) {
-//        LogDebug(@"Count of %@: %i", anObject, [countedSet countForObject:anObject]);
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+////- (NSInteger)numberOfRowsInSection:(NSInteger)section {
+//    LogFunc;
+//    
+////    LogDebug(@"countedSet = %@ count = %i allObjects = %@ countForObject:@1 = %i", countedSet, [countedSet count], [countedSet allObjects], [countedSet countForObject:@1]);
+//    NSMutableArray *trackSections;
+//    for (NSNumber *counter in [countedSet allObjects]) {
+//        [trackSections addObject:counter];
 //    }
-    
-    // TODO: properly implement `numberOfRowsInSection`
-    NSInteger numRows = [[trackSections objectAtIndex:section] integerValue];
-    
-    return numRows;
-//    return [[dataSource.query rows] count];
-}
+////    for (NSNumber *anObject in countedSet) {
+////        LogDebug(@"Count of %@: %i", anObject, [countedSet countForObject:anObject]);
+////    }
+//    
+//    // TODO: properly implement `numberOfRowsInSection`
+//    NSInteger numRows = [[trackSections objectAtIndex:section] integerValue];
+//    
+//    return numRows;
+////    return [[dataSource.query rows] count];
+//}
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    LogFunc;
-    return @"Blah";
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    LogFunc;
+//    return @"Blah";
+//}
 
 //
 //- (UITableViewHeaderFooterView *)headerViewForSection:(NSInteger)section {

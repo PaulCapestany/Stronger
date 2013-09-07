@@ -189,8 +189,16 @@
     // Create a 'view' containing list items sorted by date:
     [[database viewNamed:@"sets"] setMapBlock:MAPBLOCK({
         id date = [doc objectForKey:@"a_creation_date"];
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, nil], doc);
-    }) reduceBlock:nil version:@"0.6"];
+        NSDate* dateObject = [CBLJSON dateWithJSONObject:date];
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//        [dateFormatter setDateFormat:@"dd"];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        NSString* dayString = [dateFormatter stringFromDate:dateObject];
+        
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], dayString, nil], doc);
+    }) reduceBlock:nil version:@"1.0"];
     
     /***********
     * SETTINGS *

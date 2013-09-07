@@ -14,7 +14,7 @@
  * should probably relate to pre-fab exercises <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/M_Exercise.h#L37">`M_Exercise.h:37`</a>
  * update all other CBLModels with similar edit logic <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/M_Settings.m#L42">`M_Settings.m:42`</a>
  * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Exercise.m#L129">`V_Exercise.m:129`</a>
- * properly implement `numberOfRowsInSection` <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Set.m#L212">`V_Set.m:212`</a>
+ * properly implement `numberOfRowsInSection` <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Set.m#L213">`V_Set.m:213`</a>
  * add in ability to edit `selectedWorkout` <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Workout.m#L153">`V_Workout.m:153`</a>
  * potentially unnecessary because I can just use willUpdateFromQuery <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Workout.m#L206">`V_Workout.m:206`</a>
  * Make introspection for primitive types work. <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m#L195">`vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195`</a>
@@ -31,7 +31,7 @@
  * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/AppDelegate.m#L175">`AppDelegate.m:175`</a>
  * I think these need to actually be `M_Workout` models? <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/M_Settings.h#L28">`M_Settings.h:28`</a>
  * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Exercise.m#L212">`V_Exercise.m:212`</a>
- * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Set.m#L345">`V_Set.m:345`</a>
+ * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Set.m#L346">`V_Set.m:346`</a>
  * different way to deal with errors now? <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Workout.m#L159">`V_Workout.m:159`</a>
  * need to make `moveRowAtIndexPath` actually get called! <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Workout.m#L192">`V_Workout.m:192`</a>
  * *save* method seems to have changed (no longer *RestOperation*-based)? <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Workout.m#L225">`V_Workout.m:225`</a>
