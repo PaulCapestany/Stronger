@@ -36,8 +36,6 @@
         // Create a query sorted by descending date, i.e. newest items first:
         _liveQuery = [[[database viewNamed:@"workouts"] query] asLiveQuery];
 
-        _liveQuery.descending = NO;
-
         dataSource.query = _liveQuery;
         [_liveQuery addObserver:self forKeyPath:@"rows" options:0 context:NULL];
     }

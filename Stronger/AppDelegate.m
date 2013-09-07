@@ -164,7 +164,7 @@
     [[database viewNamed:@"workouts"] setMapBlock:MAPBLOCK({
         id date = [doc objectForKey:@"a_creation_date"];
         if ([[doc objectForKey:@"a_type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
-    }) reduceBlock:nil version:kMapFunctionVersion];
+    }) reduceBlock:nil version:@"0.6"];
     
     ///////////////
     // EXERCISES //
@@ -176,7 +176,7 @@
     [[database viewNamed:@"exercises"] setMapBlock:MAPBLOCK({
         id date = [doc objectForKey:@"a_creation_date"];
         if ([[doc objectForKey:@"a_type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], date, nil], doc);
-    }) reduceBlock:nil version:kMapFunctionVersion];
+    }) reduceBlock:nil version:@"0.6"];
     
     //////////
     // SETS //
@@ -190,7 +190,11 @@
     [[database viewNamed:@"sets"] setMapBlock:MAPBLOCK({
         id date = [doc objectForKey:@"a_creation_date"];
         if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, nil], doc);
-    }) reduceBlock:nil version:kMapFunctionVersion];
+    }) reduceBlock:nil version:@"0.6"];
+    
+    /***********
+    * SETTINGS *
+    ***********/
     
     // create the settings doc, only if it does not already exist
     // UPCOMING: need to "merge" the settings doc if a previous one already existed...

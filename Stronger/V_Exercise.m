@@ -32,9 +32,6 @@
         // Create a query sorted by descending date, i.e. newest items first:
         CBLLiveQuery *query = [[[database viewNamed:@"exercises"] query] asLiveQuery];
 
-        query.descending = NO;
-        query.prefetch = YES;
-
         // want to only show the exercises that match the Workout we selected in V_Workouts
         query.startKey = [NSArray arrayWithObjects:m_WorkoutDocId, nil];
         query.endKey = [NSArray arrayWithObjects:m_WorkoutDocId,  [NSDictionary dictionary], nil];

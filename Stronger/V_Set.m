@@ -30,17 +30,12 @@
         CBLLiveQuery *query = [[[database viewNamed:@"sets"] query] asLiveQuery];
 
         query.descending = YES;
-        query.prefetch = YES;
 
         // want to only show the exercises that match the Workout we selected in V_Workouts
         query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, [NSDictionary dictionary], nil];
         query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
 
         dataSource.query = query;
-        
-        // ???: not sure why delegate methods aren't being called...
-//        tableView.delegate = self;
-//        tableView.dataSource = self.;
     }
 }
 
