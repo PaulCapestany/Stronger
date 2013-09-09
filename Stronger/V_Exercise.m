@@ -120,7 +120,7 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LogFunc;
 
-    CBLQueryRow *theRow = [dataSource rowAtIndex:indexPath.row];
+    CBLQueryRow *theRow = [dataSource rowAtIndexPath:indexPath];
     CBLDocument *doc = theRow.document;
 
     M_Exercise *selectedExercise = [M_Exercise modelForDocument:doc];

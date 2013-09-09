@@ -197,8 +197,8 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         NSString* dayString = [dateFormatter stringFromDate:dateObject];
         
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], dayString, nil], doc);
-    }) reduceBlock:nil version:@"1.0"];
+        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, dayString, nil], doc);
+    }) reduceBlock:nil version:@"1.1"];
     
     /***********
     * SETTINGS *

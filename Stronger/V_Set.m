@@ -120,7 +120,7 @@
     
     static NSString *CellIdentifier = @"SetCell";
     
-    CBLQueryRow *theRow = [source rowAtIndex:indexPath.row];
+    CBLQueryRow *theRow = [source rowAtIndexPath:indexPath];
     setForRow = [M_Set modelForDocument:theRow.document];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -148,7 +148,7 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LogFunc;
 
-    CBLQueryRow *theRow = [dataSource rowAtIndex:indexPath.row];
+    CBLQueryRow *theRow = [dataSource rowAtIndexPath:indexPath];
     CBLDocument *doc = theRow.document;
 
     selectedSet = [M_Set modelForDocument:doc];
@@ -242,11 +242,7 @@
      willUpdateFromQuery:(CBLLiveQuery *)query {
     LogFunc;
     
-    for (CBLQueryRow* myRow in dataSource.query.rows) {
-        LogDebug(myRow);
-    }
 
-//    [self calculateRowsAndSections];
     
     if ([query.rows count] == 0) {
         LogDebug(@"[query.rows count] == 0");
@@ -255,7 +251,37 @@
     }
     else {
         LogDebug(@"[query.rows count] != 0");
+
+        int currentSetCounter = 0;
+        int lastSetCounter = 0;
+        for (CBLQueryRow* myRow in dataSource.query.rows) {
+            LogDebug(myRow);
+            M_Set *aSet = [M_Set modelForDocument:myRow.document];
+            NSString *debug = [NSString stringWithFormat:@"%f", [aSet.a_creation_date timeIntervalSinceNow]];
+            LogDebug(debug);
+            
+            // looking at new set
+            if (myRow.groupedViewSection == 0 && [aSet.a_creation_date timeIntervalSinceNow] > -86400) {
+                LogDebug(@"myRow.groupedViewSection == 0 && [aSet.a_creation_date timeIntervalSinceNow] > -86400");
+                currentSetCounter++;
+                LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter]);
+            }
+            // last set
+            else if (myRow.groupedViewSection == 0 || (myRow.groupedViewSection == 1 && currentSetCounter != 0)) {
+                LogDebug(@"myRow.groupedViewSection == 0 || myRow.groupedViewSection == 1");
+                lastSetCounter++;
+                LogDebug(@"lastSetCounter = ", [NSNumber numberWithInt:lastSetCounter]);
+            }
+            // don't need to continue loop
+            else {
+                LogDebug(@"break");
+                break;
+            }
+        }
+        LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter], @" lastSetCounter = ", [NSNumber numberWithInt:lastSetCounter])
+        
         M_Set *lastSet = [M_Set modelForDocument:[[query.rows rowAtIndex:0] document]];
+        //        M_Set *lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:<#(NSInteger)#> inSection:<#(NSInteger)#>]] document]];
         
         NSInteger weightSelectedRow = [weightViewArray indexOfObject:[lastSet.weight stringValue]];
         NSInteger repsSelectedRow = [repsViewArray indexOfObject:[lastSet.reps stringValue]];
