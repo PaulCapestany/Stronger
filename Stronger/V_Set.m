@@ -13,6 +13,7 @@
     CBLDatabase *database;
     M_Set *selectedSet;
     M_Set *setForRow;
+    int currentSetCounter, lastSetCounter;
 }
 
 @synthesize delegate, dataSource, tableView, isEditing,  m_ExercisePassedIn, m_ExerciseDocId, weightViewArray, repsViewArray, countedSet;
@@ -49,7 +50,6 @@
 
     _viewDidLoad = YES;
     isEditing = NO;
-    [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %i", 1] forState:UIControlStateNormal];
     
     [self populateArrays];
     [self viewDidLoadWithDatabase];
@@ -252,8 +252,8 @@
     else {
         LogDebug(@"[query.rows count] != 0");
 
-        int currentSetCounter = 0;
-        int lastSetCounter = 0;
+        currentSetCounter = 0;
+        lastSetCounter = 0;
         for (CBLQueryRow* myRow in dataSource.query.rows) {
             LogDebug(myRow);
             M_Set *aSet = [M_Set modelForDocument:myRow.document];
@@ -285,8 +285,11 @@
         if (currentSetCounter == 0) {
             lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:lastSetCounter - 1 inSection:0]] document]];
         }
-        else {
+        else if (lastSetCounter != 0) {
             lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:lastSetCounter - currentSetCounter - 1 inSection:1]] document]];
+        }
+        else {
+            lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] document]];
         }
         
         NSInteger weightSelectedRow = [weightViewArray indexOfObject:[lastSet.weight stringValue]];
@@ -294,6 +297,9 @@
         [weightAndRepsPickerView selectRow:weightSelectedRow inComponent:0 animated:NO];
         [weightAndRepsPickerView selectRow:repsSelectedRow inComponent:1 animated:NO];
     }
+    
+    LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter]);
+    [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %@", [NSNumber numberWithInt:currentSetCounter + 1]] forState:UIControlStateNormal];
 //        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
 }
 
@@ -362,7 +368,10 @@
         [selectedSet save:&error];
         
         isEditing = NO;
-        [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %i", 1] forState:UIControlStateNormal];
+        
+        LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter]);
+        [saveButton setTitle:[NSString stringWithFormat:@"Add Set # %@", [NSNumber numberWithInt:currentSetCounter + 1]] forState:UIControlStateNormal];
+        
         NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
         if(indexPath) {
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
