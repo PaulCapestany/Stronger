@@ -31,7 +31,7 @@
  * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/AppDelegate.m#L175">`AppDelegate.m:175`</a>
  * I think these need to actually be `M_Workout` models? <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/M_Settings.h#L28">`M_Settings.h:28`</a>
  * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Exercise.m#L212">`V_Exercise.m:212`</a>
- * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Set.m#L398">`V_Set.m:398`</a>
+ * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Set.m#L378">`V_Set.m:378`</a>
  * different way to deal with errors now? <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Workout.m#L159">`V_Workout.m:159`</a>
  * need to make `moveRowAtIndexPath` actually get called! <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Workout.m#L192">`V_Workout.m:192`</a>
  * *save* method seems to have changed (no longer *RestOperation*-based)? <a href="https://github.com/PaulCapestany/Stronger/blob/groupedTableView/Stronger/V_Workout.m#L225">`V_Workout.m:225`</a>

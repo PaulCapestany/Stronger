@@ -268,7 +268,7 @@
             }
             // last set
             else if (myRow.groupedViewSection == 0 || (myRow.groupedViewSection == 1 && currentSetCounter != 0)) {
-                LogDebug(@"myRow.groupedViewSection == 0 || myRow.groupedViewSection == 1");
+                LogDebug(@"myRow.groupedViewSection == 0 || (myRow.groupedViewSection == 1 && currentSetCounter != 0)");
                 lastSetCounter++;
                 LogDebug(@"lastSetCounter = ", [NSNumber numberWithInt:lastSetCounter]);
             }
@@ -280,8 +280,14 @@
         }
         LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter], @" lastSetCounter = ", [NSNumber numberWithInt:lastSetCounter])
         
-        M_Set *lastSet = [M_Set modelForDocument:[[query.rows rowAtIndex:0] document]];
-        //        M_Set *lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:<#(NSInteger)#> inSection:<#(NSInteger)#>]] document]];
+//        M_Set *lastSet = [M_Set modelForDocument:[[query.rows rowAtIndex:0] document]];
+        M_Set *lastSet;
+        if (currentSetCounter == 0) {
+            lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:lastSetCounter - 1 inSection:0]] document]];
+        }
+        else {
+            lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:lastSetCounter - currentSetCounter - 1 inSection:1]] document]];
+        }
         
         NSInteger weightSelectedRow = [weightViewArray indexOfObject:[lastSet.weight stringValue]];
         NSInteger repsSelectedRow = [repsViewArray indexOfObject:[lastSet.reps stringValue]];
