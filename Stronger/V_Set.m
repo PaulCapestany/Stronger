@@ -16,7 +16,7 @@
     int currentSetCounter, lastSetCounter;
 }
 
-@synthesize delegate, dataSource, tableView, isEditing,  m_ExercisePassedIn, m_ExerciseDocId, weightViewArray, repsViewArray, countedSet;
+@synthesize delegate, dataSource, tableView, isEditing,  m_ExercisePassedIn, m_ExerciseDocId, weightViewArray, repsViewArray, countedSet, justFinishedSet;
 
 
 #pragma mark - View lifecycle
@@ -291,11 +291,20 @@
         else {
             lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] document]];
         }
-        
-        NSInteger weightSelectedRow = [weightViewArray indexOfObject:[lastSet.weight stringValue]];
-        NSInteger repsSelectedRow = [repsViewArray indexOfObject:[lastSet.reps stringValue]];
-        [weightAndRepsPickerView selectRow:weightSelectedRow inComponent:0 animated:NO];
-        [weightAndRepsPickerView selectRow:repsSelectedRow inComponent:1 animated:NO];
+    
+        if (justFinishedSet) {
+            NSInteger weightSelectedRow = [weightViewArray indexOfObject:[lastSet.weight stringValue]];
+            NSInteger repsSelectedRow = [repsViewArray indexOfObject:[lastSet.reps stringValue]];
+            [weightAndRepsPickerView selectRow:weightSelectedRow inComponent:0 animated:YES];
+            [weightAndRepsPickerView selectRow:repsSelectedRow inComponent:1 animated:YES];
+            justFinishedSet = NO;
+        }
+        else {
+            NSInteger weightSelectedRow = [weightViewArray indexOfObject:[lastSet.weight stringValue]];
+            NSInteger repsSelectedRow = [repsViewArray indexOfObject:[lastSet.reps stringValue]];
+            [weightAndRepsPickerView selectRow:weightSelectedRow inComponent:0 animated:NO];
+            [weightAndRepsPickerView selectRow:repsSelectedRow inComponent:1 animated:NO];
+        }
     }
     
     LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter]);
@@ -379,7 +388,7 @@
     }
     else {
 //    M_Set *newSet =
-    
+    justFinishedSet = YES;
     [M_Set createSetWithWeight:weightNumber
                           reps:repsNumber
         belongs_to_exercise_id:m_ExercisePassedIn

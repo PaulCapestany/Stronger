@@ -32,6 +32,7 @@
 @property (nonatomic, retain) NSCountedSet *countedSet;
 
 @property (nonatomic) BOOL isEditing;
+@property (nonatomic) BOOL justFinishedSet;
 
 @property (strong, nonatomic) M_Set* theSet;
 

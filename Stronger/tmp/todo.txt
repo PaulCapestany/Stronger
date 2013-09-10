@@ -30,7 +30,7 @@
  * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:175 >>>
  * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
  * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:212 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Set.m:387 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Set.m:396 >>>
  * different way to deal with errors now? <<< V_Workout.m:159 >>>
  * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:192 >>>
  * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:225 >>>
