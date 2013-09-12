@@ -110,7 +110,7 @@
     M_Exercise *exerciseForRow = [M_Exercise modelForDocument:row.document];
 
     LogVerbose(@"exerciseForRow", exerciseForRow);
-
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = exerciseForRow.name;
 }
 

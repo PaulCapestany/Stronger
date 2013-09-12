@@ -116,7 +116,7 @@
     M_Workout *workoutForRow = [M_Workout modelForDocument:row.document];
 
     LogVerbose(@"workoutForRow", workoutForRow);
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = workoutForRow.name;
 }
 
