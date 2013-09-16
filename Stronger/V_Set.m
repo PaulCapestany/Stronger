@@ -243,7 +243,7 @@
     LogFunc;
     
 
-    
+    // never done ANY sets... first time doing this exercise!
     if ([query.rows count] == 0) {
         LogDebug(@"[query.rows count] == 0");
         [weightAndRepsPickerView selectRow:70 inComponent:0 animated:NO];
@@ -280,15 +280,20 @@
         }
         LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter], @" lastSetCounter = ", [NSNumber numberWithInt:lastSetCounter])
         
-//        M_Set *lastSet = [M_Set modelForDocument:[[query.rows rowAtIndex:0] document]];
         M_Set *lastSet;
+        // exercise has been done before, but new/current set section doesn't exist yet
         if (currentSetCounter == 0) {
+            LogDebug(@"case → currentSetCounter == 0");
             lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:lastSetCounter - 1 inSection:0]] document]];
         }
-        else if (lastSetCounter != 0) {
+        // using data from last set
+        else if (lastSetCounter != 0 && currentSetCounter < lastSetCounter) {
+            LogDebug(@"case → lastSetCounter != 0 && currentSetCounter < lastSetCounter");
             lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:lastSetCounter - currentSetCounter - 1 inSection:1]] document]];
         }
+        // has gone beyond number of last set, or brand new set
         else {
+            LogDebug(@"case → else");
             lastSet = [M_Set modelForDocument:[[dataSource rowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] document]];
         }
     

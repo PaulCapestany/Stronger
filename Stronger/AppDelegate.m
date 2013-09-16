@@ -39,7 +39,7 @@
     [debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque", @"accessibilityLabel", @"text"]];
     
     // Connect to a specific host
-    [debugger connectToURL:[NSURL URLWithString:@"ws://10.238.195.120:9000/device"]];
+    [debugger connectToURL:[NSURL URLWithString:@"ws://192.168.1.2:9000/device"]];
     // Or auto connect via bonjour discovery
     //[debugger autoConnect];
     // Or to a specific ponyd bonjour service
@@ -69,7 +69,7 @@
     [self executeMapBlocks];
     
     // TODO: need to create login screen
-    NSArray *repls = [self.database replicateWithURL:[NSURL URLWithString:@"http://pac.macminicolo.net:4984/stronger"] exclusively:YES];
+    NSArray *repls = [self.database replicateWithURL:[NSURL URLWithString:@"https://pac.macminicolo.net:4984/stronger"] exclusively:YES];
     if (repls) {
         _pull = [repls objectAtIndex:0];
         _push = [repls objectAtIndex:1];
