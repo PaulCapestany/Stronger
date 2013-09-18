@@ -46,8 +46,8 @@
 
     [super viewDidLoad];
 
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
-    self.navigationItem.leftBarButtonItem = editButton;
+//    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
+//    self.navigationItem.leftBarButtonItem = editButton;
 
     [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
 
