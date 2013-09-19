@@ -23,13 +23,13 @@
     LogFunc;
     
 //#if TARGET_IPHONE_SIMULATOR
-#if TRUE
+#if ENABLE_PONY
     PDDebugger *debugger = [PDDebugger defaultInstance];
     // Enable Network debugging, and automatically track network traffic that comes through any classes that NSURLConnectionDelegate methods.
     [debugger enableNetworkTrafficDebugging];
     [debugger forwardAllNetworkTraffic];
     
-    // Enable Core Data debugging, and broadcast the main managed object context.
+    // Enable Core Data debugging, and broadcast the main managed object context..
     [debugger enableCoreDataDebugging];
 //    [debugger addManagedObjectContext:self.managedObjectContext withName:@"Twitter Test MOC"];
     
@@ -74,8 +74,8 @@
         _pull = [repls objectAtIndex:0];
         _push = [repls objectAtIndex:1];
         
-        _pull.continuous = YES;
-        _push.continuous = YES;
+//        _pull.continuous = YES;
+//        _push.continuous = YES;
         
         _pull.persistent = YES;
         _push.persistent = YES;

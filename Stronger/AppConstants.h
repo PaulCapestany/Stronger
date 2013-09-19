@@ -62,9 +62,9 @@
  ...
  
 */
+#define ENABLE_PONY TRUE
 
-//#if TARGET_IPHONE_SIMULATOR
-#if TRUE
+#if ENABLE_PONY
 //    #define AppName         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
 //    #define PonyURLString   [NSString stringWithFormat:@"pony://%s+%d~%@\n", __FILE__, __LINE__, AppName]
     #define LogFunc         PDLogD(@"%s", __FUNCTION__)
