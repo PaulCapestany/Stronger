@@ -7,12 +7,25 @@
 //
 
 #import "AppDelegate.h"
+#import "SyncManager.h"
+#import "PersonaController+UIKit.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 #import <CouchbaseLite/CBLJSON.h>
 
+#define kServerDBURLString @"https://pac.macminicolo.net:4984/stronger"
+
 AppDelegate* gAppDelegate;
 
+@interface AppDelegate () <SyncManagerDelegate, PersonaControllerDelegate>
+@end
+
 @implementation AppDelegate
+{
+    CBLDatabase* _database;
+    SyncManager* _syncManager;
+    PersonaController* _personaController;
+    bool _loggingIn;
+}
 
 @synthesize database, _pull, _push, settingsDoc;
 
@@ -57,12 +70,10 @@ AppDelegate* gAppDelegate;
     //    [TestFlight takeOff:@"d78a9123-5630-4228-96ba-03186e93b300"];
     
     LogDebug(@"Setting up database...");
-    // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-    }
+    
+    // ???: will this work?
+    self.navigationController = self.window.rootViewController.navigationController;
+    //    [self.window makeKeyAndVisible];
     
     // Open the database, creating it on the first run:
     NSError *error;
@@ -72,24 +83,7 @@ AppDelegate* gAppDelegate;
     
     [self executeMapBlocks];
     
-    // TODO: need to create login screen
-    NSArray *repls = [self.database replicateWithURL:[NSURL URLWithString:@"https://pac.macminicolo.net:4984/stronger"] exclusively:YES];
-    if (repls) {
-        _pull = [repls objectAtIndex:0];
-        _push = [repls objectAtIndex:1];
-        
-//        _pull.continuous = YES;
-//        _push.continuous = YES;
-        
-        _pull.persistent = YES;
-        _push.persistent = YES;
-        
-        NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
-        [nctr addObserver:self selector:@selector(replicationProgress:)
-                     name:kCBLReplicationChangeNotification object:_pull];
-        [nctr addObserver:self selector:@selector(replicationProgress:)
-                     name:kCBLReplicationChangeNotification object:_push];
-    }
+    [self setupSync];
     
     return YES;
 }
@@ -97,10 +91,6 @@ AppDelegate* gAppDelegate;
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     LogFunc;
-//    PDLog(@"PONY applicationWillResignActive");               // This logs a simple string to the console output.
-//    PDLogObjects(self);                  // This logs an introspectable version of "self" to the console.
-//    PDLogObjects(@"self.database:", self.database);  // Combination of text and introspectable object.
-    
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
@@ -108,14 +98,6 @@ AppDelegate* gAppDelegate;
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     LogFunc;
-//    PDLog(@"PONY applicationDidEnterBackground");               // This logs a simple string to the console output.
-    //LogMessageF(__FILE__,__LINE__,__FUNCTION__,@"Func",4,[NSString stringWithUTF8String:__FUNCTION__],@"")
-    //webpagehelper://com.apple.AppleScript.WebpageHelper?action=1
-//    NSString *logThis = [NSString stringWithFormat:@"%s:%d\n%s", __FILE__, __LINE__, __FUNCTION__];
-//    PDLog(logThis);
-    
-//    PDLogObjects(@"%s:%d %@", __FILE__, __LINE__, __FUNCTION__);
-    
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -129,8 +111,6 @@ AppDelegate* gAppDelegate;
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     LogFunc;
-//    PDLog(@"PONY applicationDidBecomeActive");               // This logs a simple string to the console output.
-
    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
@@ -237,37 +217,116 @@ AppDelegate* gAppDelegate;
     })];
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Other
-//////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - SYNC & LOGIN:
 
-- (void)replicationProgress:(NSNotificationCenter *)n {
+
+
+
+- (void) setupSync {
     LogFunc;
     
-    if (_pull.mode == kCBLReplicationActive || _push.mode == kCBLReplicationActive) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    } else {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    _syncManager = [[SyncManager alloc] initWithDatabase: database];
+    _syncManager.delegate = self;
+    // Configure replication:
+    _syncManager.continuous = YES;
+    _syncManager.syncURL = [NSURL URLWithString: kServerDBURLString];
+}
+
+
+
+
+- (void) syncManagerProgressChanged: (SyncManager*)manager {
+    LogFunc;
+    
+    if (_loggingIn) {
+        CBLReplication* repl = manager.replications[0];
+        // Pick up my username from the replication, on the first sync:
+        NSString* username = repl.personaEmailAddress;
+        if (!username)
+            username = repl.credential.user;
+        if (username) {
+            LogDebug(@"logged-in username", username);
+//            _chatStore.username = username;
+            _loggingIn = false;
+        }
     }
 }
+
+
+
+
+- (bool) syncManagerShouldPromptForLogin: (SyncManager*)manager {
+    LogFunc;
+    
+    // Display Persona login panel, not the default username/password one:
+    if (!_personaController) {
+        _loggingIn = true;
+        _personaController = [[PersonaController alloc] init];
+        NSArray* replications = _syncManager.replications;
+        if (replications.count > 0)
+            _personaController.origin = [replications[0] personaOrigin];
+        _personaController.delegate = self;
+        [_personaController presentModalInController: self.navigationController];
+    }
+    return false;
+}
+
+
+
+
+- (void) personaControllerDidCancel: (PersonaController*) personaController {
+    LogFunc;
+    
+    [_personaController.viewController dismissViewControllerAnimated: YES completion: NULL];
+    _personaController = nil;
+}
+
+
+
+- (void) personaController: (PersonaController*) personaController
+         didFailWithReason: (NSString*) reason
+{
+    LogFunc;
+    
+    [self personaControllerDidCancel: personaController];
+}
+
+
+
+- (void) personaController: (PersonaController*) personaController
+   didSucceedWithAssertion: (NSString*) assertion
+{
+    LogFunc;
+    
+    [self personaControllerDidCancel: personaController];
+    for (CBLReplication* repl in _syncManager.replications) {
+        [repl registerPersonaAssertion: assertion];
+    }
+}
+
+
+#pragma mark - ALERT:
+
 
 // Display an error alert, without blocking.
 // If 'fatal' is true, the app will quit when it's pressed.
-- (void)showAlert:(NSString *)message error:(NSError *)error fatal:(BOOL)fatal {
+
+
+- (void)showAlert: (NSString*)message error: (NSError*)error fatal: (BOOL)fatal {
     LogFunc;
     
-    LogErr(@"error: %@\nmessage: %@", error, message);
-    
     if (error) {
-        message = [NSString stringWithFormat:@"%@\n\n%@", message, error.localizedDescription];
+        message = [NSString stringWithFormat: @"%@\n\n%@", message, error.localizedDescription];
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:(fatal ? @"Fatal Error" : @"Error")
-                                                    message:message
-                                                   delegate:(fatal ? self : nil)
-                                          cancelButtonTitle:(fatal ? @"Quit" : @"Sorry")
-                                          otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle: (fatal ? @"Fatal Error" : @"Error")
+                                                    message: message
+                                                   delegate: (fatal ? self : nil)
+                                          cancelButtonTitle: (fatal ? @"Quit" : @"Sorry")
+                                          otherButtonTitles: nil];
     [alert show];
 }
+
+
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     LogFunc;
@@ -275,18 +334,9 @@ AppDelegate* gAppDelegate;
     exit(0);
 }
 
+
 - (void)dealloc {
     LogFunc;
-    
-    NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
-    if (_pull) {
-        [nctr removeObserver:self name:nil object:_pull];
-        _pull = nil;
-    }
-    if (_push) {
-        [nctr removeObserver:self name:nil object:_push];
-        _push = nil;
-    }
 }
 
 

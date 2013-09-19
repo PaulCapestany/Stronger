@@ -13,6 +13,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) UINavigationController *navigationController;
+
 @property (nonatomic, strong) CBLDatabase *database;
 @property (nonatomic, strong) CBLReplication *_pull;
 @property (nonatomic, strong) CBLReplication *_push;
