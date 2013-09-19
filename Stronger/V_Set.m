@@ -278,7 +278,7 @@
                 break;
             }
         }
-        LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter], @" lastSetCounter = ", [NSNumber numberWithInt:lastSetCounter])
+        LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter], @" lastSetCounter = ", [NSNumber numberWithInt:lastSetCounter]);
         
         M_Set *lastSet;
         // exercise has been done before, but new/current set section doesn't exist yet

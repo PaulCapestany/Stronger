@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E463B9417C2E15600D4BBAE /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E463B9317C2E15600D4BBAE /* CouchbaseLite.framework */; };
+		6E4C5C6A17EA7F600077A2EE /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4C5C6917EA7F600077A2EE /* Reveal.framework */; };
 		6E5909E2178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
 		6E5909E3178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
 		6E5909E4178CCCDF00818B6C /* V_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E1178CCCDF00818B6C /* V_Settings.m */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		6E463B9317C2E15600D4BBAE /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Stronger/vendor/CouchbaseLite.framework; sourceTree = "<group>"; };
+		6E4C5C6917EA7F600077A2EE /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = Stronger/vendor/Reveal.framework; sourceTree = "<group>"; };
 		6E5909DE178CCCDF00818B6C /* M_Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Settings.h; sourceTree = "<group>"; };
 		6E5909DF178CCCDF00818B6C /* M_Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M_Settings.m; sourceTree = "<group>"; };
 		6E5909E0178CCCDF00818B6C /* V_Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_Settings.h; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				6EB5CA7817CEBF5A00AA7858 /* libSocketRocket.a in Frameworks */,
 				6EB5CA7617CEBF5A00AA7858 /* libPonyDebugger.a in Frameworks */,
 				6E9579D417CEAE7300E2D6EB /* SystemConfiguration.framework in Frameworks */,
+				6E4C5C6A17EA7F600077A2EE /* Reveal.framework in Frameworks */,
 				6E463B9417C2E15600D4BBAE /* CouchbaseLite.framework in Frameworks */,
 				6EA6C6301782717700356926 /* libz.dylib in Frameworks */,
 				6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */,
@@ -227,6 +230,7 @@
 		6E94F5A9177BB6E7000D0284 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E4C5C6917EA7F600077A2EE /* Reveal.framework */,
 				6EA26D0D17CEC04900576CD6 /* libicucore.dylib */,
 				6EB5CA7717CEBF5A00AA7858 /* libSocketRocket.a */,
 				6EA6F61A17BADAA6009D06C5 /* libicucore.A.dylib */,
