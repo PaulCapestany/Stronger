@@ -24,3 +24,5 @@
 - (void)showAlert:(NSString *)message error:(NSError *)error fatal:(BOOL)fatal;
 
 @end
+
+extern AppDelegate* gAppDelegate;

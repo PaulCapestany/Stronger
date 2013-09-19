@@ -7,10 +7,10 @@
  * add file for passwords/etc to .gitignore <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppConstants.h#L15">`AppConstants.h:15`</a>
  * build database of exercises/machines <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppConstants.h#L19">`AppConstants.h:19`</a>
  * reimplement constants once I've sorted out auth stuff <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppConstants.h#L27">`AppConstants.h:27`</a>
- * need to create login screen <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L71">`AppDelegate.m:71`</a>
- * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L163">`AppDelegate.m:163`</a>
- * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L174">`AppDelegate.m:174`</a>
- * make date grouping logic smarter with `compare` method <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L185">`AppDelegate.m:185`</a>
+ * need to create login screen <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L75">`AppDelegate.m:75`</a>
+ * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L167">`AppDelegate.m:167`</a>
+ * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L178">`AppDelegate.m:178`</a>
+ * make date grouping logic smarter with `compare` method <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L189">`AppDelegate.m:189`</a>
  * should probably relate to pre-fab exercises <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/M_Exercise.h#L37">`M_Exercise.h:37`</a>
  * update all other CBLModels with similar edit logic <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/M_Settings.m#L42">`M_Settings.m:42`</a>
  * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/V_Exercise.m#L129">`V_Exercise.m:129`</a>
@@ -27,8 +27,8 @@
  * find out if I need to change how I'm doing the IDs for each doc <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppConstants.h#L13">`AppConstants.h:13`</a>
  * look into `UICollectionView` <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppConstants.h#L17">`AppConstants.h:17`</a>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppConstants.h#L21">`AppConstants.h:21`</a>
- * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L156">`AppDelegate.m:156`</a>
- * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L175">`AppDelegate.m:175`</a>
+ * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L160">`AppDelegate.m:160`</a>
+ * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/AppDelegate.m#L179">`AppDelegate.m:179`</a>
  * I think these need to actually be `M_Workout` models? <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/M_Settings.h#L28">`M_Settings.h:28`</a>
  * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/V_Exercise.m#L212">`V_Exercise.m:212`</a>
  * this may have been causing crash with PonyDebugger... <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/V_Set.m#L401">`V_Set.m:401`</a>

@@ -6,10 +6,10 @@
  * add file for passwords/etc to .gitignore <<< AppConstants.h:15 >>>
  * build database of exercises/machines <<< AppConstants.h:19 >>>
  * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:27 >>>
- * need to create login screen <<< AppDelegate.m:71 >>>
- * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:163 >>>
- * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:174 >>>
- * make date grouping logic smarter with `compare` method <<< AppDelegate.m:185 >>>
+ * need to create login screen <<< AppDelegate.m:75 >>>
+ * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:167 >>>
+ * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:178 >>>
+ * make date grouping logic smarter with `compare` method <<< AppDelegate.m:189 >>>
  * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
  * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:129 >>>
@@ -26,8 +26,8 @@
  * find out if I need to change how I'm doing the IDs for each doc <<< AppConstants.h:13 >>>
  * look into `UICollectionView` <<< AppConstants.h:17 >>>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
- * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:156 >>>
- * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:175 >>>
+ * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:160 >>>
+ * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:179 >>>
  * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
  * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:212 >>>
  * this may have been causing crash with PonyDebugger... <<< V_Set.m:401 >>>

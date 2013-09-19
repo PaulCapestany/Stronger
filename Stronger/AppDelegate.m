@@ -10,6 +10,8 @@
 #import <CouchbaseLite/CouchbaseLite.h>
 #import <CouchbaseLite/CBLJSON.h>
 
+AppDelegate* gAppDelegate;
+
 @implementation AppDelegate
 
 @synthesize database, _pull, _push, settingsDoc;
@@ -20,6 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    gAppDelegate = self;
+
     LogFunc;
     
 //#if TARGET_IPHONE_SIMULATOR

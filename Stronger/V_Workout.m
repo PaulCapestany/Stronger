@@ -29,8 +29,8 @@
 - (void)viewDidLoadWithDatabase {
     LogFunc;
     
-    if (!database) database = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).database;
-    if (!settingsDoc) settingsDoc = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).settingsDoc;
+    if (!database) database = gAppDelegate.database;
+    if (!settingsDoc) settingsDoc = gAppDelegate.settingsDoc;
 
     if (_viewDidLoad && database) {
         // Create a query sorted by descending date, i.e. newest items first:
