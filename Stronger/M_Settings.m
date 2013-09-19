@@ -8,6 +8,7 @@
 
 #import "M_Settings.h"
 #import <CouchbaseLite/CBLJSON.h>
+#import "AppDelegate.h"
 
 @implementation M_Settings
 
@@ -30,7 +31,7 @@
 //    retval.channels = [NSArray arrayWithObjects:@"edolvice_channel", nil];
     retval.a_creation_date = a_creation_date;
 //    retval.a_edit_date = [NSDate date];
-    retval.a_creator = @"edolvice";
+    retval.a_creator = gAppDelegate.username;
     retval.a_type = a_type;
 
     // properties

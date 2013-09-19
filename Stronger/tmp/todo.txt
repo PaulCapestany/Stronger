@@ -6,11 +6,11 @@
  * add file for passwords/etc to .gitignore <<< AppConstants.h:15 >>>
  * build database of exercises/machines <<< AppConstants.h:19 >>>
  * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:27 >>>
- * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:147 >>>
- * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:158 >>>
- * make date grouping logic smarter with `compare` method <<< AppDelegate.m:169 >>>
+ * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:151 >>>
+ * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:162 >>>
+ * make date grouping logic smarter with `compare` method <<< AppDelegate.m:173 >>>
  * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
- * update all other CBLModels with similar edit logic <<< M_Settings.m:42 >>>
+ * update all other CBLModels with similar edit logic <<< M_Settings.m:43 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:129 >>>
  * properly implement `numberOfRowsInSection` <<< V_Set.m:213 >>>
  * add in ability to edit `selectedWorkout` <<< V_Workout.m:153 >>>
@@ -26,8 +26,8 @@
  * look into `UICollectionView` <<< AppConstants.h:17 >>>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
  * will this work? <<< AppDelegate.m:74 >>>
- * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:140 >>>
- * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:159 >>>
+ * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:144 >>>
+ * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:163 >>>
  * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
  * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:212 >>>
  * this may have been causing crash with PonyDebugger... <<< V_Set.m:401 >>>

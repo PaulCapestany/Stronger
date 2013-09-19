@@ -7,7 +7,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cUi-kZ-frf">
             <objects>
-                <navigationController id="rS3-R9-Ivy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TheFrigginRoot" id="rS3-R9-Ivy" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translucent="NO" id="yXu-0R-QUA">
                         <autoresizingMask key="autoresizingMask"/>

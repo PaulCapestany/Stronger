@@ -42,7 +42,7 @@
 		6E9579D417CEAE7300E2D6EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62B1782716200356926 /* SystemConfiguration.framework */; };
 		6EA0E05717EA86EA006788E8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6EA0E04E17EA86EA006788E8 /* README.md */; };
 		6EA0E05917EA86EA006788E8 /* PersonaController+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA0E05317EA86EA006788E8 /* PersonaController+UIKit.m */; };
-		6EA0E05A17EA86EA006788E8 /* PersonaController.js in Sources */ = {isa = PBXBuildFile; fileRef = 6EA0E05517EA86EA006788E8 /* PersonaController.js */; };
+		6EA0E05A17EA86EA006788E8 /* PersonaController.js in Resources */ = {isa = PBXBuildFile; fileRef = 6EA0E05517EA86EA006788E8 /* PersonaController.js */; };
 		6EA0E05B17EA86EA006788E8 /* PersonaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA0E05617EA86EA006788E8 /* PersonaController.m */; };
 		6EA0E06117EA8769006788E8 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA0E05E17EA8769006788E8 /* LoginController.m */; };
 		6EA0E06217EA8769006788E8 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA0E06017EA8769006788E8 /* SyncManager.m */; };
@@ -448,6 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EA0E05A17EA86EA006788E8 /* PersonaController.js in Resources */,
 				6E94F5C1177BB6E7000D0284 /* Main_iPad.storyboard in Resources */,
 				6E94F5C9177BB6E7000D0284 /* Images.xcassets in Resources */,
 				6EA0E05717EA86EA006788E8 /* README.md in Resources */,
@@ -513,7 +514,6 @@
 				6E5909FC178CCD0500818B6C /* V_Set.m in Sources */,
 				6E5909FA178CCD0500818B6C /* M_Set.m in Sources */,
 				6E94F5B7177BB6E7000D0284 /* main.m in Sources */,
-				6EA0E05A17EA86EA006788E8 /* PersonaController.js in Sources */,
 				6E5909EA178CCCEE00818B6C /* M_Workout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

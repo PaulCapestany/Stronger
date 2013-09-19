@@ -44,6 +44,7 @@ static NSString* const kPersonaSignInURL = @"https://login.persona.org/sign_in#N
 
     NSString* injectedCodePath = [[NSBundle mainBundle] pathForResource: @"PersonaController" ofType: @"js"];
     NSString* injectedCodeTemplate = [NSString stringWithContentsOfFile: injectedCodePath encoding:NSUTF8StringEncoding error: nil];
+    LogDebug(injectedCodePath);
     NSAssert(injectedCodeTemplate != nil, @"Could not load PersonaController.js");
 
     return [NSString stringWithFormat: injectedCodeTemplate, self.originString];

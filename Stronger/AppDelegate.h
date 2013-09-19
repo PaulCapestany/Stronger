@@ -13,11 +13,11 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UINavigationController *navigationController;
+//@property (strong, nonatomic) UINavigationController *navigationController;
 
 @property (nonatomic, strong) CBLDatabase *database;
-@property (nonatomic, strong) CBLReplication *_pull;
-@property (nonatomic, strong) CBLReplication *_push;
+
+@property (nonatomic, strong) NSString *username;
 
 @property (nonatomic, retain) M_Settings *settingsDoc;
 

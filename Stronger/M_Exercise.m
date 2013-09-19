@@ -8,6 +8,7 @@
 
 #import "M_Exercise.h"
 #import <CouchbaseLite/CBLJSON.h>
+#import "AppDelegate.h"
 
 @implementation M_Exercise
 
@@ -31,7 +32,7 @@
     // meta
 //    retval.channels = [NSArray arrayWithObjects:@"edolvice_channel", nil];
     retval.a_creation_date = a_creation_date;
-    retval.a_creator = @"edolvice";
+    retval.a_creator = gAppDelegate.username;
     retval.a_type = a_type;
 
     // properties

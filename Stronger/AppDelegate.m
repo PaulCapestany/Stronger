@@ -12,7 +12,7 @@
 #import <CouchbaseLite/CouchbaseLite.h>
 #import <CouchbaseLite/CBLJSON.h>
 
-#define kServerDBURLString @"https://pac.macminicolo.net:4984/stronger"
+#define kServerDBURLString @"https://pac.macminicolo.net:4984/ptest"
 
 AppDelegate* gAppDelegate;
 
@@ -27,7 +27,7 @@ AppDelegate* gAppDelegate;
     bool _loggingIn;
 }
 
-@synthesize database, _pull, _push, settingsDoc;
+@synthesize database, settingsDoc, username;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Startup
@@ -72,8 +72,12 @@ AppDelegate* gAppDelegate;
     LogDebug(@"Setting up database...");
     
     // ???: will this work?
-    self.navigationController = self.window.rootViewController.navigationController;
-    //    [self.window makeKeyAndVisible];
+//    self.navigationController = self.window.rootViewController.navigationController;
+//    
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
+//    
+//    self.navigationController = [storyboard instantiateViewControllerWithIdentifier:@"V_Workout"];
+//    [self.window makeKeyAndVisible];
     
     // Open the database, creating it on the first run:
     NSError *error;
@@ -241,7 +245,7 @@ AppDelegate* gAppDelegate;
     if (_loggingIn) {
         CBLReplication* repl = manager.replications[0];
         // Pick up my username from the replication, on the first sync:
-        NSString* username = repl.personaEmailAddress;
+        username = repl.personaEmailAddress;
         if (!username)
             username = repl.credential.user;
         if (username) {
@@ -266,7 +270,7 @@ AppDelegate* gAppDelegate;
         if (replications.count > 0)
             _personaController.origin = [replications[0] personaOrigin];
         _personaController.delegate = self;
-        [_personaController presentModalInController: self.navigationController];
+        [_personaController presentModalInController: self.window.rootViewController];
     }
     return false;
 }

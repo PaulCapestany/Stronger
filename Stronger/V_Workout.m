@@ -84,7 +84,7 @@
     if(indexPath) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    LogDebug(_liveQuery);
+//    LogDebug(_liveQuery);
 
 //    LogDebug(@"AppDelegate.self", (AppDelegate *)[UIApplication sharedApplication].self, @"\nself", self);
 }
