@@ -10,5 +10,4 @@
 
 @interface UserProfile ()
 - (void) setName: (NSString*)name nick: (NSString*)nick;
-- (void) setPicture:(UIImage *)picture;
 @end

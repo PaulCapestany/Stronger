@@ -13,7 +13,7 @@
 @implementation M_Set
 
 // meta
-@dynamic    a_creation_date, a_creator, a_edit_date, a_type;
+@dynamic    a_creation_date, a_creator, a_edit_date, type;
 
 // properties
 @dynamic    weight, reps, belongs_to_exercise_id;
@@ -27,7 +27,7 @@
     // setup
     NSDate *a_creation_date = [NSDate date];
     NSDate *a_edit_date = [NSDate date];
-    NSString *a_type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
+    NSString *type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
 
     M_Set *retval = [[M_Set alloc] initWithDocument:[database untitledDocument]];
     retval.autosaves = YES;
@@ -36,7 +36,7 @@
     retval.a_creation_date = a_creation_date;
     retval.a_creator = [ModelStore sharedInstance].username;
     retval.a_edit_date = a_edit_date;
-    retval.a_type = a_type;
+    retval.type = type;
 
     // properties
     retval.weight = weight;
@@ -61,7 +61,7 @@
     retval.a_creation_date = [doc.properties objectForKey:@"a_creation_date"];
     retval.a_creator = [doc.properties objectForKey:@"a_creator"];
     retval.a_edit_date = a_edit_date;
-    retval.a_type = [doc.properties objectForKey:@"a_type"];
+    retval.type = [doc.properties objectForKey:@"type"];
 
     // PROPERTIES
     retval.weight = [props objectForKey:@"weight"];

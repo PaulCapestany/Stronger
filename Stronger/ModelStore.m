@@ -66,7 +66,7 @@ static ModelStore* sInstance;
     // TODO: create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc)
     [[_database viewNamed:@"workouts"] setMapBlock:MAPBLOCK({
         id date = [doc objectForKey:@"a_creation_date"];
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
+        if ([[doc objectForKey:@"type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
     }) reduceBlock:nil version:@"0.6"];
     
     ///////////////
@@ -78,7 +78,7 @@ static ModelStore* sInstance;
     // ???: CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it
     [[_database viewNamed:@"exercises"] setMapBlock:MAPBLOCK({
         id date = [doc objectForKey:@"a_creation_date"];
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], date, nil], doc);
+        if ([[doc objectForKey:@"type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], date, nil], doc);
     }) reduceBlock:nil version:@"0.6"];
     
     //////////
@@ -100,7 +100,7 @@ static ModelStore* sInstance;
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         NSString* dayString = [dateFormatter stringFromDate:dateObject];
         
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, dayString, nil], doc);
+        if ([[doc objectForKey:@"type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, dayString, nil], doc);
     }) reduceBlock:nil version:@"1.1"];
     
     /***********

@@ -24,8 +24,6 @@
 /** Does this profile represent the logged-in user? */
 @property (readonly) bool isMe;
 
-/** A small picture for use as an avatar/userpic. */
-@property (readonly, weak) UIImage* picture;
 
 /** Maps a username to the document ID of the user's profile. */
 + (NSString*) docIDForUsername: (NSString*)username;
@@ -33,9 +31,6 @@
 /** Creates a new UserProfile, presumably for the local logged-in user. */
 + (UserProfile*) createInDatabase: (CBLDatabase*)database
                      withUsername: (NSString*)username;
-
-/** Synchronously loads an image from gravatar.com for the given email address. */
-+ (UIImage*) loadGravatarForEmail: (NSString*)email;
 
 + (NSString*) usernameFromDocID: (NSString*)docID;
 

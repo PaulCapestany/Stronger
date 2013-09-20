@@ -28,7 +28,7 @@
 @property (retain) NSDate *a_creation_date;
 @property (retain) NSString *a_creator;
 @property (retain) NSDate *a_edit_date;
-@property (retain) NSString *a_type;
+@property (retain) NSString *type;
 
 // properties unique to Sets
 @property (copy) NSNumber *weight;

@@ -20,7 +20,7 @@
 @property (retain) NSDate *a_creation_date;
 @property (retain) NSString *a_creator;
 @property (retain) NSDate *a_edit_date;
-@property (retain) NSString *a_type;
+@property (retain) NSString *type;
 
 // ???: I think these need to actually be `M_Workout` models?
 // properties unique to Workouts
