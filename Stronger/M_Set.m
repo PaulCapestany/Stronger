@@ -8,12 +8,12 @@
 
 #import "M_Set.h"
 #import <CouchbaseLite/CBLJSON.h>
-#import "AppDelegate.h"
+#import "ModelStore.h"
 
 @implementation M_Set
 
 // meta
-@dynamic    a_creation_date, a_creator, a_edit_date, a_type; // channels
+@dynamic    a_creation_date, a_creator, a_edit_date, a_type;
 
 // properties
 @dynamic    weight, reps, belongs_to_exercise_id;
@@ -28,15 +28,13 @@
     NSDate *a_creation_date = [NSDate date];
     NSDate *a_edit_date = [NSDate date];
     NSString *a_type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
-    NSString *documentID = [NSString stringWithFormat:@"%@~%@", [CBLJSON JSONObjectWithDate:[NSDate date]], a_type];
 
-    M_Set *retval = [[M_Set alloc] initWithDocument:[database documentWithID:documentID]];
+    M_Set *retval = [[M_Set alloc] initWithDocument:[database untitledDocument]];
     retval.autosaves = YES;
 
     // meta
-//    retval.channels = [NSArray arrayWithObjects:@"edolvice_channel", nil];
     retval.a_creation_date = a_creation_date;
-    retval.a_creator = gAppDelegate.username;
+    retval.a_creator = [ModelStore sharedInstance].username;
     retval.a_edit_date = a_edit_date;
     retval.a_type = a_type;
 
@@ -52,9 +50,7 @@
                         reps:(NSNumber *)reps
                       forSet:(CBLDocument *)doc
                   inDatabase:(CBLDatabase *)database {
-//    M_Set *retval = [[M_Set alloc] initWithDocument:[database documentWithID:doc.documentID]];
     M_Set *retval = [M_Set modelForDocument:doc];
-    //retval.autosaves = YES;
 
     NSDate *a_edit_date = [NSDate date];
 
@@ -62,7 +58,6 @@
     NSMutableDictionary *props = [latest.properties mutableCopy];
 
     // META
-//    retval.channels = [doc.properties objectForKey:@"channels"];
     retval.a_creation_date = [doc.properties objectForKey:@"a_creation_date"];
     retval.a_creator = [doc.properties objectForKey:@"a_creator"];
     retval.a_edit_date = a_edit_date;
@@ -74,8 +69,6 @@
     retval.belongs_to_exercise_id = [props objectForKey:@"belongs_to_exercise_id"];
 
     [latest putProperties:props error:nil];
-
-//    LogVerbose(@"doc.properties = %@ \ndoc.userProperties = %@ \nretval.document.properties = %@ \nretval.document.userProperties = %@", doc.properties, doc.userProperties, retval.document.properties, retval.document.userProperties);
 
     return retval;
 }

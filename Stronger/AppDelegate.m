@@ -7,10 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "ModelStore.h"
 #import "SyncManager.h"
 #import "PersonaController+UIKit.h"
 #import <CouchbaseLite/CouchbaseLite.h>
-#import <CouchbaseLite/CBLJSON.h>
 
 #define kServerDBURLString @"https://pac.macminicolo.net:4984/ptest"
 
@@ -27,8 +27,6 @@ AppDelegate* gAppDelegate;
     bool _loggingIn;
 }
 
-@synthesize database, settingsDoc;
-
 //////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Startup
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -39,7 +37,6 @@ AppDelegate* gAppDelegate;
 
     LogFunc;
     
-//#if TARGET_IPHONE_SIMULATOR
 #if ENABLE_PONY
     PDDebugger *debugger = [PDDebugger defaultInstance];
     // Enable Network debugging, and automatically track network traffic that comes through any classes that NSURLConnectionDelegate methods.
@@ -71,21 +68,15 @@ AppDelegate* gAppDelegate;
     
     LogDebug(@"Setting up database...");
     
-    // ???: will this work?
-//    self.navigationController = self.window.rootViewController.navigationController;
-//    
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
-//    
-//    self.navigationController = [storyboard instantiateViewControllerWithIdentifier:@"V_Workout"];
-//    [self.window makeKeyAndVisible];
-    
     // Open the database, creating it on the first run:
     NSError *error;
-    self.database = [[CBLManager sharedInstance] createDatabaseNamed:@"stronger"
+    _database = [[CBLManager sharedInstance] createDatabaseNamed:@"stronger"
                                                                error:&error];
-    if (!self.database) [self showAlert:@"Couldn't open database" error:error fatal:YES];
+    if (!_database) {
+        [self showAlert:@"Couldn't open database" error:error fatal:YES];
+    }
     
-    [self executeMapBlocks];
+    _modelStore = [[ModelStore alloc] initWithDatabase: _database];
     
     [self setupSync];
     
@@ -124,102 +115,6 @@ AppDelegate* gAppDelegate;
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////
-//#pragma mark - Map Views
-////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)executeMapBlocks {
-    LogFunc;
-    
-    /*
-     
-     MAP VIEW SETUP
-     --------------
-     Note: the actual map function for a view runs en masse for each document only on first query,
-     OR if the version # of the function has changed
-     Otherwise, the map function is only called each time a document has been revised.
-     
-     */
-    
-    // ???: change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)?
-    
-    //////////////
-    // WORKOUTS //
-    //////////////
-    
-    LogDebug(@"Set up workouts map view");
-    // TODO: create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc)
-    [[database viewNamed:@"workouts"] setMapBlock:MAPBLOCK({
-        id date = [doc objectForKey:@"a_creation_date"];
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
-    }) reduceBlock:nil version:@"0.6"];
-    
-    ///////////////
-    // EXERCISES //
-    ///////////////
-    
-    LogDebug(@"Set up exercises map view");
-    // TODO: create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc)
-    // ???: CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it
-    [[database viewNamed:@"exercises"] setMapBlock:MAPBLOCK({
-        id date = [doc objectForKey:@"a_creation_date"];
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], date, nil], doc);
-    }) reduceBlock:nil version:@"0.6"];
-    
-    //////////
-    // SETS //
-    //////////
-    
-    // TODO: make date grouping logic smarter with `compare` method
-    // ⤹ EXAMPLE ⤵
-    // if ([someDate compare:anotherDate] == NSOrderedAscending)
-    LogDebug(@"Set up sets map view");
-    // Create a 'view' containing list items sorted by date:
-    [[database viewNamed:@"sets"] setMapBlock:MAPBLOCK({
-        id date = [doc objectForKey:@"a_creation_date"];
-        NSDate* dateObject = [CBLJSON dateWithJSONObject:date];
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"dd"];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        NSString* dayString = [dateFormatter stringFromDate:dateObject];
-        
-        if ([[doc objectForKey:@"a_type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, dayString, nil], doc);
-    }) reduceBlock:nil version:@"1.1"];
-    
-    /***********
-    * SETTINGS *
-    ***********/
-    
-    // create the settings doc, only if it does not already exist
-    // UPCOMING: need to "merge" the settings doc if a previous one already existed...
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Settings Set"] == NULL) {
-        LogDebug(@"Creating settings doc");
-        settingsDoc = [M_Settings createSettingsInDatabase:database];
-        [[NSUserDefaults standardUserDefaults] setObject:@"yup" forKey:@"Settings Set"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    } else {
-        settingsDoc = [[M_Settings alloc] initWithDocument:[database documentWithID:@"Settings"]];
-        //        settingsDoc.autosaves = YES;
-    }
-    
-    /**********************
-    * VALIDATION FUNCTION *
-    **********************/
-
-    // and a validation function requiring parseable dates:
-    [database defineValidation: @"a_creation_date" asBlock: VALIDATIONBLOCK({
-        if (newRevision.isDeleted)
-            return YES;
-        id date = [newRevision.properties objectForKey: @"a_creation_date"];
-        if (date && ! [CBLJSON dateWithJSONObject: date]) {
-            context.errorMessage = [@"invalid date " stringByAppendingString: [date description]];
-            return NO;
-        }
-        return YES;
-    })];
-}
 
 #pragma mark - SYNC & LOGIN:
 
@@ -229,7 +124,7 @@ AppDelegate* gAppDelegate;
 - (void) setupSync {
     LogFunc;
     
-    _syncManager = [[SyncManager alloc] initWithDatabase: database];
+    _syncManager = [[SyncManager alloc] initWithDatabase: _database];
     _syncManager.delegate = self;
     // Configure replication:
     _syncManager.continuous = YES;
@@ -249,15 +144,9 @@ AppDelegate* gAppDelegate;
         if (!username)
             username = repl.credential.user;
         if (username) {
-            gAppDelegate.username = username;
+            _modelStore.username = username;
             _loggingIn = false;
         }
-    }
-    if (gAppDelegate.username) {
-        LogDebug(@"gAppDelegate.username", gAppDelegate.username);
-    }
-    else {
-        LogDebug(@"gAppDelegate.username == NIL");        
     }
 }
 

@@ -17,11 +17,9 @@
 @implementation V_Workout
 {
     CBLDatabase *database;
-    M_Settings *settingsDoc;
-    //    CBLQueryEnumerator *_
 }
 
-@synthesize delegate, dataSource, tableView, tempSettingsArray;
+@synthesize delegate, dataSource, tableView;
 
 
 #pragma mark - View lifecycle
@@ -29,8 +27,9 @@
 - (void)viewDidLoadWithDatabase {
     LogFunc;
     
-    if (!database) database = gAppDelegate.database;
-    if (!settingsDoc) settingsDoc = gAppDelegate.settingsDoc;
+    if (!database) {
+        database = gAppDelegate.database;
+    }
 
     if (_viewDidLoad && database) {
         // Create a query sorted by descending date, i.e. newest items first:
@@ -154,49 +153,17 @@
     [self showV_Exercise:selectedWorkout];
 }
 
-#pragma mark - Editing:
-
-// ???: different way to deal with errors now?
-//if (![doc.currentRevision putProperties: docContent error: &error]) {
-//    [self showErrorAlert: @"Failed to update item" forError: error];
-//}
-
-//- (void)couchTableSource:(CBLUITableSource*)source
-//         operationFailed:(RESTOperation*)op
-//{
-////    NSString* message = op.isDELETE ? @"Couldn't delete item" : @"Operation failed";
-//    [self showErrorAlert: message forOperation: op];
-//}
-
-
 #pragma mark - Row reordering
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
     LogVerbose(@"sourceIndexPath", sourceIndexPath,
                @"proposedDestinationIndexPath", proposedDestinationIndexPath);
     
-    //
-    ////    [tempSettingsArray exchangeObjectAtIndex: sourceIndexPath.row withObjectAtIndex: proposedDestinationIndexPath.row];
-    //
-    //    id sourceObject = [tempSettingsArray objectAtIndex: sourceIndexPath.row];
-    //    [tempSettingsArray removeObjectAtIndex: sourceIndexPath.row];
-    //    [tempSettingsArray insertObject: sourceObject atIndex: proposedDestinationIndexPath.row];
-    //    LogVerbose(@"tempSettingsArray = \n%@", tempSettingsArray);
-
     return proposedDestinationIndexPath;
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     LogFunc;
-
-    // ???: need to make `moveRowAtIndexPath` actually get called!
-    LogDebug(@"fromIndexPath", fromIndexPath,
-             @"toIndexPath", toIndexPath);
-
-    id sourceObject = [tempSettingsArray objectAtIndex:fromIndexPath.row];
-    [tempSettingsArray removeObjectAtIndex:fromIndexPath.row];
-    [tempSettingsArray insertObject:sourceObject atIndex:toIndexPath.row];
-    LogVerbose(@"tempSettingsArray", tempSettingsArray);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
@@ -211,23 +178,9 @@
             [tempRowsArray addObject:aCBLQueryRow.key];
         }
         LogDebug(@"tempRowsArray", tempRowsArray);
-        if (!tempSettingsArray) tempSettingsArray = [[NSMutableArray alloc] initWithArray:settingsDoc.workout_order];
-        LogVerbose(@"tempSettingsArray", tempSettingsArray);
     }
 }
 
-- (void)updateSettingsArray {
-    LogFunc;
-
-    LogVerbose(@"tempSettingsArray", tempSettingsArray);
-    settingsDoc.workout_order = [tempSettingsArray copy];
-    settingsDoc.a_edit_date = [NSDate date];
-    // ???: *save* method seems to have changed (no longer *RestOperation*-based)?
-    [settingsDoc save:nil];
-//    [saveItOp onCompletion:^{
-//        LogDebug(@"saveItOp complete \nsettingsDoc = \n%@", settingsDoc.document.properties);
-//    }];
-}
 
 #pragma mark - UITextField delegate
 
@@ -243,11 +196,6 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     LogFunc;
-//    PDLogD(@"DEBUG - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
-//    PDLogW(@"WARN - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
-//    PDLogI(@"INFO - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
-//    PDLogE(@"ERROR - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
-//    PDLog(@"Normal PDLog - iaosudoai sduio uoisa duoia sduoi asudio askjdh kjasd kjashd kjashd kjas dkjas dkjhas  djasdkjhas kjdhaskj dkjasd kjasd kjasd kjash dkaskjdhaskjdkjasd kjashd kjaskjdhaskjdkjasdkjasdkjhaskjdaskjdkjasdkjadskjaskjdhaskjdk  kjdashdkjs adkjashdkja sdkajshd kjas dhkjas dhkjsd kajsd kjasd kjasdkjadskjh");
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -270,8 +218,6 @@
 
 # pragma mark - Actions
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
 
 - (IBAction)editButtonPressed:(id)sender {
     LogFunc;
@@ -280,13 +226,11 @@
 
     if (self.tableView.editing) {
         LogDebug(@"finished editing");
-        [self updateSettingsArray];
         [tableView setEditing:NO animated:YES];
     } else {
         LogDebug(@"started editing");
         [tableView setEditing:YES animated:YES];
     }
-    //[self tableView:dataSource canMoveRowAtIndexPath:dataSource.tableView.indexPathForSelectedRow];
 }
 
 - (IBAction)addWorkoutButtonPressed:(id)sender {
@@ -307,9 +251,7 @@
         M_Workout *newWorkout =
         [M_Workout createWorkoutWithName:cleanedUpText
                               inDatabase:database];
-        [tempSettingsArray addObject:newWorkout.document.documentID];
         LogVerbose(@"newWorkout", newWorkout);
-        [self updateSettingsArray];
     }
     [newWorkoutTextField setText:nil];
 }

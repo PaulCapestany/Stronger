@@ -32,6 +32,4 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet CBLUITableSource *dataSource;
 
-@property (nonatomic, retain) NSMutableArray *tempSettingsArray;
-
 @end

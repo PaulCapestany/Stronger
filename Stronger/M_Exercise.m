@@ -8,12 +8,12 @@
 
 #import "M_Exercise.h"
 #import <CouchbaseLite/CBLJSON.h>
-#import "AppDelegate.h"
+#import "ModelStore.h"
 
 @implementation M_Exercise
 
 // meta
-@dynamic    a_creation_date, a_creator, a_edit_date, a_type; // channels
+@dynamic    a_creation_date, a_creator, a_edit_date, a_type;
 
 // properties
 @dynamic    name, belongs_to_workout_id;
@@ -24,15 +24,13 @@
     // setup
     NSDate *a_creation_date = [NSDate date];
     NSString *a_type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
-    NSString *documentID = [NSString stringWithFormat:@"%@~%@", [CBLJSON JSONObjectWithDate:[NSDate date]], a_type];
 
-    M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[database documentWithID:documentID]];
+    M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[database untitledDocument]];
     retval.autosaves = YES;
 
     // meta
-//    retval.channels = [NSArray arrayWithObjects:@"edolvice_channel", nil];
     retval.a_creation_date = a_creation_date;
-    retval.a_creator = gAppDelegate.username;
+    retval.a_creator = [ModelStore sharedInstance].username;
     retval.a_type = a_type;
 
     // properties
@@ -47,13 +45,11 @@
                  forExercise:(CBLDocument *)doc
                   inDatabase:(CBLDatabase *)database {
     M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[database documentWithID:doc.documentID]];
-    //retval.autosaves = YES;
 
     CBLRevision *latest = doc.currentRevision;
     NSMutableDictionary *props = [latest.properties mutableCopy];
 
     // META
-//    retval.channels = [doc.properties objectForKey:@"channels"];
     retval.a_creation_date = [doc.properties objectForKey:@"a_creation_date"];
     retval.a_creator = [doc.properties objectForKey:@"a_creator"];
     retval.a_edit_date = [NSDate date];
@@ -64,8 +60,6 @@
     retval.belongs_to_workout_id = [props objectForKey:@"belongs_to_workout_id"];
 
     [latest putProperties:props error:nil];
-
-    //    LogVerbose(@"doc.properties = %@ \ndoc.userProperties = %@ \nretval.document.properties = %@ \nretval.document.userProperties = %@", doc.properties, doc.userProperties, retval.document.properties, retval.document.userProperties);
 
     return retval;
 }

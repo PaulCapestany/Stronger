@@ -50,6 +50,8 @@
 		6EA26D0E17CEC04900576CD6 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA26D0D17CEC04900576CD6 /* libicucore.dylib */; };
 		6EA26D0F17CEC04F00576CD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F61217BADA4F009D06C5 /* CoreData.framework */; };
 		6EA26D1017CEC05800576CD6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F61817BADA9B009D06C5 /* Security.framework */; };
+		6EA3DC6517EBDF9200D9D770 /* ModelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA3DC6417EBDF9200D9D770 /* ModelStore.m */; };
+		6EA3DC6917EBE70900D9D770 /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA3DC6817EBE70900D9D770 /* UserProfile.m */; };
 		6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62D1782716E00356926 /* libsqlite3.dylib */; };
 		6EA6C6301782717700356926 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62F1782717700356926 /* libz.dylib */; };
 		6EB5CA7617CEBF5A00AA7858 /* libPonyDebugger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB5CA7317CEBEEA00AA7858 /* libPonyDebugger.a */; };
@@ -128,6 +130,11 @@
 		6EA0E05F17EA8769006788E8 /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
 		6EA0E06017EA8769006788E8 /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
 		6EA26D0D17CEC04900576CD6 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		6EA3DC6317EBDF9200D9D770 /* ModelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelStore.h; sourceTree = "<group>"; };
+		6EA3DC6417EBDF9200D9D770 /* ModelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelStore.m; sourceTree = "<group>"; };
+		6EA3DC6617EBE70900D9D770 /* UserProfile_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile_Private.h; sourceTree = "<group>"; };
+		6EA3DC6717EBE70900D9D770 /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
+		6EA3DC6817EBE70900D9D770 /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
 		6EA6C62B1782716200356926 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6EA6C62D1782716E00356926 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6EA6C62F1782717700356926 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -276,6 +283,11 @@
 				6E94F5C8177BB6E7000D0284 /* Images.xcassets */,
 				6EA0E05C17EA872A006788E8 /* Auth */,
 				6E5909DA178CCC2600818B6C /* Settings */,
+				6EA3DC6317EBDF9200D9D770 /* ModelStore.h */,
+				6EA3DC6417EBDF9200D9D770 /* ModelStore.m */,
+				6EA3DC6617EBE70900D9D770 /* UserProfile_Private.h */,
+				6EA3DC6717EBE70900D9D770 /* UserProfile.h */,
+				6EA3DC6817EBE70900D9D770 /* UserProfile.m */,
 				6E5909DB178CCC3400818B6C /* Workouts */,
 				6E94F5B1177BB6E7000D0284 /* Supporting Files */,
 			);
@@ -509,10 +521,12 @@
 				6E94F5BB177BB6E7000D0284 /* AppDelegate.m in Sources */,
 				6EA0E06117EA8769006788E8 /* LoginController.m in Sources */,
 				6E5909F2178CCCFB00818B6C /* M_Exercise.m in Sources */,
+				6EA3DC6917EBE70900D9D770 /* UserProfile.m in Sources */,
 				6EA0E05B17EA86EA006788E8 /* PersonaController.m in Sources */,
 				6E5909EC178CCCEE00818B6C /* V_Workout.m in Sources */,
 				6E5909FC178CCD0500818B6C /* V_Set.m in Sources */,
 				6E5909FA178CCD0500818B6C /* M_Set.m in Sources */,
+				6EA3DC6517EBDF9200D9D770 /* ModelStore.m in Sources */,
 				6E94F5B7177BB6E7000D0284 /* main.m in Sources */,
 				6E5909EA178CCCEE00818B6C /* M_Workout.m in Sources */,
 			);
