@@ -62,7 +62,7 @@
  ...
  
 */
-#define ENABLE_PONY FALSE
+#define ENABLE_PONY TRUE
 
 #if ENABLE_PONY
 //    #define AppName         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]

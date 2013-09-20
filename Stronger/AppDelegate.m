@@ -27,7 +27,7 @@ AppDelegate* gAppDelegate;
     bool _loggingIn;
 }
 
-@synthesize database, settingsDoc, username;
+@synthesize database, settingsDoc;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Startup
@@ -245,14 +245,19 @@ AppDelegate* gAppDelegate;
     if (_loggingIn) {
         CBLReplication* repl = manager.replications[0];
         // Pick up my username from the replication, on the first sync:
-        username = repl.personaEmailAddress;
+        NSString* username = repl.personaEmailAddress;
         if (!username)
             username = repl.credential.user;
         if (username) {
-            LogDebug(@"logged-in username", username);
-//            _chatStore.username = username;
+            gAppDelegate.username = username;
             _loggingIn = false;
         }
+    }
+    if (gAppDelegate.username) {
+        LogDebug(@"gAppDelegate.username", gAppDelegate.username);
+    }
+    else {
+        LogDebug(@"gAppDelegate.username == NIL");        
     }
 }
 

@@ -208,8 +208,8 @@ NSString* const SyncManagerStateChangedNotification = @"SyncManagerStateChanged"
         _progress = (completed / (float)MAX(total, 1u));
         _mode = mode;
         _error = error;
-        NSLog(@"SYNCMGR: active=%d; mode=%d; %u/%u; %@",
-              active, mode, completed, total, error.localizedDescription); //FIX: temporary logging
+//        NSLog(@"SYNCMGR: active=%d; mode=%d; %u/%u; %@",
+//              active, mode, completed, total, error.localizedDescription); //FIX: temporary logging
         if ([_delegate respondsToSelector: @selector(syncManagerProgressChanged:)])
             [_delegate syncManagerProgressChanged: self];
         [[NSNotificationCenter defaultCenter]
