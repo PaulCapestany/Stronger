@@ -144,6 +144,7 @@ AppDelegate* gAppDelegate;
         if (!username)
             username = repl.credential.user;
         if (username) {
+            LogDebug(@"Chat username =", username);
             _modelStore.username = username;
             _loggingIn = false;
         }
