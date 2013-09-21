@@ -6,24 +6,21 @@
 //  Copyright (c) 2012 Paul Capestany. All rights reserved.
 //
 
-#import <CouchbaseLite/CouchbaseLite.h>
+#import "MetaModel.h"
+
+@class ModelStore;
 
 // M_Set belongs to M_Exercise which belongs to M_Workout
 
-@interface M_Workout : CBLModel
+@interface M_Workout : MetaModel
 
-+ (M_Workout *)createWorkoutWithName:(NSString *)name;
+- (id) initNewWithName: (NSString*)name inModelStore: (ModelStore*)modelStore;
 
-+ (M_Workout *)editWorkout:(NSString *)name
-                forWorkout:(CBLDocument *)doc;
+@property (readwrite) NSString* name;
+@property (readonly) NSString* owner_id;
 
-// standard meta-data
-@property (retain) NSDate *a_creation_date;
-@property (retain) NSString *a_creator;
-@property (retain) NSDate *a_edit_date;
-@property (retain) NSString *type;
+@property (readonly) CBLLiveQuery* workoutQuery;
 
-// properties unique to Workouts
-@property (copy) NSString *name;
+- (M_Workout *)createWorkoutWithName:(NSString *)name;
 
 @end

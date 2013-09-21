@@ -16,15 +16,11 @@
 
 @interface V_Workout : UIViewController <CBLUITableDelegate, UITextFieldDelegate>
 {
-    BOOL _viewDidLoad;
-
     UITableView *tableView;
 
     IBOutlet UITextField *newWorkoutTextField;
 
     IBOutlet UIButton *saveButton;
-
-    CBLLiveQuery *_liveQuery;
 }
 
 @property (nonatomic, weak) id <V_WorkoutsDelegate> delegate;

@@ -12,8 +12,7 @@
  * make date grouping logic smarter with `compare` method <<< ModelStore.m:86 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:129 >>>
  * properly implement `numberOfRowsInSection` <<< V_Set.m:216 >>>
- * add in ability to edit `selectedWorkout` <<< V_Workout.m:153 >>>
- * potentially unnecessary because I can just use willUpdateFromQuery <<< V_Workout.m:174 >>>
+ * add in ability to edit `selectedWorkout` <<< V_Workout.m:148 >>>
  * Make introspection for primitive types work. <<< vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195 >>>
  * maybe not copy this for performance <<< vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719 >>>
  * Handle invalid opcode <<< vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:880 >>>

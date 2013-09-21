@@ -17,29 +17,29 @@
 
 @implementation V_Workout
 {
-    CBLDatabase *database;
+    M_Workout* _workout;
 }
 
 @synthesize delegate, dataSource, tableView;
 
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoadWithDatabase {
-    LogFunc;
-    
-    if (!database) {
-        database = [ModelStore sharedInstance].database;
-    }
-
-    if (_viewDidLoad && database) {
-        // Create a query sorted by descending date, i.e. newest items first:
-        _liveQuery = [[[database viewNamed:@"workouts"] query] asLiveQuery];
-
-        dataSource.query = _liveQuery;
-        [_liveQuery addObserver:self forKeyPath:@"rows" options:0 context:NULL];
-    }
+- (M_Workout*) workout {
+    return _workout;
 }
+
+- (void) setWorkout:(M_Workout *)workout {
+    if (workout == _workout)
+        return;
+    _workout = workout;
+    [self showWorkout];
+}
+
+
+- (void) showWorkout {
+    dataSource.query = _workout.workoutQuery;
+}
+
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     LogFunc;
@@ -50,17 +50,12 @@
 //    self.navigationItem.leftBarButtonItem = editButton;
 
     [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
-
-    _viewDidLoad = YES;
-    [self viewDidLoadWithDatabase];
 }
 
 - (void)dealloc {
     LogFunc;
 
     dataSource = nil;
-    [_liveQuery removeObserver:self forKeyPath:@"rows"];
-    _liveQuery = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -167,21 +162,6 @@
     LogFunc;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
-                        change:(NSDictionary *)change context:(void *)context {
-    LogFunc;
-
-// TODO: potentially unnecessary because I can just use willUpdateFromQuery
-    if (object == _liveQuery) {
-        NSMutableArray *tempRowsArray = [NSMutableArray array];
-        for (CBLQueryRow *aCBLQueryRow in _liveQuery.rows) {
-//            LogVerbose(@"aCBLQueryRow", aCBLQueryRow);
-            [tempRowsArray addObject:aCBLQueryRow.key];
-        }
-        LogDebug(@"tempRowsArray", tempRowsArray);
-    }
-}
-
 
 #pragma mark - UITextField delegate
 
@@ -250,7 +230,7 @@
     
     if (cleanedUpText != nil && ![cleanedUpText isEqual:@""]) {
         M_Workout *newWorkout =
-        [M_Workout createWorkoutWithName:cleanedUpText];
+        [_workout createWorkoutWithName:cleanedUpText];
         LogVerbose(@"newWorkout", newWorkout);
     }
     [newWorkoutTextField setText:nil];

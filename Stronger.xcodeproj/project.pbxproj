@@ -36,6 +36,7 @@
 		6E94F5DA177BB6E7000D0284 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E94F5D8177BB6E7000D0284 /* InfoPlist.strings */; };
 		6E94F5DC177BB6E7000D0284 /* StrongerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94F5DB177BB6E7000D0284 /* StrongerTests.m */; };
 		6E9579D417CEAE7300E2D6EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62B1782716200356926 /* SystemConfiguration.framework */; };
+		6E9589C617ED4AE900B8727E /* MetaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9589C517ED4AE900B8727E /* MetaModel.m */; };
 		6EA0E05717EA86EA006788E8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6EA0E04E17EA86EA006788E8 /* README.md */; };
 		6EA0E05917EA86EA006788E8 /* PersonaController+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA0E05317EA86EA006788E8 /* PersonaController+UIKit.m */; };
 		6EA0E05A17EA86EA006788E8 /* PersonaController.js in Resources */ = {isa = PBXBuildFile; fileRef = 6EA0E05517EA86EA006788E8 /* PersonaController.js */; };
@@ -111,6 +112,8 @@
 		6E94F5D7177BB6E7000D0284 /* StrongerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StrongerTests-Info.plist"; sourceTree = "<group>"; };
 		6E94F5D9177BB6E7000D0284 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6E94F5DB177BB6E7000D0284 /* StrongerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrongerTests.m; sourceTree = "<group>"; };
+		6E9589C417ED4AE900B8727E /* MetaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaModel.h; sourceTree = "<group>"; };
+		6E9589C517ED4AE900B8727E /* MetaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaModel.m; sourceTree = "<group>"; };
 		6EA0E04E17EA86EA006788E8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		6EA0E05217EA86EA006788E8 /* PersonaController+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PersonaController+UIKit.h"; sourceTree = "<group>"; };
 		6EA0E05317EA86EA006788E8 /* PersonaController+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PersonaController+UIKit.m"; sourceTree = "<group>"; };
@@ -265,6 +268,8 @@
 				6EA0E05C17EA872A006788E8 /* Auth */,
 				6EA3DC6317EBDF9200D9D770 /* ModelStore.h */,
 				6EA3DC6417EBDF9200D9D770 /* ModelStore.m */,
+				6E9589C417ED4AE900B8727E /* MetaModel.h */,
+				6E9589C517ED4AE900B8727E /* MetaModel.m */,
 				6EA3DC6617EBE70900D9D770 /* UserProfile_Private.h */,
 				6EA3DC6717EBE70900D9D770 /* UserProfile.h */,
 				6EA3DC6817EBE70900D9D770 /* UserProfile.m */,
@@ -501,6 +506,7 @@
 				6E5909F2178CCCFB00818B6C /* M_Exercise.m in Sources */,
 				6EA3DC6917EBE70900D9D770 /* UserProfile.m in Sources */,
 				6EA0E05B17EA86EA006788E8 /* PersonaController.m in Sources */,
+				6E9589C617ED4AE900B8727E /* MetaModel.m in Sources */,
 				6E5909EC178CCCEE00818B6C /* V_Workout.m in Sources */,
 				6E5909FC178CCD0500818B6C /* V_Set.m in Sources */,
 				6E5909FA178CCD0500818B6C /* M_Set.m in Sources */,
