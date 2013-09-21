@@ -23,13 +23,13 @@
 + (M_Set *)createSetWithWeight:(NSNumber *)weight
                           reps:(NSNumber *)reps
         belongs_to_exercise_id:(M_Exercise *)belongs_to_exercise_id
-                    inDatabase:(CBLDatabase *)database {
+{
     // setup
     NSDate *a_creation_date = [NSDate date];
     NSDate *a_edit_date = [NSDate date];
     NSString *type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
 
-    M_Set *retval = [[M_Set alloc] initWithDocument:[database untitledDocument]];
+    M_Set *retval = [[M_Set alloc] initWithDocument:[[ModelStore sharedInstance].database untitledDocument]];
     retval.autosaves = YES;
 
     // meta
@@ -49,7 +49,7 @@
 + (M_Set *)editSetWithWeight:(NSNumber *)weight
                         reps:(NSNumber *)reps
                       forSet:(CBLDocument *)doc
-                  inDatabase:(CBLDatabase *)database {
+{
     M_Set *retval = [M_Set modelForDocument:doc];
 
     NSDate *a_edit_date = [NSDate date];

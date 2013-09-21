@@ -7,6 +7,7 @@
 #import "M_Set.h"
 // sync stuff
 #import "AppDelegate.h"
+#import "ModelStore.h"
 
 @implementation V_Set
 {
@@ -25,7 +26,7 @@
     LogFunc;
 
     if (!database) {
-        database = gAppDelegate.database;
+        database = [ModelStore sharedInstance].database;
     }
     
     if (_viewDidLoad && database) {
@@ -398,8 +399,7 @@
     justFinishedSet = YES;
     [M_Set createSetWithWeight:weightNumber
                           reps:repsNumber
-        belongs_to_exercise_id:m_ExercisePassedIn
-                    inDatabase:database];
+        belongs_to_exercise_id:m_ExercisePassedIn];
 //    ???: this may have been causing crash with PonyDebugger...
 //    LogVerbose(@"newSet", newSet);
     }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CouchbaseLite/CBLUITableSource.h>
 
-@class CBLDatabase, M_Settings, CBLLiveQuery;
+@class CBLDatabase, CBLLiveQuery;
 
 @protocol V_WorkoutsDelegate <NSObject>
 @end

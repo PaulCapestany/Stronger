@@ -12,6 +12,7 @@
 #import "V_Set.h"
 // sync stuff
 #import "AppDelegate.h"
+#import "ModelStore.h"
 
 @implementation V_Exercise
 {
@@ -27,7 +28,7 @@
     LogFunc;
 
     if (!database) {
-        database = gAppDelegate.database;        
+        database = [ModelStore sharedInstance].database;
     }
 
     if (_viewDidLoad && database) {
@@ -81,8 +82,6 @@
     if(indexPath) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    
-//    LogDebug(@"AppDelegate.self", (AppDelegate *)[UIApplication sharedApplication].self, @"\nself", self);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -95,8 +94,7 @@
     LogFunc;
 
     LogErr(@"error: %@\nmessage: %@", error, message);
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate]
- showAlert: message error : error fatal : NO];
+    [gAppDelegate showAlert: message error : error fatal : NO];
 }
 
 #pragma mark - TD table source delegate
@@ -209,8 +207,7 @@
     if (cleanedUpText != nil && ![cleanedUpText isEqual:@""]) {
         M_Exercise *newExercise =
         [M_Exercise createExercise:cleanedUpText
-             belongs_to_workout_id:m_WorkoutPassedIn
-                        inDatabase:database];
+             belongs_to_workout_id:m_WorkoutPassedIn];
 //    ???: this may have been causing crash with PonyDebugger...
         LogVerbose(@"newExercise", newExercise);
     }

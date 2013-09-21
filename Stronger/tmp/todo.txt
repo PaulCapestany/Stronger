@@ -6,15 +6,14 @@
  * add file for passwords/etc to .gitignore <<< AppConstants.h:15 >>>
  * build database of exercises/machines <<< AppConstants.h:19 >>>
  * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:27 >>>
- * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< AppDelegate.m:151 >>>
- * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< AppDelegate.m:162 >>>
- * make date grouping logic smarter with `compare` method <<< AppDelegate.m:173 >>>
- * should probably relate to pre-fab exercises <<< M_Exercise.h:37 >>>
- * update all other CBLModels with similar edit logic <<< M_Settings.m:43 >>>
+ * should probably relate to pre-fab exercises <<< M_Exercise.h:34 >>>
+ * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< ModelStore.m:64 >>>
+ * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< ModelStore.m:75 >>>
+ * make date grouping logic smarter with `compare` method <<< ModelStore.m:86 >>>
  * add in ability to edit `selectedExercise` <<< V_Exercise.m:129 >>>
- * properly implement `numberOfRowsInSection` <<< V_Set.m:213 >>>
+ * properly implement `numberOfRowsInSection` <<< V_Set.m:216 >>>
  * add in ability to edit `selectedWorkout` <<< V_Workout.m:153 >>>
- * potentially unnecessary because I can just use willUpdateFromQuery <<< V_Workout.m:206 >>>
+ * potentially unnecessary because I can just use willUpdateFromQuery <<< V_Workout.m:174 >>>
  * Make introspection for primitive types work. <<< vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195 >>>
  * maybe not copy this for performance <<< vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719 >>>
  * Handle invalid opcode <<< vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:880 >>>
@@ -25,12 +24,7 @@
  * find out if I need to change how I'm doing the IDs for each doc <<< AppConstants.h:13 >>>
  * look into `UICollectionView` <<< AppConstants.h:17 >>>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
- * will this work? <<< AppDelegate.m:74 >>>
- * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< AppDelegate.m:144 >>>
- * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< AppDelegate.m:163 >>>
- * I think these need to actually be `M_Workout` models? <<< M_Settings.h:28 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:212 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Set.m:401 >>>
- * different way to deal with errors now? <<< V_Workout.m:159 >>>
- * need to make `moveRowAtIndexPath` actually get called! <<< V_Workout.m:192 >>>
- * *save* method seems to have changed (no longer *RestOperation*-based)? <<< V_Workout.m:225 >>>
+ * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< ModelStore.m:57 >>>
+ * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< ModelStore.m:76 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:211 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Set.m:403 >>>

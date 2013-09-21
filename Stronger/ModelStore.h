@@ -20,10 +20,6 @@
 
 @property (readonly) CBLDatabase* database;
 
-// WORKOUTS:
-
-- (M_Workout*) newChatWithTitle: (NSString*)title;
-
 // USERS:
 
 /** The local logged-in user */

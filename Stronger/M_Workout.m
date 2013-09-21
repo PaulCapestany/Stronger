@@ -19,12 +19,12 @@
 @dynamic    name;
 
 + (M_Workout *)createWorkoutWithName:(NSString *)name
-                          inDatabase:(CBLDatabase *)database {
+{
     // setup
     NSDate *a_creation_date = [NSDate date];
     NSString *type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
 
-    M_Workout *retval = [[M_Workout alloc] initWithDocument:[database untitledDocument]];
+    M_Workout *retval = [[M_Workout alloc] initWithDocument:[[ModelStore sharedInstance].database untitledDocument]];
     retval.autosaves = YES;
 
     // meta
@@ -40,8 +40,8 @@
 
 + (M_Workout *)editWorkout:(NSString *)name
                 forWorkout:(CBLDocument *)doc
-                inDatabase:(CBLDatabase *)database {
-    M_Workout *retval = [[M_Workout alloc] initWithDocument:[database documentWithID:doc.documentID]];
+{
+    M_Workout *retval = [[M_Workout alloc] initWithDocument:[[ModelStore sharedInstance].database documentWithID:doc.documentID]];
 
     CBLRevision *latest = doc.currentRevision;
     NSMutableDictionary *props = [latest.properties mutableCopy];

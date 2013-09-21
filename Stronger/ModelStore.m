@@ -7,7 +7,6 @@
 //
 
 #import "ModelStore.h"
-#import "M_Workout.h"
 #import "UserProfile_Private.h"
 #import <CouchbaseLite/CBLModelFactory.h>
 #import <CouchbaseLite/CBLJSON.h>
@@ -35,7 +34,6 @@ static ModelStore* sInstance;
         _database = database;
         _username = [[NSUserDefaults standardUserDefaults] stringForKey: @"UserName"];
         
-        [_database.modelFactory registerClass: [M_Workout class] forDocumentType: @"Workout"];
         [_database.modelFactory registerClass: [UserProfile class] forDocumentType: @"profile"];
 
         [self executeMapBlocks];
@@ -103,21 +101,6 @@ static ModelStore* sInstance;
         if ([[doc objectForKey:@"type"] isEqualToString:@"Set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, dayString, nil], doc);
     }) reduceBlock:nil version:@"1.1"];
     
-    /***********
-     * SETTINGS *
-     ***********/
-    
-    // create the settings doc, only if it does not already exist
-    // UPCOMING: need to "merge" the settings doc if a previous one already existed...
-//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Settings Set"] == NULL) {
-//        LogDebug(@"Creating settings doc");
-//        settingsDoc = [M_Settings createSettingsInDatabase:database];
-//        [[NSUserDefaults standardUserDefaults] setObject:@"yup" forKey:@"Settings Set"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//    } else {
-//        settingsDoc = [[M_Settings alloc] initWithDocument:[database documentWithID:@"Settings"]];
-//        //        settingsDoc.autosaves = YES;
-//    }
     
     /********
     * USERS *
@@ -132,23 +115,6 @@ static ModelStore* sInstance;
                 emit(name.lowercaseString, name);
         }
     }) version: @"1.1"];
-    
-    
-    /**********************
-     * VALIDATION FUNCTION *
-     **********************/
-    
-    // and a validation function requiring parseable dates:
-    [_database defineValidation: @"a_creation_date" asBlock: VALIDATIONBLOCK({
-        if (newRevision.isDeleted)
-            return YES;
-        id date = [newRevision.properties objectForKey: @"a_creation_date"];
-        if (date && ! [CBLJSON dateWithJSONObject: date]) {
-            context.errorMessage = [@"invalid date " stringByAppendingString: [date description]];
-            return NO;
-        }
-        return YES;
-    })];
 }
 
 
@@ -164,18 +130,6 @@ static ModelStore* sInstance;
     LogFunc;
 
     return sInstance;
-}
-
-
-#pragma mark - CHATS:
-
-
-
-
-- (M_Workout*) newChatWithTitle: (NSString*)title {
-    LogFunc;
-
-    return [[M_Workout alloc] initNewWithTitle: title inChatStore: self];
 }
 
 

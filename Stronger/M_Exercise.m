@@ -20,12 +20,12 @@
 
 + (M_Exercise *)createExercise:(NSString *)name
          belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
-                    inDatabase:(CBLDatabase *)database {
+{
     // setup
     NSDate *a_creation_date = [NSDate date];
     NSString *type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
 
-    M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[database untitledDocument]];
+    M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[[ModelStore sharedInstance].database untitledDocument]];
     retval.autosaves = YES;
 
     // meta
@@ -43,8 +43,8 @@
 + (M_Exercise *)editExercise:(NSString *)name
        belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
                  forExercise:(CBLDocument *)doc
-                  inDatabase:(CBLDatabase *)database {
-    M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[database documentWithID:doc.documentID]];
+{
+    M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[[ModelStore sharedInstance].database documentWithID:doc.documentID]];
 
     CBLRevision *latest = doc.currentRevision;
     NSMutableDictionary *props = [latest.properties mutableCopy];

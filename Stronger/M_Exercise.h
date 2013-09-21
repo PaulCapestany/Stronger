@@ -15,13 +15,11 @@
 @interface M_Exercise : CBLModel
 
 + (M_Exercise *)createExercise:(NSString *)name
-         belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
-                    inDatabase:(CBLDatabase *)database;
+         belongs_to_workout_id:(M_Workout *)belongs_to_workout_id;
 
 + (M_Exercise *)editExercise:(NSString *)name
        belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
-                 forExercise:(CBLDocument *)doc
-                  inDatabase:(CBLDatabase *)database;
+                 forExercise:(CBLDocument *)doc;
 
 // standard meta-data
 @property (retain) NSDate *a_creation_date;

@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		6E463B9417C2E15600D4BBAE /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E463B9317C2E15600D4BBAE /* CouchbaseLite.framework */; };
 		6E4C5C6A17EA7F600077A2EE /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4C5C6917EA7F600077A2EE /* Reveal.framework */; };
-		6E5909E2178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
-		6E5909E3178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
-		6E5909E4178CCCDF00818B6C /* V_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E1178CCCDF00818B6C /* V_Settings.m */; };
-		6E5909E5178CCCDF00818B6C /* V_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E1178CCCDF00818B6C /* V_Settings.m */; };
 		6E5909EA178CCCEE00818B6C /* M_Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E7178CCCEE00818B6C /* M_Workout.m */; };
 		6E5909EB178CCCEE00818B6C /* M_Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E7178CCCEE00818B6C /* M_Workout.m */; };
 		6E5909EC178CCCEE00818B6C /* V_Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E9178CCCEE00818B6C /* V_Workout.m */; };
@@ -85,10 +81,6 @@
 /* Begin PBXFileReference section */
 		6E463B9317C2E15600D4BBAE /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Stronger/vendor/CouchbaseLite.framework; sourceTree = "<group>"; };
 		6E4C5C6917EA7F600077A2EE /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = Stronger/vendor/Reveal.framework; sourceTree = "<group>"; };
-		6E5909DE178CCCDF00818B6C /* M_Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Settings.h; sourceTree = "<group>"; };
-		6E5909DF178CCCDF00818B6C /* M_Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M_Settings.m; sourceTree = "<group>"; };
-		6E5909E0178CCCDF00818B6C /* V_Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_Settings.h; sourceTree = "<group>"; };
-		6E5909E1178CCCDF00818B6C /* V_Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V_Settings.m; sourceTree = "<group>"; };
 		6E5909E6178CCCEE00818B6C /* M_Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Workout.h; sourceTree = "<group>"; };
 		6E5909E7178CCCEE00818B6C /* M_Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M_Workout.m; sourceTree = "<group>"; };
 		6E5909E8178CCCEE00818B6C /* V_Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V_Workout.h; sourceTree = "<group>"; };
@@ -183,17 +175,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6E5909DA178CCC2600818B6C /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				6E5909DE178CCCDF00818B6C /* M_Settings.h */,
-				6E5909DF178CCCDF00818B6C /* M_Settings.m */,
-				6E5909E0178CCCDF00818B6C /* V_Settings.h */,
-				6E5909E1178CCCDF00818B6C /* V_Settings.m */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
 		6E5909DB178CCC3400818B6C /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +263,6 @@
 				6E94F5BF177BB6E7000D0284 /* Main_iPad.storyboard */,
 				6E94F5C8177BB6E7000D0284 /* Images.xcassets */,
 				6EA0E05C17EA872A006788E8 /* Auth */,
-				6E5909DA178CCC2600818B6C /* Settings */,
 				6EA3DC6317EBDF9200D9D770 /* ModelStore.h */,
 				6EA3DC6417EBDF9200D9D770 /* ModelStore.m */,
 				6EA3DC6617EBE70900D9D770 /* UserProfile_Private.h */,
@@ -514,9 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EA0E06217EA8769006788E8 /* SyncManager.m in Sources */,
-				6E5909E4178CCCDF00818B6C /* V_Settings.m in Sources */,
 				6EA0E05917EA86EA006788E8 /* PersonaController+UIKit.m in Sources */,
-				6E5909E2178CCCDF00818B6C /* M_Settings.m in Sources */,
 				6E5909F4178CCCFB00818B6C /* V_Exercise.m in Sources */,
 				6E94F5BB177BB6E7000D0284 /* AppDelegate.m in Sources */,
 				6EA0E06117EA8769006788E8 /* LoginController.m in Sources */,
@@ -536,11 +514,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E5909E3178CCCDF00818B6C /* M_Settings.m in Sources */,
 				6E5909EB178CCCEE00818B6C /* M_Workout.m in Sources */,
 				6E5909FB178CCD0500818B6C /* M_Set.m in Sources */,
 				6E5909F5178CCCFB00818B6C /* V_Exercise.m in Sources */,
-				6E5909E5178CCCDF00818B6C /* V_Settings.m in Sources */,
 				6E5909F3178CCCFB00818B6C /* M_Exercise.m in Sources */,
 				6E5909FD178CCD0500818B6C /* V_Set.m in Sources */,
 				6E5909ED178CCCEE00818B6C /* V_Workout.m in Sources */,

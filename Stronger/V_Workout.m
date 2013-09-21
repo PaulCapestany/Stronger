@@ -12,6 +12,7 @@
 #import "V_Exercise.h"
 // sync stuff
 #import "AppDelegate.h"
+#import "ModelStore.h"
 
 
 @implementation V_Workout
@@ -28,7 +29,7 @@
     LogFunc;
     
     if (!database) {
-        database = gAppDelegate.database;
+        database = [ModelStore sharedInstance].database;
     }
 
     if (_viewDidLoad && database) {
@@ -249,8 +250,7 @@
     
     if (cleanedUpText != nil && ![cleanedUpText isEqual:@""]) {
         M_Workout *newWorkout =
-        [M_Workout createWorkoutWithName:cleanedUpText
-                              inDatabase:database];
+        [M_Workout createWorkoutWithName:cleanedUpText];
         LogVerbose(@"newWorkout", newWorkout);
     }
     [newWorkoutTextField setText:nil];

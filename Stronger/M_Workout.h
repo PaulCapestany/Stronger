@@ -12,12 +12,10 @@
 
 @interface M_Workout : CBLModel
 
-+ (M_Workout *)createWorkoutWithName:(NSString *)name
-                          inDatabase:(CBLDatabase *)database;
++ (M_Workout *)createWorkoutWithName:(NSString *)name;
 
 + (M_Workout *)editWorkout:(NSString *)name
-                forWorkout:(CBLDocument *)doc
-                inDatabase:(CBLDatabase *)database;
+                forWorkout:(CBLDocument *)doc;
 
 // standard meta-data
 @property (retain) NSDate *a_creation_date;

@@ -16,13 +16,11 @@
 
 + (M_Set *)createSetWithWeight:(NSNumber *)weight
                           reps:(NSNumber *)reps
-        belongs_to_exercise_id:(M_Exercise *)belongs_to_exercise_id
-                    inDatabase:(CBLDatabase *)database;
+        belongs_to_exercise_id:(M_Exercise *)belongs_to_exercise_id;
 
 + (M_Set *)editSetWithWeight:(NSNumber *)weight
                         reps:(NSNumber *)reps
-                      forSet:(CBLDocument *)doc
-                  inDatabase:(CBLDatabase *)database;
+                      forSet:(CBLDocument *)doc;
 
 // standard meta-data
 @property (retain) NSDate *a_creation_date;
