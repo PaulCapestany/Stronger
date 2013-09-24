@@ -14,7 +14,7 @@
 
 @interface M_Workout : MetaModel
 
-+ (CBLQuery*) workoutQuery;
++ (CBLQuery*) workoutsQuery;
 
 + (M_Workout *)createWorkoutWithName:(NSString *)name;
 

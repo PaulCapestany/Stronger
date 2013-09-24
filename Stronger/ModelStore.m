@@ -77,7 +77,7 @@ static ModelStore* sInstance;
     [[_database viewNamed:@"exercises"] setMapBlock:MAPBLOCK({
         id date = [doc objectForKey:@"created_at"];
         if ([[doc objectForKey:@"type"] isEqualToString:@"exercise"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_workout_id"], date, nil], doc);
-    }) reduceBlock:nil version:@"0.6"];
+    }) reduceBlock:nil version:@"0.7"];
     
     //////////
     // SETS //
@@ -99,7 +99,7 @@ static ModelStore* sInstance;
         NSString* dayString = [dateFormatter stringFromDate:dateObject];
         
         if ([[doc objectForKey:@"type"] isEqualToString:@"set"]) emit([NSArray arrayWithObjects:[doc objectForKey:@"belongs_to_exercise_id"], date, dayString, nil], doc);
-    }) reduceBlock:nil version:@"1.1"];
+    }) reduceBlock:nil version:@"1.2"];
     
     
     /********

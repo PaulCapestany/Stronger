@@ -14,7 +14,7 @@
 
 @interface M_Exercise : MetaModel
 
-+ (CBLQuery*) exerciseQuery;
++ (CBLQuery*) exercisesQuery;
 
 + (M_Exercise *)createExercise:(NSString *)name
          belongs_to_workout_id:(M_Workout *)belongs_to_workout_id;

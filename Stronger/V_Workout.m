@@ -31,7 +31,7 @@
 //    self.navigationItem.leftBarButtonItem = editButton;
 
     [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
-    dataSource.query = [M_Workout workoutQuery].asLiveQuery;
+    dataSource.query = [M_Workout workoutsQuery].asLiveQuery;
 }
 
 - (void)dealloc {

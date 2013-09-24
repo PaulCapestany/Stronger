@@ -18,7 +18,7 @@
 // properties
 @dynamic    name, belongs_to_workout_id, owner_id;
 
-+ (CBLQuery*) exerciseQuery {
++ (CBLQuery*) exercisesQuery {
     CBLQuery* query = [[[ModelStore sharedInstance].database viewNamed: @"exercises"] query];
     return query;
 }
@@ -26,10 +26,11 @@
 + (M_Exercise *)createExercise:(NSString *)name
          belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
 {
-    return [[M_Exercise alloc] initNewWithName:name belongs_to_workout_id:belongs_to_workout_id];
+    return [[M_Exercise alloc] initNewExercise:name belongs_to_workout_id:belongs_to_workout_id];
 }
 
-- (id) initNewWithName:(NSString *)name belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
+- (id) initNewExercise:(NSString *)name
+ belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
 {
     self = [super initWithNewDocumentInDatabase: [ModelStore sharedInstance].database];
     if (self) {

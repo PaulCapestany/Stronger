@@ -27,7 +27,7 @@
     [super viewDidLoad];
 
     [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
-    dataSource.query = [M_Exercise exerciseQuery].asLiveQuery;
+    dataSource.query = [M_Exercise exercisesQuery].asLiveQuery;
 }
 
 - (void)dealloc {

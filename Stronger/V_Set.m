@@ -260,12 +260,12 @@
         for (CBLQueryRow* myRow in dataSource.query.rows) {
             LogDebug(myRow);
             M_Set *aSet = [M_Set modelForDocument:myRow.document];
-            NSString *debug = [NSString stringWithFormat:@"%f", [aSet.a_creation_date timeIntervalSinceNow]];
+            NSString *debug = [NSString stringWithFormat:@"%f", [aSet.created_at timeIntervalSinceNow]];
             LogDebug(debug);
             
             // looking at new set
-            if (myRow.groupedViewSection == 0 && [aSet.a_creation_date timeIntervalSinceNow] > -86400) {
-                LogDebug(@"myRow.groupedViewSection == 0 && [aSet.a_creation_date timeIntervalSinceNow] > -86400");
+            if (myRow.groupedViewSection == 0 && [aSet.created_at timeIntervalSinceNow] > -86400) {
+                LogDebug(@"myRow.groupedViewSection == 0 && [aSet.created_at timeIntervalSinceNow] > -86400");
                 currentSetCounter++;
                 LogDebug(@"currentSetCounter = ", [NSNumber numberWithInt:currentSetCounter]);
             }
