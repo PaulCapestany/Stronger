@@ -23,6 +23,6 @@
 @property (copy) NSNumber *weight;
 @property (copy) NSNumber *reps;
 @property (assign) M_Exercise *belongs_to_exercise_id;
-@property (readonly) NSString* owner_id;
+@property (readonly) NSString* created_by;
 
 @end

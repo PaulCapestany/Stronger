@@ -13,10 +13,10 @@
 @implementation M_Set
 
 // meta
-@dynamic    created_at, updated_at;
+@dynamic    visible_to, created_at, updated_at;
 
 // properties
-@dynamic    weight, reps, belongs_to_exercise_id, owner_id;
+@dynamic    weight, reps, belongs_to_exercise_id, created_by;
 
 #pragma mark - Class functions
 
@@ -39,7 +39,7 @@
     self = [super initWithNewDocumentInDatabase: [ModelStore sharedInstance].database];
     if (self) {
         [self setupType: @"set"];
-        [self setValue: [ModelStore sharedInstance].username ofProperty: @"owner_id"];
+        [self setValue: [ModelStore sharedInstance].username ofProperty: @"created_by"];
         self.weight = weight;
         self.reps = reps;
         self.belongs_to_exercise_id = belongs_to_exercise_id;
@@ -50,13 +50,13 @@
 
 - (bool) editable {
     NSString* username = self.modelStore.username;
-    return [self.owner_id isEqualToString: username];
+    return [self.created_by isEqualToString: username];
 }
 
 
 - (bool) owned {
     NSString* username = self.modelStore.username;
-    return [self.owner_id isEqualToString: username];
+    return [self.created_by isEqualToString: username];
 }
 
 @end

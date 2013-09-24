@@ -13,10 +13,10 @@
 @implementation M_Workout
 
 // meta
-@dynamic    created_at, updated_at;
+@dynamic    visible_to, created_at, updated_at;
 
 // properties
-@dynamic    name, owner_id;
+@dynamic    name, created_by;
 
 
 + (CBLQuery*) workoutsQuery {
@@ -34,7 +34,7 @@
     self = [super initWithNewDocumentInDatabase: [ModelStore sharedInstance].database];
     if (self) {
         [self setupType: @"workout"];
-        [self setValue: [ModelStore sharedInstance].username ofProperty: @"owner_id"];
+        [self setValue: [ModelStore sharedInstance].username ofProperty: @"created_by"];
         self.name = name;
     }
     return self;
@@ -43,13 +43,13 @@
 
 - (bool) editable {
     NSString* username = self.modelStore.username;
-    return [self.owner_id isEqualToString: username];
+    return [self.created_by isEqualToString: username];
 }
 
 
 - (bool) owned {
     NSString* username = self.modelStore.username;
-    return [self.owner_id isEqualToString: username];
+    return [self.created_by isEqualToString: username];
 }
 
 

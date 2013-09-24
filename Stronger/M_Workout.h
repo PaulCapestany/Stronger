@@ -19,7 +19,7 @@
 + (M_Workout *)createWorkoutWithName:(NSString *)name;
 
 @property (readwrite) NSString* name;
-@property (readonly) NSString* owner_id;
+@property (readonly) NSString* created_by;
 
 
 @end

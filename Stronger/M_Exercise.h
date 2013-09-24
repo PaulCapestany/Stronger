@@ -21,7 +21,7 @@
 
 @property (copy) NSString *name;
 @property (assign) M_Workout *belongs_to_workout_id;
-@property (readonly) NSString* owner_id;
+@property (readonly) NSString* created_by;
 // TODO: should probably relate to pre-fab exercises
 
 @end
