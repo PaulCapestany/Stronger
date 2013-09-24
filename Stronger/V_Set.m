@@ -11,7 +11,6 @@
 
 @implementation V_Set
 {
-    CBLDatabase *database;
     M_Set *selectedSet;
     M_Set *setForRow;
     int currentSetCounter, lastSetCounter;
@@ -22,40 +21,27 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoadWithDatabase {
-    LogFunc;
-
-    if (!database) {
-        database = [ModelStore sharedInstance].database;
-    }
-    
-    if (_viewDidLoad && database) {
-        // Create a query sorted by descending date, i.e. newest items first:
-        CBLLiveQuery *query = [[[database viewNamed:@"sets"] query] asLiveQuery];
-
-        query.descending = YES;
-        query.groupedTableView = YES;
-        
-        // want to only show the exercises that match the Workout we selected in V_Workouts
-        query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, [NSDictionary dictionary], nil];
-        query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
-
-        dataSource.query = query;
-    }
-}
 
 - (void)viewDidLoad {
     LogFunc;
 
     [super viewDidLoad];
 
-    [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
-
-    _viewDidLoad = YES;
     isEditing = NO;
-    
     [self populateArrays];
-    [self viewDidLoadWithDatabase];
+
+    [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
+    CBLLiveQuery *query = [M_Set setsQuery].asLiveQuery;
+    
+    query.descending = YES;
+    query.groupedTableView = YES;
+    
+    // want to only show the exercises that match the Workout we selected in V_Workouts
+    query.startKey = [NSArray arrayWithObjects:m_ExerciseDocId, [NSDictionary dictionary], nil];
+    query.endKey = [NSArray arrayWithObjects:m_ExerciseDocId, nil];
+    
+    dataSource.query = query;
+    
 }
 
 - (void)dealloc {

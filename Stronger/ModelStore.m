@@ -18,7 +18,6 @@ static ModelStore* sInstance;
 @implementation ModelStore
 {
     CBLView* _usersView;
-    CBLLiveQuery* _chatModDatesQuery;
 }
 
 

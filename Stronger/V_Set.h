@@ -6,15 +6,13 @@
 #import <UIKit/UIKit.h>
 #import <CouchbaseLite/CBLUITableSource.h>
 
-@class CBLDatabase, M_Exercise, M_Set;
+@class M_Exercise, M_Set;
 
 @protocol V_SetDelegate <NSObject>
 @end
 
 @interface V_Set : UIViewController <CBLUITableDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 {
-    BOOL _viewDidLoad;
-
     UITableView *tableView;
 
     IBOutlet UIButton *saveButton;

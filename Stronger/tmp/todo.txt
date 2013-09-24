@@ -7,11 +7,11 @@
  * build database of exercises/machines <<< AppConstants.h:19 >>>
  * reimplement constants once I've sorted out auth stuff <<< AppConstants.h:27 >>>
  * should probably relate to pre-fab exercises <<< M_Exercise.h:25 >>>
- * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< ModelStore.m:64 >>>
- * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< ModelStore.m:75 >>>
- * make date grouping logic smarter with `compare` method <<< ModelStore.m:86 >>>
- * add in ability to edit `selectedExercise` <<< V_Exercise.m:105 >>>
- * properly implement `numberOfRowsInSection` <<< V_Set.m:216 >>>
+ * create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc) <<< ModelStore.m:63 >>>
+ * create "sortable" view for Exercises (substitute "a_creation_date" with sort order from settings doc) <<< ModelStore.m:74 >>>
+ * make date grouping logic smarter with `compare` method <<< ModelStore.m:85 >>>
+ * add in ability to edit `selectedExercise` <<< V_Exercise.m:111 >>>
+ * properly implement `numberOfRowsInSection` <<< V_Set.m:202 >>>
  * add in ability to edit `selectedWorkout` <<< V_Workout.m:129 >>>
  * Make introspection for primitive types work. <<< vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195 >>>
  * maybe not copy this for performance <<< vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719 >>>
@@ -23,7 +23,7 @@
  * find out if I need to change how I'm doing the IDs for each doc <<< AppConstants.h:13 >>>
  * look into `UICollectionView` <<< AppConstants.h:17 >>>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <<< AppConstants.h:21 >>>
- * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< ModelStore.m:57 >>>
- * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< ModelStore.m:76 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:187 >>>
- * this may have been causing crash with PonyDebugger... <<< V_Set.m:403 >>>
+ * change all emits to nil, use `prefetch=YES` in query instead (same as `include_docs=true`)? <<< ModelStore.m:56 >>>
+ * CBL prevents sorting with (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath, so address it <<< ModelStore.m:75 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Exercise.m:193 >>>
+ * this may have been causing crash with PonyDebugger... <<< V_Set.m:389 >>>

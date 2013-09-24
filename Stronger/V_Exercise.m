@@ -27,7 +27,13 @@
     [super viewDidLoad];
 
     [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
-    dataSource.query = [M_Exercise exercisesQuery].asLiveQuery;
+    
+    CBLLiveQuery *query = [M_Exercise exercisesQuery].asLiveQuery;
+
+    query.startKey = [NSArray arrayWithObjects:m_WorkoutDocId, nil];
+    query.endKey = [NSArray arrayWithObjects:m_WorkoutDocId,  [NSDictionary dictionary], nil];
+
+    dataSource.query = query;
 }
 
 - (void)dealloc {
