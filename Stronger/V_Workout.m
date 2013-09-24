@@ -12,10 +12,10 @@
 #import "V_Exercise.h"
 // sync stuff
 #import "AppDelegate.h"
-#import "ModelStore.h"
 
 
 @implementation V_Workout
+
 
 @synthesize delegate, dataSource, tableView;
 

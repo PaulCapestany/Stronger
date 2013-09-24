@@ -14,11 +14,12 @@
 
 @interface M_Workout : MetaModel
 
-@property (readwrite) NSString* name;
-@property (readonly) NSString* owner_id;
-
 + (CBLQuery*) workoutQuery;
 
 + (M_Workout *)createWorkoutWithName:(NSString *)name;
+
+@property (readwrite) NSString* name;
+@property (readonly) NSString* owner_id;
+
 
 @end

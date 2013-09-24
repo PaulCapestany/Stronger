@@ -11,8 +11,6 @@
 #import <CouchbaseLite/CBLModelFactory.h>
 
 @implementation M_Workout
-{
-}
 
 // meta
 @dynamic    created_at, updated_at;

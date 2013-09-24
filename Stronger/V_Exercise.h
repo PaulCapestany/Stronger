@@ -16,8 +16,6 @@
 
 @interface V_Exercise : UIViewController <CBLUITableDelegate, UITextFieldDelegate>
 {
-    BOOL _viewDidLoad;
-
     UITableView *tableView;
 
     IBOutlet UITextField *newExerciseTextField;

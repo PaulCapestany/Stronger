@@ -12,36 +12,14 @@
 #import "V_Set.h"
 // sync stuff
 #import "AppDelegate.h"
-#import "ModelStore.h"
 
 @implementation V_Exercise
-{
-    CBLDatabase *database;
-}
+
 
 @synthesize delegate, dataSource, tableView, m_WorkoutPassedIn, m_WorkoutDocId;
 
 
 #pragma mark - View lifecycle
-
-- (void)viewDidLoadWithDatabase {
-    LogFunc;
-
-    if (!database) {
-        database = [ModelStore sharedInstance].database;
-    }
-
-    if (_viewDidLoad && database) {
-        // Create a query sorted by descending date, i.e. newest items first:
-        CBLLiveQuery *query = [[[database viewNamed:@"exercises"] query] asLiveQuery];
-
-        // want to only show the exercises that match the Workout we selected in V_Workouts
-        query.startKey = [NSArray arrayWithObjects:m_WorkoutDocId, nil];
-        query.endKey = [NSArray arrayWithObjects:m_WorkoutDocId,  [NSDictionary dictionary], nil];
-
-        dataSource.query = query;
-    }
-}
 
 - (void)viewDidLoad {
     LogFunc;
@@ -49,9 +27,7 @@
     [super viewDidLoad];
 
     [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
-
-    _viewDidLoad = YES;
-    [self viewDidLoadWithDatabase];
+    dataSource.query = [M_Exercise exerciseQuery].asLiveQuery;
 }
 
 - (void)dealloc {

@@ -7,61 +7,52 @@
 //
 
 #import "M_Exercise.h"
-#import <CouchbaseLite/CBLJSON.h>
 #import "ModelStore.h"
+#import <CouchbaseLite/CBLModelFactory.h>
 
 @implementation M_Exercise
 
 // meta
-@dynamic    a_creation_date, a_creator, a_edit_date, type;
+@dynamic    created_at, updated_at;
 
 // properties
-@dynamic    name, belongs_to_workout_id;
+@dynamic    name, belongs_to_workout_id, owner_id;
+
++ (CBLQuery*) exerciseQuery {
+    CBLQuery* query = [[[ModelStore sharedInstance].database viewNamed: @"exercises"] query];
+    return query;
+}
 
 + (M_Exercise *)createExercise:(NSString *)name
          belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
 {
-    // setup
-    NSDate *a_creation_date = [NSDate date];
-    NSString *type = [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"M_" withString:@""];
-
-    M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[[ModelStore sharedInstance].database untitledDocument]];
-    retval.autosaves = YES;
-
-    // meta
-    retval.a_creation_date = a_creation_date;
-    retval.a_creator = [ModelStore sharedInstance].username;
-    retval.type = type;
-
-    // properties
-    retval.name = name;
-    retval.belongs_to_workout_id = belongs_to_workout_id;
-
-    return retval;
+    return [[M_Exercise alloc] initNewWithName:name belongs_to_workout_id:belongs_to_workout_id];
 }
 
-+ (M_Exercise *)editExercise:(NSString *)name
-       belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
-                 forExercise:(CBLDocument *)doc
+- (id) initNewWithName:(NSString *)name belongs_to_workout_id:(M_Workout *)belongs_to_workout_id
 {
-    M_Exercise *retval = [[M_Exercise alloc] initWithDocument:[[ModelStore sharedInstance].database documentWithID:doc.documentID]];
-
-    CBLRevision *latest = doc.currentRevision;
-    NSMutableDictionary *props = [latest.properties mutableCopy];
-
-    // META
-    retval.a_creation_date = [doc.properties objectForKey:@"a_creation_date"];
-    retval.a_creator = [doc.properties objectForKey:@"a_creator"];
-    retval.a_edit_date = [NSDate date];
-    retval.type = [doc.properties objectForKey:@"type"];
-
-    // PROPERTIES
-    retval.name = [props objectForKey:@"name"];
-    retval.belongs_to_workout_id = [props objectForKey:@"belongs_to_workout_id"];
-
-    [latest putProperties:props error:nil];
-
-    return retval;
+    self = [super initWithNewDocumentInDatabase: [ModelStore sharedInstance].database];
+    if (self) {
+        [self setupType: @"exercise"];
+        [self setValue: [ModelStore sharedInstance].username ofProperty: @"owner_id"];
+        self.name = name;
+        self.belongs_to_workout_id = belongs_to_workout_id;
+    }
+    return self;
 }
+
+
+- (bool) editable {
+    NSString* username = self.modelStore.username;
+    return [self.owner_id isEqualToString: username];
+}
+
+
+- (bool) owned {
+    NSString* username = self.modelStore.username;
+    return [self.owner_id isEqualToString: username];
+}
+
 
 @end
+
