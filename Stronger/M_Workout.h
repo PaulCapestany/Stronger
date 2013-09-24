@@ -14,13 +14,11 @@
 
 @interface M_Workout : MetaModel
 
-- (id) initNewWithName: (NSString*)name inModelStore: (ModelStore*)modelStore;
-
 @property (readwrite) NSString* name;
 @property (readonly) NSString* owner_id;
 
-@property (readonly) CBLLiveQuery* workoutQuery;
++ (CBLQuery*) workoutQuery;
 
-- (M_Workout *)createWorkoutWithName:(NSString *)name;
++ (M_Workout *)createWorkoutWithName:(NSString *)name;
 
 @end

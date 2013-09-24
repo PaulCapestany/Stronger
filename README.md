@@ -13,7 +13,7 @@
  * make date grouping logic smarter with `compare` method <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/ModelStore.m#L86">`ModelStore.m:86`</a>
  * add in ability to edit `selectedExercise` <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/V_Exercise.m#L129">`V_Exercise.m:129`</a>
  * properly implement `numberOfRowsInSection` <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/V_Set.m#L216">`V_Set.m:216`</a>
- * add in ability to edit `selectedWorkout` <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/V_Workout.m#L148">`V_Workout.m:148`</a>
+ * add in ability to edit `selectedWorkout` <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/V_Workout.m#L129">`V_Workout.m:129`</a>
  * Make introspection for primitive types work. <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m#L195">`vendor/submodules/PonyDebugger/ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m:195`</a>
  * maybe not copy this for performance <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m#L719">`vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:719`</a>
  * Handle invalid opcode <a href="https://github.com/PaulCapestany/Stronger/blob/personaLogin/Stronger/vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m#L880">`vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:880`</a>

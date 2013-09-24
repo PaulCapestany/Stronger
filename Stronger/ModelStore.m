@@ -63,9 +63,9 @@ static ModelStore* sInstance;
     LogDebug(@"Set up workouts map view");
     // TODO: create "sortable" view for Workouts (substitute "a_creation_date" with sort numbers from settings doc)
     [[_database viewNamed:@"workouts"] setMapBlock:MAPBLOCK({
-        id date = [doc objectForKey:@"a_creation_date"];
-        if ([[doc objectForKey:@"type"] isEqualToString:@"Workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
-    }) reduceBlock:nil version:@"0.6"];
+        id date = [doc objectForKey:@"created_at"];
+        if ([[doc objectForKey:@"type"] isEqualToString:@"workout"]) emit([NSArray arrayWithObjects:date, nil], doc);
+    }) reduceBlock:nil version:@"0.7"];
     
     ///////////////
     // EXERCISES //

@@ -16,28 +16,9 @@
 
 
 @implementation V_Workout
-{
-    M_Workout* _workout;
-}
 
 @synthesize delegate, dataSource, tableView;
 
-
-- (M_Workout*) workout {
-    return _workout;
-}
-
-- (void) setWorkout:(M_Workout *)workout {
-    if (workout == _workout)
-        return;
-    _workout = workout;
-    [self showWorkout];
-}
-
-
-- (void) showWorkout {
-    dataSource.query = _workout.workoutQuery;
-}
 
 #pragma mark - View lifecycle
 
@@ -50,6 +31,7 @@
 //    self.navigationItem.leftBarButtonItem = editButton;
 
     [CBLUITableSource class];     // Prevents class from being dead-stripped by linker
+    dataSource.query = [M_Workout workoutQuery].asLiveQuery;
 }
 
 - (void)dealloc {
@@ -94,8 +76,7 @@
     LogFunc;
 
     LogErr(@"error: %@\nmessage: %@", error, message);
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-     showAlert: message error : error fatal : NO];
+    [gAppDelegate showAlert: message error : error fatal : NO];
 }
 
 #pragma mark - TD table source delegate
@@ -230,7 +211,7 @@
     
     if (cleanedUpText != nil && ![cleanedUpText isEqual:@""]) {
         M_Workout *newWorkout =
-        [_workout createWorkoutWithName:cleanedUpText];
+        [M_Workout createWorkoutWithName:cleanedUpText];
         LogVerbose(@"newWorkout", newWorkout);
     }
     [newWorkoutTextField setText:nil];

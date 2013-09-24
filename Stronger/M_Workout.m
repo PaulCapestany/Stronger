@@ -12,7 +12,6 @@
 
 @implementation M_Workout
 {
-    CBLLiveQuery* _workoutQuery;
 }
 
 // meta
@@ -22,30 +21,27 @@
 @dynamic    name, owner_id;
 
 
-- (id) initNewWithName:(NSString *)name inModelStore:(ModelStore *)modelStore
++ (CBLQuery*) workoutQuery {
+    CBLQuery* query = [[[ModelStore sharedInstance].database viewNamed: @"workouts"] query];
+    return query;
+}
+
++ (M_Workout *)createWorkoutWithName:(NSString *)name {
+    return [[M_Workout alloc] initNewWithName:name];
+}
+
+
+- (id) initNewWithName:(NSString *)name
 {
-    self = [super initWithNewDocumentInDatabase: modelStore.database];
+    self = [super initWithNewDocumentInDatabase: [ModelStore sharedInstance].database];
     if (self) {
         [self setupType: @"workout"];
-        [self setValue: modelStore.username ofProperty: @"owner_id"];
+        [self setValue: [ModelStore sharedInstance].username ofProperty: @"owner_id"];
         self.name = name;
     }
     return self;
 }
 
-
-- (M_Workout *)createWorkoutWithName:(NSString *)name {
-    return [[M_Workout alloc] initNewWithName:name inModelStore:self.modelStore];
-}
-
-
-- (CBLLiveQuery*) workoutQuery {
-    if (!_workoutQuery) {
-        CBLQuery* query = [[self.database viewNamed: @"workouts"] query];
-        _workoutQuery = [query asLiveQuery];
-    }
-    return _workoutQuery;
-}
 
 - (bool) editable {
     NSString* username = self.modelStore.username;
