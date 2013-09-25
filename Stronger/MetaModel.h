@@ -16,7 +16,6 @@
 
 //@property (readonly) NSString* created_by;
 
-@property (copy) NSArray* visible_to;
 @property (strong) NSDate* created_at;
 @property (strong) NSDate* updated_at;
 

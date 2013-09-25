@@ -11,7 +11,7 @@
 
 @implementation MetaModel
 
-@dynamic visible_to, created_at, updated_at;
+@dynamic created_at, updated_at;
 
 
 - (id) initWithDocument: (CBLDocument*)document {
@@ -25,7 +25,6 @@
 
 - (void) setupType: (NSString*)type {
     [self setValue: type ofProperty: @"type"];
-    self.visible_to = @[@"creator"];
     self.created_at = self.updated_at = [NSDate date];
 }
 

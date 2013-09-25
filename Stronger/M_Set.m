@@ -13,7 +13,7 @@
 @implementation M_Set
 
 // meta
-@dynamic    visible_to, created_at, updated_at;
+@dynamic    created_at, updated_at;
 
 // properties
 @dynamic    weight, reps, belongs_to_exercise_id, created_by;

@@ -13,7 +13,7 @@
 @implementation M_Workout
 
 // meta
-@dynamic    visible_to, created_at, updated_at;
+@dynamic    created_at, updated_at;
 
 // properties
 @dynamic    name, created_by;
