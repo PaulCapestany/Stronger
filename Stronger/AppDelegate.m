@@ -75,6 +75,18 @@ AppDelegate* gAppDelegate;
     self.navigationController = self.window.rootViewController.navigationController;
     //    [self.window makeKeyAndVisible];
     
+    
+// Pre-installing a canned DB (per couchbase-lite-ios.wiki 76566c8c)
+//    self.database = [[CBLManager sharedInstance] databaseNamed:@"stronger" error:nil];
+//    if (!self.database) {
+//        NSString* cannedDbPath = [[NSBundle mainBundle] pathForResource:@"stronger" ofType:@"cblite"];
+//        NSString* cannedAttPath = [[NSBundle mainBundle] pathForResource:@"stronger attachments" ofType:@""];
+//
+//        NSError *firsterror;
+//        [[CBLManager sharedInstance] replaceDatabaseNamed:@"stronger" withDatabaseFile:cannedDbPath withAttachments:cannedAttPath error:&firsterror];
+//        NSLog(@"firsterror: %@", firsterror);
+//    }
+
     // Open the database, creating it on the first run:
     NSError *error;
     self.database = [[CBLManager sharedInstance] createDatabaseNamed:@"stronger"

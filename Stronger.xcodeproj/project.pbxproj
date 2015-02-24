@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0797FB001A9D2A6300840BBD /* stronger.cblite in Resources */ = {isa = PBXBuildFile; fileRef = 0797FAFF1A9D2A6300840BBD /* stronger.cblite */; };
+		0797FB031A9D3C6F00840BBD /* stronger attachments in Resources */ = {isa = PBXBuildFile; fileRef = 0797FB021A9D3C6F00840BBD /* stronger attachments */; };
 		6E463B9417C2E15600D4BBAE /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E463B9317C2E15600D4BBAE /* CouchbaseLite.framework */; };
 		6E4C5C6A17EA7F600077A2EE /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4C5C6917EA7F600077A2EE /* Reveal.framework */; };
 		6E5909E2178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
@@ -81,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0797FAFF1A9D2A6300840BBD /* stronger.cblite */ = {isa = PBXFileReference; lastKnownFileType = file; path = stronger.cblite; sourceTree = "<group>"; };
+		0797FB021A9D3C6F00840BBD /* stronger attachments */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "stronger attachments"; sourceTree = "<group>"; };
 		6E463B9317C2E15600D4BBAE /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Stronger/vendor/CouchbaseLite.framework; sourceTree = "<group>"; };
 		6E4C5C6917EA7F600077A2EE /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = Stronger/vendor/Reveal.framework; sourceTree = "<group>"; };
 		6E5909DE178CCCDF00818B6C /* M_Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Settings.h; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 		6E94F5B0177BB6E7000D0284 /* Stronger */ = {
 			isa = PBXGroup;
 			children = (
+				0797FB021A9D3C6F00840BBD /* stronger attachments */,
+				0797FAFF1A9D2A6300840BBD /* stronger.cblite */,
 				6EA6C6381782778B00356926 /* AppConstants.h */,
 				6E94F5B9177BB6E7000D0284 /* AppDelegate.h */,
 				6E94F5BA177BB6E7000D0284 /* AppDelegate.m */,
@@ -451,11 +457,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0797FB001A9D2A6300840BBD /* stronger.cblite in Resources */,
 				6E94F5C1177BB6E7000D0284 /* Main_iPad.storyboard in Resources */,
 				6E94F5C9177BB6E7000D0284 /* Images.xcassets in Resources */,
 				6EA0E05717EA86EA006788E8 /* README.md in Resources */,
 				6E94F5BE177BB6E7000D0284 /* Main_iPhone.storyboard in Resources */,
 				6E94F5B5177BB6E7000D0284 /* InfoPlist.strings in Resources */,
+				0797FB031A9D3C6F00840BBD /* stronger attachments in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
