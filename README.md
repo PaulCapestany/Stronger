@@ -4,7 +4,7 @@
 
 ## Screenshots
 
-![Workouts screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/ff62c1c0eccea01b07097f016ee8e5e1cb044d79/workouts_iphone5s_spacegrey_portrait.png)![Exercises screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/ff62c1c0eccea01b07097f016ee8e5e1cb044d79/exercises_iphone5s_spacegrey_portrait.png)![Sets screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/ff62c1c0eccea01b07097f016ee8e5e1cb044d79/sets_iphone5s_spacegrey_portrait.png)
+![Stronger app screenshots](https://raw.githubusercontent.com/PaulCapestany/Stronger/d093dab70a28dec74de98fcfc99b7dca559891a9/stronger_screenshots.png)
 
 
 ## TODO
