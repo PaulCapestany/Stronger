@@ -12,10 +12,6 @@
 
 // ???: find out if I need to change how I'm doing the IDs for each doc
 
-// TODO: add file for passwords/etc to .gitignore
-
-// ???: look into `UICollectionView`
-
 // TODO: build database of exercises/machines
 
 // ???: explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`?

@@ -1,0 +1,4 @@
+[submodule "Stronger/vendor/submodules/PonyDebugger"]
+	path = Stronger/vendor/submodules/PonyDebugger
+	url = https://PaulCapestany@github.com/PaulCapestany/PonyDebugger.git
+	branch = dev
