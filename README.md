@@ -4,16 +4,8 @@
 
 ## Screenshots
 
-### Workouts
-
 ![Workouts screen](https://github.com/PaulCapestany/Stronger/blob/11e3b8e1382bed728b7687ddb386c81d156e19ae/workouts.jpg?raw=true)
-
-### Exercises
-
 ![Exercises screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/11e3b8e1382bed728b7687ddb386c81d156e19ae/exercises.jpg?raw=true)
-
-### Sets
-
 ![Sets screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/11e3b8e1382bed728b7687ddb386c81d156e19ae/set.jpg?raw=true)
 
 ## TODO
