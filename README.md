@@ -1,6 +1,6 @@
 # Stronger
 
-Stronger is a simple app that helps you keep track of your progress at the gym, letting you quickly record sets and reps for different exercises. Data is saved locally and is also synced to the cloud using [Couchbase Lite](https://github.com/couchbase/couchbase-lite-ios/) and [Sync Gateway](https://github.com/couchbase/sync_gateway).
+Stronger is a simple iOS app that helps you keep track of your progress at the gym, letting you quickly record sets and reps for different exercises. Data is saved locally and is also synced to the cloud using [Couchbase Lite](https://github.com/couchbase/couchbase-lite-ios/) and [Sync Gateway](https://github.com/couchbase/sync_gateway).
 
 ## Screenshots
 
