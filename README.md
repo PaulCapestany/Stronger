@@ -4,16 +4,12 @@
 
 ## Screenshots
 
-![Workouts screen](https://github.com/PaulCapestany/Stronger/blob/11e3b8e1382bed728b7687ddb386c81d156e19ae/workouts.jpg?raw=true)
-![Exercises screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/11e3b8e1382bed728b7687ddb386c81d156e19ae/exercises.jpg?raw=true)
-![Sets screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/11e3b8e1382bed728b7687ddb386c81d156e19ae/set.jpg?raw=true)
+![Workouts screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/ff62c1c0eccea01b07097f016ee8e5e1cb044d79/workouts_iphone5s_spacegrey_portrait.png)![Exercises screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/ff62c1c0eccea01b07097f016ee8e5e1cb044d79/exercises_iphone5s_spacegrey_portrait.png)![Sets screen](https://raw.githubusercontent.com/PaulCapestany/Stronger/ff62c1c0eccea01b07097f016ee8e5e1cb044d79/sets_iphone5s_spacegrey_portrait.png)
 
 
-## TODO
+## TODO
 
-### Top Priority
-
-### Upcoming
+### Upcoming
  * create users for app <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/AppConstants.h#L11">`AppConstants.h:11`</a>
  * build database of exercises/machines <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/AppConstants.h#L15">`AppConstants.h:15`</a>
  * reimplement constants once I've sorted out auth stuff <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/AppConstants.h#L23">`AppConstants.h:23`</a>
@@ -32,7 +28,7 @@
  * Optimize the crap out of this.  Don't really have to copy all the data each time <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m#L1238">`vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:1238`</a>
  * could probably optimize this with SIMD <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m#L1358">`vendor/submodules/PonyDebugger/ObjC/SocketRocket/SocketRocket/SRWebSocket.m:1358`</a>
 
-### Open questions
+### Open questions
  * find out if I need to change how I'm doing the IDs for each doc <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/AppConstants.h#L13">`AppConstants.h:13`</a>
  * explore subclassing CBLLiveQuery UITableViewCell through `couchTableSource willUseCell forRow`? <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/AppConstants.h#L17">`AppConstants.h:17`</a>
  * will this work? <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/AppDelegate.m#L74">`AppDelegate.m:74`</a>
@@ -46,6 +42,7 @@
  * *save* method seems to have changed (no longer *RestOperation*-based)? <a href="https://github.com/PaulCapestany/Stronger/blob/master/Stronger/V_Workout.m#L225">`V_Workout.m:225`</a>
 
 
-_Build version 0.0.0_
+_Build version 0.0.0_
 
-<!---->
+<!---->
+
