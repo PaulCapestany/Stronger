@@ -4,7 +4,7 @@
 
 ## Screenshots
 
-![Stronger app screenshots](https://raw.githubusercontent.com/PaulCapestany/Stronger/d093dab70a28dec74de98fcfc99b7dca559891a9/stronger_screenshots.png)
+![Stronger app screenshots](https://raw.githubusercontent.com/PaulCapestany/Stronger/b5b8913354ba766666ce6803a9570d83df73bf64/stronger_screenshots.png)
 
 
 ## TODO
