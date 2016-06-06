@@ -10,7 +10,6 @@
 		0797FB001A9D2A6300840BBD /* stronger.cblite in Resources */ = {isa = PBXBuildFile; fileRef = 0797FAFF1A9D2A6300840BBD /* stronger.cblite */; };
 		0797FB031A9D3C6F00840BBD /* stronger attachments in Resources */ = {isa = PBXBuildFile; fileRef = 0797FB021A9D3C6F00840BBD /* stronger attachments */; };
 		6E463B9417C2E15600D4BBAE /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E463B9317C2E15600D4BBAE /* CouchbaseLite.framework */; };
-		6E4C5C6A17EA7F600077A2EE /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4C5C6917EA7F600077A2EE /* Reveal.framework */; };
 		6E5909E2178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
 		6E5909E3178CCCDF00818B6C /* M_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909DF178CCCDF00818B6C /* M_Settings.m */; };
 		6E5909E4178CCCDF00818B6C /* V_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5909E1178CCCDF00818B6C /* V_Settings.m */; };
@@ -54,8 +53,6 @@
 		6EA26D1017CEC05800576CD6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6F61817BADA9B009D06C5 /* Security.framework */; };
 		6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62D1782716E00356926 /* libsqlite3.dylib */; };
 		6EA6C6301782717700356926 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA6C62F1782717700356926 /* libz.dylib */; };
-		6EB5CA7617CEBF5A00AA7858 /* libPonyDebugger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB5CA7317CEBEEA00AA7858 /* libPonyDebugger.a */; };
-		6EB5CA7817CEBF5A00AA7858 /* libSocketRocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB5CA7717CEBF5A00AA7858 /* libSocketRocket.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,10 +151,7 @@
 				6EA26D0F17CEC04F00576CD6 /* CoreData.framework in Frameworks */,
 				6EA26D0E17CEC04900576CD6 /* libicucore.dylib in Frameworks */,
 				6EA26D0C17CEC03B00576CD6 /* CFNetwork.framework in Frameworks */,
-				6EB5CA7817CEBF5A00AA7858 /* libSocketRocket.a in Frameworks */,
-				6EB5CA7617CEBF5A00AA7858 /* libPonyDebugger.a in Frameworks */,
 				6E9579D417CEAE7300E2D6EB /* SystemConfiguration.framework in Frameworks */,
-				6E4C5C6A17EA7F600077A2EE /* Reveal.framework in Frameworks */,
 				6E463B9417C2E15600D4BBAE /* CouchbaseLite.framework in Frameworks */,
 				6EA6C6301782717700356926 /* libz.dylib in Frameworks */,
 				6EA6C62E1782716E00356926 /* libsqlite3.dylib in Frameworks */,
@@ -675,10 +669,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Stronger/vendor",
-					"/Users/PaulCapestany/Documents/_Coding/_Tracked-Repos/Stronger/Stronger/vendor",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stronger/Stronger-Prefix.pch";
@@ -696,10 +690,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Stronger/vendor",
-					"/Users/PaulCapestany/Documents/_Coding/_Tracked-Repos/Stronger/Stronger/vendor",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stronger/Stronger-Prefix.pch";
